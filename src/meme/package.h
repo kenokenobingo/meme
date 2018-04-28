@@ -1,5 +1,5 @@
 /*
- *  pacman.h
+ *  package.h
  *
  *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
@@ -17,29 +17,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PM_PACMAN_H
-#define PM_PACMAN_H
+#ifndef MM_PACKAGE_H
+#define MM_PACKAGE_H
 
-#include <alpm_list.h>
+#include <alpm.h>
 
-#define PACMAN_CALLER_PREFIX "PACMAN"
+void dump_pkg_full(alpm_pkg_t *pkg, int extra);
 
-/* database.c */
-int pacman_database(alpm_list_t *targets);
-/* deptest.c */
-int pacman_deptest(alpm_list_t *targets);
-/* files.c */
-int pacman_files(alpm_list_t *files);
-/* query.c */
-int pacman_query(alpm_list_t *targets);
-/* remove.c */
-int pacman_remove(alpm_list_t *targets);
-/* sync.c */
-int pacman_sync(alpm_list_t *targets);
-int sync_prepare_execute(void);
-/* upgrade.c */
-int pacman_upgrade(alpm_list_t *targets);
+void dump_pkg_backups(alpm_pkg_t *pkg);
+void dump_pkg_files(alpm_pkg_t *pkg, int quiet);
+void dump_pkg_changelog(alpm_pkg_t *pkg);
 
-#endif /* PM_PACMAN_H */
+void print_installed(alpm_db_t *db_local, alpm_pkg_t *pkg);
+int dump_pkg_search(alpm_db_t *db, alpm_list_t *targets, int show_status);
+
+#endif /* MM_PACKAGE_H */
 
 /* vim: set noet: */

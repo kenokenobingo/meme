@@ -31,8 +31,8 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
-#include "pacman.h"
+/* meme */
+#include "meme.h"
 #include "util.h"
 #include "package.h"
 #include "conf.h"

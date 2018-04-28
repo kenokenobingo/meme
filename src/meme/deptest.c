@@ -1,7 +1,7 @@
 /*
  *  deptest.c
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -23,11 +23,11 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
-#include "pacman.h"
+/* meme */
+#include "meme.h"
 #include "conf.h"
 
-int pacman_deptest(alpm_list_t *targets)
+int meme_deptest(alpm_list_t *targets)
 {
 	alpm_list_t *i;
 	alpm_list_t *deps = NULL;

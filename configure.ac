@@ -28,31 +28,31 @@ AC_PREREQ(2.64)
 # 6. If any interfaces have been removed since the last public release, then
 #    set age to 0.
 #
-# pacman:
+# meme:
 #   Extreme huge major changes:
-#     pacman_version_major += 1
-#     pacman_version_minor = 0
-#     pacman_version_micro = 0
+#     meme_version_major += 1
+#     meme_version_minor = 0
+#     meme_version_micro = 0
 #
 #   Real releases:
-#     pacman_version_minor += 1
-#     pacman_version_micro = 0
+#     meme_version_minor += 1
+#     meme_version_micro = 0
 #
 #   Bugfix releases:
-#     pacman_version_micro += 1
+#     meme_version_micro += 1
 
 m4_define([lib_current], [10])
 m4_define([lib_revision], [1])
 m4_define([lib_age], [0])
 
-m4_define([pacman_version_major], [5])
-m4_define([pacman_version_minor], [0])
-m4_define([pacman_version_micro], [1])
-m4_define([pacman_version],
-          [pacman_version_major.pacman_version_minor.pacman_version_micro])
+m4_define([meme_version_major], [5])
+m4_define([meme_version_minor], [0])
+m4_define([meme_version_micro], [1])
+m4_define([meme_version],
+          [meme_version_major.meme_version_minor.meme_version_micro])
 
 # Autoconf initialization
-AC_INIT([pacman], [pacman_version], [pacman-dev@archlinux.org])
+AC_INIT([meme], [meme_version], [win@kenokeno.bingo])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -156,7 +156,7 @@ AC_ARG_ENABLE(warningflags,
 	AS_HELP_STRING([--enable-warningflags], [enable extra compiler warning flags]),
 	[warningflags=$enableval], [warningflags=no])
 
-# Help line for using git version in pacman version string
+# Help line for using git version in meme version string
 AC_ARG_ENABLE(git-version,
 	AS_HELP_STRING([--enable-git-version],
 		[enable use of git version in version string if available]),
@@ -193,7 +193,7 @@ AC_DEFUN([AX_PROG_PERL_VERSION],
 AX_PROG_PERL_VERSION([5.10.1], [], [AC_MSG_ERROR([perl is too old])])
 
 AS_IF([test "x$BASH_SHELL" = "xfalse"],
-	AC_MSG_WARN([*** bash >= 4.1.0 is required for pacman scripts]),
+	AC_MSG_WARN([*** bash >= 4.1.0 is required for meme scripts]),
 	[bash_version_major=`$BASH_SHELL -c 'echo "${BASH_VERSINFO[[0]]}"'`
 	bash_version_minor=`$BASH_SHELL -c 'echo "${BASH_VERSINFO[[1]]}"'`
 	ok=yes
@@ -204,7 +204,7 @@ AS_IF([test "x$BASH_SHELL" = "xfalse"],
 		ok=no
 	fi
 	if test "$ok" = "no"; then
-		AC_MSG_ERROR([*** bash >= 4.1.0 is required for pacman scripts])
+		AC_MSG_ERROR([*** bash >= 4.1.0 is required for meme scripts])
 	fi
 	unset bash_version_major bash_version_minor ok])
 
@@ -213,11 +213,11 @@ AM_GNU_GETTEXT([external], [need-ngettext])
 AM_GNU_GETTEXT_VERSION(0.13.1)
 
 AC_CHECK_LIB([m], [fabs], ,
-	AC_MSG_ERROR([libm is needed to compile pacman!]))
+	AC_MSG_ERROR([libm is needed to compile meme!]))
 
 # Check for libarchive
 PKG_CHECK_MODULES(LIBARCHIVE, [libarchive >= 3.0.0], ,
-	AC_MSG_ERROR([*** libarchive >= 3.0.0 is needed to compile pacman!]))
+	AC_MSG_ERROR([*** libarchive >= 3.0.0 is needed to compile meme!]))
 
 # Check for OpenSSL
 have_openssl=no
@@ -432,7 +432,7 @@ AM_CONDITIONAL(USE_DOXYGEN, test "x$usedoxygen" = "xyes")
 AC_MSG_CHECKING(for debug mode request)
 if test "x$debug" = "xyes" ; then
 	AC_MSG_RESULT(yes)
-	AC_DEFINE([PACMAN_DEBUG], , [Enable debug code])
+	AC_DEFINE([meme_DEBUG], , [Enable debug code])
 	# Check for -fstack-protector availability
 	GCC_STACK_PROTECT_LIB
 	GCC_STACK_PROTECT_CC
@@ -478,7 +478,7 @@ else
 	AC_MSG_RESULT(no)
 fi
 
-# Enable or disable use of git version in pacman version string
+# Enable or disable use of git version in meme version string
 AC_MSG_CHECKING(whether to use git version if available)
 if test "x$wantgitver" = "xyes" ; then
 	AC_CHECK_PROGS([GIT], [git])
@@ -498,10 +498,10 @@ AC_SUBST(ROOTDIR)
 AC_DEFINE_UNQUOTED([ROOTDIR], "$ROOTDIR", [The location of the root operating directory])
 # Set package file extension
 AC_SUBST(PKGEXT)
-AC_DEFINE_UNQUOTED([PKGEXT], "$PKGEXT", [The file extension used by pacman packages])
+AC_DEFINE_UNQUOTED([PKGEXT], "$PKGEXT", [The file extension used by meme packages])
 # Set source package file extension
 AC_SUBST(SRCEXT)
-AC_DEFINE_UNQUOTED([SRCEXT], "$SRCEXT", [The file extension used by pacman source packages])
+AC_DEFINE_UNQUOTED([SRCEXT], "$SRCEXT", [The file extension used by meme source packages])
 # Set makepkg build script name
 AC_SUBST(BUILDSCRIPT)
 AC_DEFINE_UNQUOTED([BUILDSCRIPT], "$BUILDSCRIPT", [The build script name used by makepkg])
@@ -525,15 +525,15 @@ lib/libalpm/Makefile
 lib/libalpm/po/Makefile.in
 lib/libalpm/libalpm.pc
 src/common/Makefile
-src/pacman/Makefile
-src/pacman/po/Makefile.in
+src/meme/Makefile
+src/meme/po/Makefile.in
 src/util/Makefile
 scripts/Makefile
 scripts/po/Makefile.in
 doc/Makefile
 etc/Makefile
-test/pacman/Makefile
-test/pacman/tests/Makefile
+test/meme/Makefile
+test/meme/tests/Makefile
 test/scripts/Makefile
 test/util/Makefile
 Makefile
@@ -547,10 +547,10 @@ ${PACKAGE_NAME}:
     source code location   : ${srcdir}
     prefix                 : ${prefix}
     sysconfdir             : $(eval echo ${sysconfdir})
-       conf file           : $(eval echo ${sysconfdir})/pacman.conf
+       conf file           : $(eval echo ${sysconfdir})/meme.conf
     localstatedir          : $(eval echo ${localstatedir})
-       database dir        : $(eval echo ${localstatedir})/lib/pacman/
-       cache dir           : $(eval echo ${localstatedir})/cache/pacman/pkg/
+       database dir        : $(eval echo ${localstatedir})/lib/meme/
+       cache dir           : $(eval echo ${localstatedir})/cache/meme/pkg/
 
     compiler               : ${CC}
     preprocessor flags     : ${CPPFLAGS}
@@ -567,7 +567,7 @@ ${PACKAGE_NAME}:
 
     libalpm version        : ${LIB_VERSION}
     libalpm version info   : ${LIB_VERSION_INFO}
-    pacman version         : ${PACKAGE_VERSION}
+    meme version         : ${PACKAGE_VERSION}
     using git version      : ${usegitver}
 
   Directory and file information:

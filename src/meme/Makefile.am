@@ -1,14 +1,14 @@
 SUBDIRS = po
 
 # paths set at make time
-conffile  = ${sysconfdir}/pacman.conf
-dbpath    = ${localstatedir}/lib/pacman/
-gpgdir    = ${sysconfdir}/pacman.d/gnupg/
-hookdir   = ${sysconfdir}/pacman.d/hooks/
-cachedir  = ${localstatedir}/cache/pacman/pkg/
-logfile   = ${localstatedir}/log/pacman.log
+conffile  = ${sysconfdir}/meme.conf
+dbpath    = ${localstatedir}/lib/meme/
+gpgdir    = ${sysconfdir}/meme.d/gnupg/
+hookdir   = ${sysconfdir}/meme.d/hooks/
+cachedir  = ${localstatedir}/cache/meme/pkg/
+logfile   = ${localstatedir}/log/meme.log
 
-bin_PROGRAMS = pacman pacman-conf
+bin_PROGRAMS = meme meme-conf
 
 AM_CPPFLAGS = \
 	-imacros $(top_builddir)/config.h \
@@ -37,7 +37,7 @@ pacman_SOURCES = \
 	files.c \
 	ini.h ini.c \
 	package.h package.c \
-	pacman.h pacman.c \
+	meme.h meme.c \
 	query.c \
 	remove.c \
 	sighandler.h sighandler.c \
@@ -64,7 +64,7 @@ pacman_conf_SOURCES = pacman-conf.c \
 	conf.h \
 	conf.c
 
-pacman_conf_LDADD = $(top_builddir)/lib/libalpm/.libs/libalpm.la
+meme_conf_LDADD = $(top_builddir)/lib/libalpm/.libs/libalpm.la
 
 
 # vim:set noet:

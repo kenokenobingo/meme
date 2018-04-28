@@ -22,7 +22,7 @@
 #include <regex.h>
 
 /* pacman */
-#include "pacman.h"
+#include "meme.h"
 #include "util.h"
 #include "conf.h"
 #include "package.h"

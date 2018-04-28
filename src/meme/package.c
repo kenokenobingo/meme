@@ -1,7 +1,7 @@
 /*
  *  package.c
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -30,7 +30,7 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
+/* meme */
 #include "package.h"
 #include "util.h"
 #include "conf.h"
@@ -38,7 +38,7 @@
 #define CLBUF_SIZE 4096
 
 /* The term "title" refers to the first field of each line in the package
- * information displayed by pacman. Titles are stored in the `titles` array and
+ * information displayed by meme. Titles are stored in the `titles` array and
  * referenced by the following indices.
  */
 enum {

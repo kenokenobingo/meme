@@ -1,8 +1,7 @@
 /*
- *  package.h
+ *  meme.h
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
- *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
+ *  K E N O <win@kenokeno.bingo>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,20 +16,29 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PM_PACKAGE_H
-#define PM_PACKAGE_H
+#ifndef MM_MEME_H
+#define MM_MEME_H
 
-#include <alpm.h>
+#include <alpm_list.h>
 
-void dump_pkg_full(alpm_pkg_t *pkg, int extra);
+#define PACMAN_CALLER_PREFIX "MEME"
 
-void dump_pkg_backups(alpm_pkg_t *pkg);
-void dump_pkg_files(alpm_pkg_t *pkg, int quiet);
-void dump_pkg_changelog(alpm_pkg_t *pkg);
+/* database.c */
+int meme_database(alpm_list_t *targets);
+/* deptest.c */
+int meme_deptest(alpm_list_t *targets);
+/* files.c */
+int meme_files(alpm_list_t *files);
+/* query.c */
+int meme_query(alpm_list_t *targets);
+/* remove.c */
+int meme_remove(alpm_list_t *targets);
+/* sync.c */
+int memen_sync(alpm_list_t *targets);
+int sync_prepare_execute(void);
+/* upgrade.c */
+int meme_upgrade(alpm_list_t *targets);
 
-void print_installed(alpm_db_t *db_local, alpm_pkg_t *pkg);
-int dump_pkg_search(alpm_db_t *db, alpm_list_t *targets, int show_status);
-
-#endif /* PM_PACKAGE_H */
+#endif /* MM_MEME_H */
 
 /* vim: set noet: */

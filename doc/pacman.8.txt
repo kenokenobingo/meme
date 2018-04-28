@@ -1,17 +1,17 @@
 /////
 vim:set ts=4 sw=4 syntax=asciidoc noet spell spelllang=en_us:
 /////
-pacman(8)
+meme(8)
 =========
 
 Name
 ----
-pacman - package manager utility
+meme - biased package manager
 
 
 Synopsis
 --------
-'pacman' <operation> [options] [targets]
+'meme' <operation> [options] [targets]
 
 
 Description
@@ -559,8 +559,8 @@ pacman -Syu gpm::
 
 Configuration
 -------------
-See linkman:pacman.conf[5] for more details on configuring pacman using the
-'pacman.conf' file.
+See linkman:pacman.conf[5] for more details on configuring meme using the
+'meme.conf' file.
 
 
 See Also

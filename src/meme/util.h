@@ -17,8 +17,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PM_UTIL_H
-#define PM_UTIL_H
+#ifndef MM_UTIL_H
+#define MM_UTIL_H
 
 #include <stdlib.h>
 #include <stdarg.h>
@@ -83,6 +83,6 @@ int pm_vfprintf(FILE *stream, alpm_loglevel_t level, const char *format, va_list
 int pm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...) __attribute__((format(printf,3,4)));
 int pm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_list args) __attribute__((format(printf,3,0)));
 
-#endif /* PM_UTIL_H */
+#endif /* MM_UTIL_H */
 
 /* vim: set noet: */

@@ -26,7 +26,7 @@
 #include <alpm_list.h>
 
 /* pacman */
-#include "pacman.h"
+#include "meme.h"
 #include "conf.h"
 #include "util.h"
 

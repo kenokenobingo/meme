@@ -1,7 +1,7 @@
 /*
- *  util-common.h
+ *  ini.h
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2013-2018 Pacman Development Team <pacman-dev@archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,27 +17,14 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MM_UTIL_COMMON_H
-#define MM_UTIL_COMMON_H
+#ifndef MM_INI_H
+#define MM_INI_H
 
-#include <stdio.h>
-#include <sys/stat.h> /* struct stat */
+typedef int (ini_parser_fn)(const char *file, int line, const char *section,
+		char *key, char *value, void *data);
 
-const char *mbasename(const char *path);
-char *mdirname(const char *path);
+int parse_ini(const char *file, ini_parser_fn cb, void *data);
 
-int llstat(char *path, struct stat *buf);
-
-char *safe_fgets(char *s, int size, FILE *stream);
-
-size_t strtrim(char *str);
-
-#ifndef HAVE_STRNDUP
-char *strndup(const char *s, size_t n);
-#endif
-
-#define ARRAYSIZE(a) (sizeof (a) / sizeof (a[0]))
-
-#endif /* MM_UTIL_COMMON_H */
+#endif /* MM_INI_H */
 
 /* vim: set noet: */

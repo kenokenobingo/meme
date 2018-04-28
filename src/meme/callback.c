@@ -32,7 +32,7 @@
 #include <alpm.h>
 
 /* pacman */
-#include "pacman.h"
+#include "meme.h"
 #include "callback.h"
 #include "util.h"
 #include "conf.h"
