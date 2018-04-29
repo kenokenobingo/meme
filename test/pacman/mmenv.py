@@ -17,7 +17,7 @@
 
 import os
 
-import pmtest
+import mmtest
 import tap
 
 
@@ -44,8 +44,8 @@ class pmenv(object):
 
     def __str__(self):
         return "root = %s\n" \
-               "pacman = %s" \
-               % (self.root, self.pacman)
+               "meme = %s" \
+               % (self.root, self.meme)
 
     def addtest(self, testcase):
         """
