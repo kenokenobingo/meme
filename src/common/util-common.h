@@ -17,8 +17,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PM_UTIL_COMMON_H
-#define PM_UTIL_COMMON_H
+#ifndef MM_UTIL_COMMON_H
+#define MM_UTIL_COMMON_H
 
 #include <stdio.h>
 #include <sys/stat.h> /* struct stat */
@@ -38,6 +38,6 @@ char *strndup(const char *s, size_t n);
 
 #define ARRAYSIZE(a) (sizeof (a) / sizeof (a[0]))
 
-#endif /* PM_UTIL_COMMON_H */
+#endif /* MM_UTIL_COMMON_H */
 
 /* vim: set noet: */

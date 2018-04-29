@@ -1,7 +1,7 @@
 /*
  *  callback.h
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -39,7 +39,7 @@ void cb_dl_total(off_t total);
 /* callback to handle display of download progress */
 void cb_dl_progress(const char *filename, off_t file_xfered, off_t file_total);
 
-/* callback to handle messages/notifications from pacman library */
+/* callback to handle messages/notifications from meme library */
 __attribute__((format(printf, 2, 0)))
 void cb_log(alpm_loglevel_t level, const char *fmt, va_list args);
 

@@ -25,7 +25,7 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
+/* meme */
 #include "meme.h"
 #include "util.h"
 #include "conf.h"
@@ -46,10 +46,10 @@ static int remove_target(const char *target)
 			alpm_errno_t err = alpm_errno(config->handle);
 			if(err == ALPM_ERR_TRANS_DUP_TARGET) {
 				/* just skip duplicate targets */
-				pm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), target);
+				mm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), target);
 				return 0;
 			} else {
-				pm_printf(ALPM_LOG_ERROR, "'%s': %s\n", target, alpm_strerror(err));
+				mm_printf(ALPM_LOG_ERROR, "'%s': %s\n", target, alpm_strerror(err));
 				return -1;
 			}
 		}
@@ -82,7 +82,7 @@ static int remove_target(const char *target)
  *
  * @return 0 on success, 1 on failure
  */
-int pacman_remove(alpm_list_t *targets)
+int meme_remove(alpm_list_t *targets)
 {
 	int retval = 0;
 	alpm_list_t *i, *data = NULL;
@@ -141,7 +141,7 @@ int pacman_remove(alpm_list_t *targets)
 	for(i = alpm_trans_get_remove(config->handle); i; i = alpm_list_next(i)) {
 		alpm_pkg_t *pkg = i->data;
 		if(alpm_list_find(config->holdpkg, alpm_pkg_get_name(pkg), fnmatch_cmp)) {
-			pm_printf(ALPM_LOG_WARNING, _("%s is designated as a HoldPkg.\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s is designated as a HoldPkg.\n"),
 							alpm_pkg_get_name(pkg));
 			holdpkg = 1;
 		}

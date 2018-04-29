@@ -20,7 +20,7 @@ import shutil
 from StringIO import StringIO
 import tarfile
 
-import pmpkg
+import mmpkg
 import tap
 import util
 

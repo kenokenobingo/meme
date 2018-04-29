@@ -1,7 +1,7 @@
 /*
  *  conf.c
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 #include <sys/utsname.h> /* uname */
 #include <unistd.h>
 
-/* pacman */
+/* meme */
 #include "conf.h"
 #include "ini.h"
 #include "util.h"
@@ -698,7 +698,7 @@ static int setup_libalpm(void)
 		pm_printf(ALPM_LOG_ERROR, _("failed to initialize alpm library\n(%s: %s)\n"),
 		        alpm_strerror(err), config->dbpath);
 		if(err == ALPM_ERR_DB_VERSION) {
-			fprintf(stderr, _("try running pacman-db-upgrade\n"));
+			fprintf(stderr, _("try running meme-db-upgrade\n"));
 		}
 		return -1;
 	}

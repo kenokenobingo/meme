@@ -1,7 +1,7 @@
 /*
- *  pacman.c
+ *  meme.c
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
+/* meme */
 #include "meme.h"
 #include "util.h"
 #include "conf.h"
@@ -234,13 +234,13 @@ static void usage(int op, const char * const myname)
 #undef addlist
 }
 
-/** Output pacman version and copyright.
+/** Output meme version and copyright.
  */
 static void version(void)
 {
 	printf("\n");
-	printf(" .--.                  Pacman v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
-	printf("/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2018 Pacman Development Team\n");
+	printf(" .--.                  meme v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
+	printf("/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2018 meme Development Team\n");
 	printf("\\  '-. '-'  '-'  '-'   Copyright (C) 2002-2006 Judd Vinet\n");
 	printf(" '--'\n");
 	printf(_("                       This program may be freely redistributed under\n"
@@ -273,7 +273,7 @@ static void setuseragent(void)
 	int len;
 
 	uname(&un);
-	len = snprintf(agent, 100, "pacman/%s (%s %s) libalpm/%s",
+	len = snprintf(agent, 100, "meme/%s (%s %s) libalpm/%s",
 			PACKAGE_VERSION, un.sysname, un.machine, alpm_version());
 	if(len >= 100) {
 		pm_printf(ALPM_LOG_WARNING, _("HTTP_USER_AGENT truncated\n"));
@@ -1106,7 +1106,7 @@ static void cl_to_log(int argc, char *argv[])
 		*p++ = ' ';
 	}
 	strcpy(p, argv[i]);
-	alpm_logaction(config->handle, PACMAN_CALLER_PREFIX,
+	alpm_logaction(config->handle, MEME_CALLER_PREFIX,
 			"Running '%s'\n", cl_text);
 	free(cl_text);
 }
@@ -1224,7 +1224,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	pm_printf(ALPM_LOG_DEBUG, "pacman v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
+	pm_printf(ALPM_LOG_DEBUG, "meme v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
 
 	/* parse the config file */
 	ret = parseconfig(config->configfile);
@@ -1275,25 +1275,25 @@ int main(int argc, char *argv[])
 	/* start the requested operation */
 	switch(config->op) {
 		case PM_OP_DATABASE:
-			ret = pacman_database(pm_targets);
+			ret = meme_database(pm_targets);
 			break;
 		case PM_OP_REMOVE:
-			ret = pacman_remove(pm_targets);
+			ret = meme_remove(pm_targets);
 			break;
 		case PM_OP_UPGRADE:
-			ret = pacman_upgrade(pm_targets);
+			ret = meme_upgrade(pm_targets);
 			break;
 		case PM_OP_QUERY:
-			ret = pacman_query(pm_targets);
+			ret = meme_query(pm_targets);
 			break;
 		case PM_OP_SYNC:
-			ret = pacman_sync(pm_targets);
+			ret = meme_sync(pm_targets);
 			break;
 		case PM_OP_DEPTEST:
-			ret = pacman_deptest(pm_targets);
+			ret = meme_deptest(pm_targets);
 			break;
 		case PM_OP_FILES:
-			ret = pacman_files(pm_targets);
+			ret = meme_files(pm_targets);
 			break;
 		default:
 			pm_printf(ALPM_LOG_ERROR, _("no operation specified (use -h for help)\n"));

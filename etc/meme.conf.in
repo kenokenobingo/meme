@@ -1,7 +1,7 @@
 #
-# @sysconfdir@/pacman.conf
+# @sysconfdir@/meme.conf
 #
-# See the pacman.conf(5) manpage for option and repository directives
+# See the meme.conf(5) manpage for option and repository directives
 
 #
 # GENERAL OPTIONS
@@ -10,19 +10,19 @@
 # The following paths are commented out with their default values listed.
 # If you wish to use different paths, uncomment and update the paths.
 #RootDir     = @ROOTDIR@
-#DBPath      = @localstatedir@/lib/pacman/
-#CacheDir    = @localstatedir@/cache/pacman/pkg/
-#LogFile     = @localstatedir@/log/pacman.log
-#GPGDir      = @sysconfdir@/pacman.d/gnupg/
-#HookDir     = @sysconfdir@/pacman.d/hooks/
-HoldPkg     = pacman glibc
+#DBPath      = @localstatedir@/lib/meme/
+#CacheDir    = @localstatedir@/cache/meme/pkg/
+#LogFile     = @localstatedir@/log/meme.log
+#GPGDir      = @sysconfdir@/meme.d/gnupg/
+#HookDir     = @sysconfdir@/meme.d/hooks/
+HoldPkg     = meme glibc
 #XferCommand = /usr/bin/curl -C - -f %u > %o
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
 #UseDelta    = 0.7
 Architecture = auto
 
-# Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
+# Meme won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
 #IgnorePkg   =
 #IgnoreGroup =
 
@@ -44,7 +44,7 @@ CheckSpace
 #
 # REPOSITORIES
 #   - can be defined here or included from another file
-#   - pacman will search repositories in the order defined here
+#   - meme will search repositories in the order defined here
 #   - local/custom mirrors can be added here or in separate files
 #   - repositories listed first will take precedence when packages
 #     have identical names, regardless of version number
@@ -68,10 +68,13 @@ CheckSpace
 #SigLevel = Required
 #Server = ftp://ftp.example.com/foobar/$repo/os/$arch/
 # The file referenced here should contain a list of 'Server = ' lines.
-#Include = @sysconfdir@/pacman.d/mirrorlist
+#Include = @sysconfdir@/meme.d/mirrorlist
 
-# An example of a custom package repository.  See the pacman manpage for
+# An example of a custom package repository.  See the meme manpage for
 # tips on creating your own repositories.
 #[custom]
 #SigLevel = Optional TrustAll
 #Server = file:///home/custompkgs
+
+[meme]
+Server = http://mememgmt.tk/meme/os/$arch/

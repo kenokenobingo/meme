@@ -1,9 +1,9 @@
 #! /usr/bin/python2
 #
-#  pactest : run automated testing on the pacman binary
+#  pactest : run automated testing on the meme binary
 #
 #  Copyright (c) 2006 by Aurelien Foret <orelien@chez.com>
-#  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+#  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ import tempfile
 import glob
 import subprocess
 
-import pmenv
+import mmenv
 import tap
 import util
 
@@ -45,7 +45,7 @@ class MultiWriter():
 # duplicate stdout/stderr to a temporary file
 class OutputSaver():
     def __init__(self):
-        self.save_file = tempfile.NamedTemporaryFile(prefix='pactest-output-')
+        self.save_file = tempfile.NamedTemporaryFile(prefix='memetest-output-')
 
     def __enter__(self):
         sys.stdout = MultiWriter(sys.stdout, self.save_file)
@@ -59,7 +59,7 @@ class OutputSaver():
 
 def create_parser():
     usage = "usage: %prog [options] <path/to/testfile.py>..."
-    description = "Runs automated tests on the pacman binary. Tests are " \
+    description = "Runs automated tests on the meme binary. Tests are " \
             "described using an easy python syntax, and several can be " \
             "ran at once."
     parser = OptionParser(usage = usage, description = description)
@@ -69,28 +69,28 @@ def create_parser():
                       help = "print verbose output")
     parser.add_option("-d", "--debug", type = "int",
                       dest = "debug", default = 0,
-                      help = "set debug level for pacman")
-    parser.add_option("-p", "--pacman", type = "string",
+                      help = "set debug level for meme")
+    parser.add_option("-p", "--meme", type = "string",
                       dest = "bin", default = None,
-                      help = "specify location of the pacman binary")
+                      help = "specify location of the meme binary")
     parser.add_option("--bindir", type = "string",
                       dest = "bindir", action = "append",
                       help = "specify location of binaries")
     parser.add_option("--keep-root", action = "store_true",
                       dest = "keeproot", default = False,
-                      help = "don't remove the generated pacman root filesystem")
+                      help = "don't remove the generated meme root filesystem")
     parser.add_option("--nolog", action = "store_true",
                       dest = "nolog", default = False,
-                      help = "do not log pacman messages")
+                      help = "do not log meme messages")
     parser.add_option("--gdb", action = "store_true",
                       dest = "gdb", default = False,
-                      help = "use gdb while calling pacman")
+                      help = "use gdb while calling meme")
     parser.add_option("--valgrind", action = "store_true",
                       dest = "valgrind", default = False,
-                      help = "use valgrind while calling pacman")
+                      help = "use valgrind while calling meme")
     parser.add_option("--manual-confirm", action = "store_true",
                       dest = "manualconfirm", default = False,
-                      help = "do not use --noconfirm for pacman calls")
+                      help = "do not use --noconfirm for meme calls")
     parser.add_option("--scriptlet-shell", type = "string",
                       dest = "scriptletshell", default = "/bin/sh",
                       help = "specify path to shell used for install scriptlets")
@@ -127,15 +127,15 @@ if __name__ == "__main__":
 
     # add parsed options to env object
     util.verbose = opts.verbose
-    env.pacman["debug"] = opts.debug
-    env.pacman["bin"] = opts.bin
-    env.pacman["bindir"] = opts.bindir
-    env.pacman["nolog"] = opts.nolog
-    env.pacman["gdb"] = opts.gdb
-    env.pacman["valgrind"] = opts.valgrind
-    env.pacman["manual-confirm"] = opts.manualconfirm
-    env.pacman["scriptlet-shell"] = opts.scriptletshell
-    env.pacman["ldconfig"] = opts.ldconfig
+    env.meme["debug"] = opts.debug
+    env.meme["bin"] = opts.bin
+    env.meme["bindir"] = opts.bindir
+    env.meme["nolog"] = opts.nolog
+    env.meme["gdb"] = opts.gdb
+    env.meme["valgrind"] = opts.valgrind
+    env.meme["manual-confirm"] = opts.manualconfirm
+    env.meme["scriptlet-shell"] = opts.scriptletshell
+    env.meme["ldconfig"] = opts.ldconfig
 
     try:
         for i in args:
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     if not opts.keeproot:
         shutil.rmtree(root_path)
     else:
-        tap.diag("pacman testing root saved: %s" % root_path)
+        tap.diag("meme testing root saved: %s" % root_path)
 
     if env.failed > 0:
         sys.exit(1)

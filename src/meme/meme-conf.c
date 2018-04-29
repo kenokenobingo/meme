@@ -1,7 +1,7 @@
 /*
- *  pacman-conf.c - parse pacman configuration files
+ *  meme-conf.c - parse meme configuration files
  *
- *  Copyright (c) 2013-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2013-2018 meme Development Team <meme-dev@archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include <string.h>
 #include "conf.h"
 
-const char *myname = "pacman-conf", *myver = "1.0.0";
+const char *myname = "meme-conf", *myver = "1.0.0";
 
 alpm_list_t *directives = NULL;
 char sep = '\n', *repo_name = NULL;
@@ -38,9 +38,9 @@ static void usage(int ret)
 {
 	FILE *stream = (ret ? stderr : stdout);
 #define hputs(x) fputs(x"\n", stream)
-	hputs("pacman-conf - query pacman's configuration file");
-	hputs("usage:  pacman-conf [options] [<directive>...]");
-	hputs("        pacman-conf (--repo-list|--help|--version)");
+	hputs("meme-conf - query meme's configuration file");
+	hputs("usage:  meme-conf [options] [<directive>...]");
+	hputs("        meme-conf (--repo-list|--help|--version)");
 	hputs("options:");
 	hputs("  -c, --config=<path>  set an alternate configuration file");
 	hputs("  -R, --rootdir=<path> set an alternate installation root");

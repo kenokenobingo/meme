@@ -24,21 +24,21 @@ import tap
 SELFPATH    = os.path.abspath(os.path.dirname(__file__))
 
 # ALPM
-PM_ROOT     = "/"
-PM_DBPATH   = "var/lib/pacman"
-PM_SYNCDBPATH = "var/lib/pacman/sync"
-PM_LOCK     = "var/lib/pacman/db.lck"
-PM_CACHEDIR = "var/cache/pacman/pkg"
-PM_EXT_PKG  = ".pkg.tar.gz"
-PM_HOOKDIR  = "etc/pacman.d/hooks"
+MM_ROOT     = "/"
+MM_DBPATH   = "var/lib/meme"
+MM_SYNCDBPATH = "var/lib/meme/sync"
+MM_LOCK     = "var/lib/meme/db.lck"
+MM_CACHEDIR = "var/cache/meme/pkg"
+MM_EXT_PKG  = ".pkg.tar.gz"
+MM_HOOKDIR  = "etc/meme.d/hooks"
 
-# Pacman
-PACCONF     = "etc/pacman.conf"
+# meme
+MEMECONF     = "etc/meme.conf"
 
 # Pactest
 TMPDIR      = "tmp"
 SYNCREPO    = "var/pub"
-LOGFILE     = "var/log/pactest.log"
+LOGFILE     = "var/log/memetest.log"
 
 verbose = 0
 

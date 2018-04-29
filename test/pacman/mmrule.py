@@ -20,7 +20,7 @@ import stat
 import tap
 import util
 
-class pmrule(object):
+class mmrule(object):
     """Rule object
     """
 

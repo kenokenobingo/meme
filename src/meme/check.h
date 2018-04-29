@@ -1,7 +1,7 @@
 /*
  *  check.h
  *
- *  Copyright (c) 2012-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2012-2018 Meme Development Team <pacman-dev@archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PM_CHECK_H
-#define PM_CHECK_H
+#ifndef MM_CHECK_H
+#define MM_CHECK_H
 
 #include <alpm.h>
 
 int check_pkg_fast(alpm_pkg_t *pkg);
 int check_pkg_full(alpm_pkg_t *pkg);
 
-#endif /* PM_CHECK_H */
+#endif /* MM_CHECK_H */
 
 /* vim: set noet: */

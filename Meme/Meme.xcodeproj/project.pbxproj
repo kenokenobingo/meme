@@ -279,10 +279,10 @@
 		B9BFDE4A2094A41900D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B9BFDE4B2094A41900D8812C /* wrapper.sh.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = wrapper.sh.in; sourceTree = "<group>"; };
 		B9BFDE4D2094A41900D8812C /* tap.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = tap.sh; sourceTree = "<group>"; };
-		B9BFDE4F2094A41900D8812C /* pactest.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pactest.py; sourceTree = "<group>"; };
+		B9BFDE4F2094A41900D8812C /* memetest.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = memetest.py; sourceTree = "<group>"; };
 		B9BFDE502094A41900D8812C /* ChangeLog */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
 		B9BFDE512094A41900D8812C /* util.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = util.py; sourceTree = "<group>"; };
-		B9BFDE522094A41900D8812C /* pmenv.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pmenv.py; sourceTree = "<group>"; };
+		B9BFDE522094A41900D8812C /* mmenv.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmenv.py; sourceTree = "<group>"; };
 		B9BFDE542094A41900D8812C /* fileconflict030.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = fileconflict030.py; sourceTree = "<group>"; };
 		B9BFDE552094A41900D8812C /* sync-nodepversion04.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "sync-nodepversion04.py"; sourceTree = "<group>"; };
 		B9BFDE562094A41900D8812C /* fileconflict004.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = fileconflict004.py; sourceTree = "<group>"; };
@@ -616,16 +616,16 @@
 		B9BFDF9E2094A41900D8812C /* fileconflict013.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = fileconflict013.py; sourceTree = "<group>"; };
 		B9BFDF9F2094A41900D8812C /* provision004.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = provision004.py; sourceTree = "<group>"; };
 		B9BFDFA02094A41900D8812C /* upgrade028.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade028.py; sourceTree = "<group>"; };
-		B9BFDFA12094A41900D8812C /* pmfile.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pmfile.py; sourceTree = "<group>"; };
-		B9BFDFA22094A41900D8812C /* pmrule.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pmrule.py; sourceTree = "<group>"; };
+		B9BFDFA12094A41900D8812C /* mmfile.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmfile.py; sourceTree = "<group>"; };
+		B9BFDFA22094A41900D8812C /* mmrule.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmrule.py; sourceTree = "<group>"; };
 		B9BFDFA32094A41900D8812C /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		B9BFDFA42094A41900D8812C /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		B9BFDFA52094A41900D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		B9BFDFA62094A41900D8812C /* pmtest.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pmtest.py; sourceTree = "<group>"; };
+		B9BFDFA62094A41900D8812C /* mmetest.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmetest.py; sourceTree = "<group>"; };
 		B9BFDFA72094A41900D8812C /* tap.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = tap.py; sourceTree = "<group>"; };
-		B9BFDFA82094A41900D8812C /* pmdb.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pmdb.py; sourceTree = "<group>"; };
+		B9BFDFA82094A41900D8812C /* mmdb.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmdb.py; sourceTree = "<group>"; };
 		B9BFDFA92094A41900D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		B9BFDFAA2094A41900D8812C /* pmpkg.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pmpkg.py; sourceTree = "<group>"; };
+		B9BFDFAA2094A41900D8812C /* mmpkg.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmpkg.py; sourceTree = "<group>"; };
 		B9BFDFAB2094A41900D8812C /* ldconfig.stub */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ldconfig.stub; sourceTree = "<group>"; };
 		B9BFDFAD2094A41900D8812C /* vercmptest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = vercmptest.sh; sourceTree = "<group>"; };
 		B9BFDFAE2094A41900D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
@@ -776,7 +776,7 @@
 		B9BFE05F2094A41A00D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; name = Makefile.am; path = ../Makefile.am; sourceTree = "<group>"; };
 		B9BFE0602094A41A00D8812C /* AUTHORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = AUTHORS; path = ../AUTHORS; sourceTree = "<group>"; };
 		B9BFE0622094A41A00D8812C /* makepkg.conf.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = makepkg.conf.in; sourceTree = "<group>"; };
-		B9BFE0632094A41A00D8812C /* pacman.conf.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = pacman.conf.in; sourceTree = "<group>"; };
+		B9BFE0632094A41A00D8812C /* meme.conf.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = meme.conf.in; sourceTree = "<group>"; };
 		B9BFE0642094A41A00D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
 		B9BFE0652094A41A00D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B9BFE0662094A41A00D8812C /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; name = COPYING; path = ../COPYING; sourceTree = "<group>"; };
@@ -1235,21 +1235,21 @@
 		B9BFDE4E2094A41900D8812C /* pacman */ = {
 			isa = PBXGroup;
 			children = (
-				B9BFDE4F2094A41900D8812C /* pactest.py */,
+				B9BFDE4F2094A41900D8812C /* memetest.py */,
 				B9BFDE502094A41900D8812C /* ChangeLog */,
 				B9BFDE512094A41900D8812C /* util.py */,
-				B9BFDE522094A41900D8812C /* pmenv.py */,
+				B9BFDE522094A41900D8812C /* mmenv.py */,
 				B9BFDE532094A41900D8812C /* tests */,
-				B9BFDFA12094A41900D8812C /* pmfile.py */,
-				B9BFDFA22094A41900D8812C /* pmrule.py */,
+				B9BFDFA12094A41900D8812C /* mmfile.py */,
+				B9BFDFA22094A41900D8812C /* mmrule.py */,
 				B9BFDFA32094A41900D8812C /* README */,
 				B9BFDFA42094A41900D8812C /* TODO */,
 				B9BFDFA52094A41900D8812C /* Makefile.am */,
-				B9BFDFA62094A41900D8812C /* pmtest.py */,
+				B9BFDFA62094A41900D8812C /* mmetest.py */,
 				B9BFDFA72094A41900D8812C /* tap.py */,
-				B9BFDFA82094A41900D8812C /* pmdb.py */,
+				B9BFDFA82094A41900D8812C /* mmdb.py */,
 				B9BFDFA92094A41900D8812C /* .gitignore */,
-				B9BFDFAA2094A41900D8812C /* pmpkg.py */,
+				B9BFDFAA2094A41900D8812C /* mmpkg.py */,
 				B9BFDFAB2094A41900D8812C /* ldconfig.stub */,
 			);
 			path = pacman;
@@ -1997,7 +1997,7 @@
 			isa = PBXGroup;
 			children = (
 				B9BFE0622094A41A00D8812C /* makepkg.conf.in */,
-				B9BFE0632094A41A00D8812C /* pacman.conf.in */,
+				B9BFE0632094A41A00D8812C /* meme.conf.in */,
 				B9BFE0642094A41A00D8812C /* Makefile.am */,
 				B9BFE0652094A41A00D8812C /* .gitignore */,
 			);

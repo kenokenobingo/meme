@@ -85,10 +85,10 @@ static void checkdbs(alpm_list_t *dbnames)
 
 static void usage(void)
 {
-	fprintf(stderr, "cleanupdelta (pacman) v" PACKAGE_VERSION "\n\n"
+	fprintf(stderr, "cleanupdelta (meme) v" PACKAGE_VERSION "\n\n"
 			"Returns a list of unused delta in a given sync database.\n\n"
 			"Usage: cleanupdelta [options]\n\n"
-			"  -b <pacman db>       core extra ... : check the listed sync databases\n");
+			"  -b <meme db>       core extra ... : check the listed sync databases\n");
 	exit(1);
 }
 

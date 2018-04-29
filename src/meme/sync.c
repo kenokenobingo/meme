@@ -1,7 +1,7 @@
 /*
  *  sync.c
  *
- *  Copyright (c) 2006-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2018 Meme Development Team <pacman-dev@archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -697,7 +697,7 @@ static int sync_trans(alpm_list_t *targets)
 	if(config->op_s_upgrade) {
 		if(!config->print) {
 			colon_printf(_("Starting full system upgrade...\n"));
-			alpm_logaction(config->handle, PACMAN_CALLER_PREFIX,
+			alpm_logaction(config->handle, MEME_CALLER_PREFIX,
 					"starting full system upgrade\n");
 		}
 		if(alpm_sync_sysupgrade(config->handle, config->op_s_upgrade >= 2) == -1) {
@@ -865,7 +865,7 @@ cleanup:
 	return retval;
 }
 
-int pacman_sync(alpm_list_t *targets)
+int meme_sync(alpm_list_t *targets)
 {
 	alpm_list_t *sync_dbs = NULL;
 
@@ -896,7 +896,7 @@ int pacman_sync(alpm_list_t *targets)
 	if(config->op_s_sync) {
 		/* grab a fresh package list */
 		colon_printf(_("Synchronizing package databases...\n"));
-		alpm_logaction(config->handle, PACMAN_CALLER_PREFIX,
+		alpm_logaction(config->handle, MEME_CALLER_PREFIX,
 				"synchronizing package lists\n");
 		if(!sync_syncdbs(config->op_s_sync, sync_dbs)) {
 			return 1;

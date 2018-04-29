@@ -20,7 +20,7 @@ import tarfile
 
 import util
 
-class pmpkg(object):
+class mmpkg(object):
     """Package object.
 
     Object holding data from an Arch Linux package.

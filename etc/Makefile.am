@@ -1,5 +1,5 @@
-dist_sysconf_DATA = makepkg.conf pacman.conf
-EXTRA_DIST = makepkg.conf.in pacman.conf.in
+dist_sysconf_DATA = makepkg.conf meme.conf
+EXTRA_DIST = makepkg.conf.in meme.conf.in
 
 # Files that should be removed, but which Automake does not know.
 MOSTLYCLEANFILES = $(dist_sysconf_DATA)

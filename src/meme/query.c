@@ -388,7 +388,7 @@ static int query_group(alpm_list_t *targets)
 	return ret;
 }
 
-int pacman_query(alpm_list_t *targets)
+int meme_query(alpm_list_t *targets)
 {
 	int ret = 0;
 	int match = 0;

@@ -20,7 +20,7 @@ import stat
 
 import util
 
-class pmfile(object):
+class mmfile(object):
     def __init__(self, path, content, mode=0o644):
         self.path = path
         self.content = content

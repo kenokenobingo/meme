@@ -25,7 +25,7 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
+/* meme */
 #include "meme.h"
 #include "conf.h"
 #include "util.h"
@@ -37,7 +37,7 @@
  *
  * @return 0 on success, 1 on failure
  */
-int pacman_upgrade(alpm_list_t *targets)
+int meme_upgrade(alpm_list_t *targets)
 {
 	int retval = 0, *file_is_remote;
 	alpm_list_t *i;

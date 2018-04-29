@@ -21,7 +21,7 @@ import mmtest
 import tap
 
 
-class pmenv(object):
+class mmenv(object):
     """Environment object
     """
 

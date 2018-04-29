@@ -1,7 +1,7 @@
 /*
- *  testpkg.c : Test a pacman package for validity
+ *  testpkg.c : Test a meme package for validity
  *
- *  Copyright (c) 2007-2018 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2007-2018 meme Development Team <meme-dev@archlinux.org>
  *  Copyright (c) 2007 by Aaron Griffin <aaronmgriffin@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
 	const int siglevel = ALPM_SIG_PACKAGE | ALPM_SIG_PACKAGE_OPTIONAL;
 
 	if(argc != 2) {
-		fprintf(stderr, "testpkg (pacman) v" PACKAGE_VERSION "\n\n"
-			"Test a pacman package for validity.\n\n"
+		fprintf(stderr, "testpkg (meme) v" PACKAGE_VERSION "\n\n"
+			"Test a meme package for validity.\n\n"
 			"Usage: testpkg <package file>\n");
 		return 1;
 	}

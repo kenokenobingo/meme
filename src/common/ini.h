@@ -17,14 +17,14 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PM_INI_H
-#define PM_INI_H
+#ifndef MM_INI_H
+#define MM_INI_H
 
 typedef int (ini_parser_fn)(const char *file, int line, const char *section,
 		char *key, char *value, void *data);
 
 int parse_ini(const char *file, ini_parser_fn cb, void *data);
 
-#endif /* PM_INI_H */
+#endif /* MM_INI_H */
 
 /* vim: set noet: */

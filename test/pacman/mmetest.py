@@ -22,14 +22,14 @@ import stat
 import subprocess
 import time
 
-import pmrule
-import pmdb
-import pmfile
+import mmrule
+import mmdb
+import mmfile
 import tap
 import util
 from util import vprint
 
-class pmtest(object):
+class mmtest(object):
     """Test object
     """
 
