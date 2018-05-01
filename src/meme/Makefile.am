@@ -29,7 +29,7 @@ GIT_VERSION := $(shell sh -c 'git describe --abbrev=4 --dirty | sed s/^v//')
 AM_CPPFLAGS += -DGIT_VERSION=\"$(GIT_VERSION)\"
 endif
 
-pacman_SOURCES = \
+meme_SOURCES = \
 	check.h check.c \
 	conf.h conf.c \
 	database.c \
@@ -47,12 +47,12 @@ pacman_SOURCES = \
 	util.h util.c \
 	util-common.h util-common.c
 
-pacman_LDADD = \
+meme_LDADD = \
 	$(LTLIBINTL) \
 	$(top_builddir)/lib/libalpm/.libs/libalpm.la \
 	$(LIBARCHIVE_LIBS)
 
-pacman_conf_SOURCES = pacman-conf.c \
+meme_conf_SOURCES = meme-conf.c \
 	util.h \
 	util.c \
 	ini.h \
