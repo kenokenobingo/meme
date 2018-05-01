@@ -2,8 +2,8 @@
 AUTOMAKE_OPTIONS = std-options
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	makepkg-wrapper \
-	pacman-db-upgrade-wrapper \
-	pacman-key-wrapper \
+	meme-db-upgrade-wrapper \
+	meme-key-wrapper \
 	pkgdelta-wrapper
 
 SUBDIRS = po
@@ -17,16 +17,16 @@ bin_SCRIPTS = \
 
 OURSCRIPTS = \
 	makepkg \
-	pacman-db-upgrade \
-	pacman-key \
+	meme-db-upgrade \
+	meme-key \
 	pkgdelta \
 	repo-add
 
 EXTRA_DIST = \
 	makepkg.sh.in \
 	makepkg-template.pl.in \
-	pacman-db-upgrade.sh.in \
-	pacman-key.sh.in \
+	meme-db-upgrade.sh.in \
+	meme-key.sh.in \
 	pkgdelta.sh.in \
 	repo-add.sh.in \
 	wrapper.sh.in \
@@ -114,8 +114,8 @@ LIBMAKEPKG_DIST = \
 
 WRAPPER = \
 	makepkg-wrapper \
-	pacman-db-upgrade-wrapper \
-	pacman-key-wrapper \
+	meme-db-upgrade-wrapper \
+	meme-key-wrapper \
 	pkgdelta-wrapper
 
 COMPLETION_IN = \
@@ -202,12 +202,12 @@ makepkg-template: \
 	$(AM_V_GEN)$(edit) $< > $@
 	$(AM_V_at)chmod +x,a-w $@
 
-pacman-db-upgrade: \
-	$(srcdir)/pacman-db-upgrade.sh.in \
+meme-db-upgrade: \
+	$(srcdir)/meme-db-upgrade.sh.in \
 	$(srcdir)/library/output_format.sh
 
-pacman-key: \
-	$(srcdir)/pacman-key.sh.in \
+meme-key: \
+	$(srcdir)/meme-key.sh.in \
 	$(srcdir)/library/output_format.sh
 
 pkgdelta: \
@@ -243,13 +243,13 @@ $(WRAPPER): \
 
 install-data-local:
 	$(MKDIR_P) $(DESTDIR)$(sysconfdir)/bash_completion.d/
-	$(INSTALL_DATA) completion/bash_completion $(DESTDIR)$(sysconfdir)/bash_completion.d/pacman
+	$(INSTALL_DATA) completion/bash_completion $(DESTDIR)$(sysconfdir)/bash_completion.d/meme
 	$(MKDIR_P) $(DESTDIR)$(datarootdir)/zsh/site-functions/
-	$(INSTALL_DATA) completion/zsh_completion $(DESTDIR)$(datarootdir)/zsh/site-functions/_pacman
+	$(INSTALL_DATA) completion/zsh_completion $(DESTDIR)$(datarootdir)/zsh/site-functions/_meme
 
 uninstall-local:
-	$(RM) $(DESTDIR)$(sysconfdir)/bash_completion.d/pacman
-	$(RM) $(DESTDIR)$(datarootdir)/zsh/site-functions/_pacman
+	$(RM) $(DESTDIR)$(sysconfdir)/bash_completion.d/meme
+	$(RM) $(DESTDIR)$(datarootdir)/zsh/site-functions/_meme
 
 install-exec-hook:
 	for wrapper in $(WRAPPER); do \

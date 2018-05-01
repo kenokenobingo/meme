@@ -78,11 +78,11 @@ int trans_init(int flags, int check_valid)
 void trans_init_error(void)
 {
 	alpm_errno_t err = alpm_errno(config->handle);
-	pm_printf(ALPM_LOG_ERROR, _("failed to init transaction (%s)\n"),
+	mm_printf(ALPM_LOG_ERROR, _("failed to init transaction (%s)\n"),
 			alpm_strerror(err));
 	if(err == ALPM_ERR_HANDLE_LOCK) {
 		const char *lockfile = alpm_option_get_lockfile(config->handle);
-		pm_printf(ALPM_LOG_ERROR, _("could not lock database: %s\n"),
+		mm_printf(ALPM_LOG_ERROR, _("could not lock database: %s\n"),
 					strerror(errno));
 		if(access(lockfile, F_OK) == 0) {
 			fprintf(stderr, _("  if you're sure a package manager is not already\n"
@@ -94,7 +94,7 @@ void trans_init_error(void)
 int trans_release(void)
 {
 	if(alpm_trans_release(config->handle) == -1) {
-		pm_printf(ALPM_LOG_ERROR, _("failed to release transaction (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("failed to release transaction (%s)\n"),
 				alpm_strerror(alpm_errno(config->handle)));
 		return -1;
 	}
@@ -107,16 +107,16 @@ int needs_root(void)
 		return 1;
 	}
 	switch(config->op) {
-		case PM_OP_DATABASE:
+		case MM_OP_DATABASE:
 			return !config->op_q_check;
-		case PM_OP_UPGRADE:
-		case PM_OP_REMOVE:
+		case MM_OP_UPGRADE:
+		case MM_OP_REMOVE:
 			return !config->print;
-		case PM_OP_SYNC:
+		case MM_OP_SYNC:
 			return (config->op_s_clean || config->op_s_sync ||
 					(!config->group && !config->op_s_info && !config->op_q_list &&
 					 !config->op_s_search && !config->print));
-		case PM_OP_FILES:
+		case MM_OP_FILES:
 			return config->op_s_sync;
 		default:
 			return 0;
@@ -130,7 +130,7 @@ int check_syncdbs(size_t need_repos, int check_valid)
 	alpm_list_t *sync_dbs = alpm_get_syncdbs(config->handle);
 
 	if(need_repos && sync_dbs == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no usable package repositories configured.\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no usable package repositories configured.\n"));
 		return 1;
 	}
 
@@ -139,7 +139,7 @@ int check_syncdbs(size_t need_repos, int check_valid)
 		for(i = sync_dbs; i; i = alpm_list_next(i)) {
 			alpm_db_t *db = i->data;
 			if(alpm_db_get_valid(db)) {
-				pm_printf(ALPM_LOG_ERROR, _("database '%s' is not valid (%s)\n"),
+				mm_printf(ALPM_LOG_ERROR, _("database '%s' is not valid (%s)\n"),
 						alpm_db_get_name(db), alpm_strerror(alpm_errno(config->handle)));
 				ret = 1;
 			}
@@ -158,7 +158,7 @@ int sync_syncdbs(int level, alpm_list_t *syncs)
 
 		int ret = alpm_db_update((level < 2 ? 0 : 1), db);
 		if(ret < 0) {
-			pm_printf(ALPM_LOG_ERROR, _("failed to update %s (%s)\n"),
+			mm_printf(ALPM_LOG_ERROR, _("failed to update %s (%s)\n"),
 					alpm_db_get_name(db), alpm_strerror(alpm_errno(config->handle)));
 			success = 0;
 		} else if(ret == 1) {
@@ -167,7 +167,7 @@ int sync_syncdbs(int level, alpm_list_t *syncs)
 	}
 
 	if(!success) {
-		pm_printf(ALPM_LOG_ERROR, _("failed to synchronize all databases\n"));
+		mm_printf(ALPM_LOG_ERROR, _("failed to synchronize all databases\n"));
 	}
 	return (success > 0);
 }
@@ -469,7 +469,7 @@ static void add_transaction_sizes_row(alpm_list_t **rows, char *label, off_t siz
 	char *str;
 	const char *units;
 	double s = humanize_size(size, 'M', 2, &units);
-	pm_asprintf(&str, "%.2f %s", s, units);
+	mm_asprintf(&str, "%.2f %s", s, units);
 
 	add_table_cell(&row, label, CELL_TITLE);
 	add_table_cell(&row, str, CELL_RIGHT_ALIGN | CELL_FREE);
@@ -632,7 +632,7 @@ static int table_display(const alpm_list_t *header,
 			&widths, &has_data);
 	/* return -1 if terminal is not wide enough */
 	if(cols && totalwidth > cols) {
-		pm_printf(ALPM_LOG_WARNING,
+		mm_printf(ALPM_LOG_WARNING,
 				_("insufficient columns available for table display\n"));
 		ret = -1;
 		goto cleanup;
@@ -791,7 +791,7 @@ void signature_display(const char *title, alpm_siglist_t *siglist,
 					break;
 			}
 			name = result->key.uid ? result->key.uid : result->key.fingerprint;
-			ret = pm_asprintf(&sigline, _("%s, %s from \"%s\""),
+			ret = mm_asprintf(&sigline, _("%s, %s from \"%s\""),
 					status, validity, name);
 			if(ret == -1) {
 				continue;
@@ -833,21 +833,21 @@ static alpm_list_t *create_verbose_row(pm_target_t *target)
 	if(target->install) {
 		const alpm_db_t *db = alpm_pkg_get_db(target->install);
 		if(db) {
-			pm_asprintf(&str, "%s/%s", alpm_db_get_name(db), alpm_pkg_get_name(target->install));
+			mm_asprintf(&str, "%s/%s", alpm_db_get_name(db), alpm_pkg_get_name(target->install));
 		} else {
-			pm_asprintf(&str, "%s", alpm_pkg_get_name(target->install));
+			mm_asprintf(&str, "%s", alpm_pkg_get_name(target->install));
 		}
 	} else {
-		pm_asprintf(&str, "%s", alpm_pkg_get_name(target->remove));
+		mm_asprintf(&str, "%s", alpm_pkg_get_name(target->remove));
 	}
 	add_table_cell(&ret, str, CELL_NORMAL | CELL_FREE);
 
 	/* old and new versions */
-	pm_asprintf(&str, "%s",
+	mm_asprintf(&str, "%s",
 			target->remove != NULL ? alpm_pkg_get_version(target->remove) : "");
 	add_table_cell(&ret, str, CELL_NORMAL | CELL_FREE);
 
-	pm_asprintf(&str, "%s",
+	mm_asprintf(&str, "%s",
 			target->install != NULL ? alpm_pkg_get_version(target->install) : "");
 	add_table_cell(&ret, str, CELL_NORMAL | CELL_FREE);
 
@@ -855,13 +855,13 @@ static alpm_list_t *create_verbose_row(pm_target_t *target)
 	size -= target->remove ? alpm_pkg_get_isize(target->remove) : 0;
 	size += target->install ? alpm_pkg_get_isize(target->install) : 0;
 	human_size = humanize_size(size, 'M', 2, &label);
-	pm_asprintf(&str, "%.2f %s", human_size, label);
+	mm_asprintf(&str, "%.2f %s", human_size, label);
 	add_table_cell(&ret, str, CELL_RIGHT_ALIGN | CELL_FREE);
 
 	size = target->install ? alpm_pkg_download_size(target->install) : 0;
 	if(size != 0) {
 		human_size = humanize_size(size, 'M', 2, &label);
-		pm_asprintf(&str, "%.2f %s", human_size, label);
+		mm_asprintf(&str, "%.2f %s", human_size, label);
 	} else {
 		str = NULL;
 	}
@@ -884,7 +884,7 @@ static void _display_targets(alpm_list_t *targets, int verbose)
 
 	/* gather package info */
 	for(i = targets; i; i = alpm_list_next(i)) {
-		pm_target_t *target = i->data;
+		mm_target_t *target = i->data;
 
 		if(target->install) {
 			dlsize += alpm_pkg_download_size(target->install);
@@ -898,27 +898,27 @@ static void _display_targets(alpm_list_t *targets, int verbose)
 
 	/* form data for both verbose and non-verbose display */
 	for(i = targets; i; i = alpm_list_next(i)) {
-		pm_target_t *target = i->data;
+		mm_target_t *target = i->data;
 
 		if(verbose) {
 			rows = alpm_list_add(rows, create_verbose_row(target));
 		}
 
 		if(target->install) {
-			pm_asprintf(&str, "%s-%s", alpm_pkg_get_name(target->install),
+			mm_asprintf(&str, "%s-%s", alpm_pkg_get_name(target->install),
 					alpm_pkg_get_version(target->install));
 		} else if(isize == 0) {
-			pm_asprintf(&str, "%s-%s", alpm_pkg_get_name(target->remove),
+			mm_asprintf(&str, "%s-%s", alpm_pkg_get_name(target->remove),
 					alpm_pkg_get_version(target->remove));
 		} else {
-			pm_asprintf(&str, "%s-%s [%s]", alpm_pkg_get_name(target->remove),
+			mm_asprintf(&str, "%s-%s [%s]", alpm_pkg_get_name(target->remove),
 					alpm_pkg_get_version(target->remove), _("removal"));
 		}
 		names = alpm_list_add(names, str);
 	}
 
 	/* print to screen */
-	pm_asprintf(&str, "%s (%zu)", _("Packages"), alpm_list_count(targets));
+	mm_asprintf(&str, "%s (%zu)", _("Packages"), alpm_list_count(targets));
 	printf("\n");
 
 	cols = getcols();
@@ -959,8 +959,8 @@ static void _display_targets(alpm_list_t *targets, int verbose)
 
 static int target_cmp(const void *p1, const void *p2)
 {
-	const pm_target_t *targ1 = p1;
-	const pm_target_t *targ2 = p2;
+	const mm_target_t *targ1 = p1;
+	const mm_target_t *targ2 = p2;
 	/* explicit are always sorted after implicit (e.g. deps, pulled targets) */
 	if(targ1->is_explicit != targ2->is_explicit) {
 		return targ1->is_explicit > targ2->is_explicit;
@@ -987,7 +987,7 @@ void display_targets(void)
 
 	for(i = alpm_trans_get_add(config->handle); i; i = alpm_list_next(i)) {
 		alpm_pkg_t *pkg = i->data;
-		pm_target_t *targ = calloc(1, sizeof(pm_target_t));
+		mm_target_t *targ = calloc(1, sizeof(mm_target_t));
 		if(!targ) return;
 		targ->install = pkg;
 		targ->remove = alpm_db_get_pkg(db_local, alpm_pkg_get_name(pkg));
@@ -998,7 +998,7 @@ void display_targets(void)
 	}
 	for(i = alpm_trans_get_remove(config->handle); i; i = alpm_list_next(i)) {
 		alpm_pkg_t *pkg = i->data;
-		pm_target_t *targ = calloc(1, sizeof(pm_target_t));
+		mm_target_t *targ = calloc(1, sizeof(mm_target_t));
 		if(!targ) return;
 		targ->remove = pkg;
 		if(alpm_list_find(config->explicit_removes, pkg, pkg_cmp)) {
@@ -1015,9 +1015,9 @@ void display_targets(void)
 static off_t pkg_get_size(alpm_pkg_t *pkg)
 {
 	switch(config->op) {
-		case PM_OP_SYNC:
+		case MM_OP_SYNC:
 			return alpm_pkg_download_size(pkg);
-		case PM_OP_UPGRADE:
+		case MM_OP_UPGRADE:
 			return alpm_pkg_get_size(pkg);
 		default:
 			return alpm_pkg_get_isize(pkg);
@@ -1040,7 +1040,7 @@ static char *pkg_get_location(alpm_pkg_t *pkg)
 				for(i = alpm_option_get_cachedirs(config->handle); i; i = i->next) {
 					snprintf(path, PATH_MAX, "%s%s", (char *)i->data, pkgfile);
 					if(stat(path, &buf) == 0 && S_ISREG(buf.st_mode)) {
-						pm_asprintf(&string, "file://%s", path);
+						mm_asprintf(&string, "file://%s", path);
 						return string;
 					}
 				}
@@ -1048,7 +1048,7 @@ static char *pkg_get_location(alpm_pkg_t *pkg)
 
 			servers = alpm_db_get_servers(alpm_pkg_get_db(pkg));
 			if(servers) {
-				pm_asprintf(&string, "%s/%s", (char *)(servers->data),
+				mm_asprintf(&string, "%s/%s", (char *)(servers->data),
 						alpm_pkg_get_filename(pkg));
 				return string;
 			}
@@ -1060,7 +1060,7 @@ static char *pkg_get_location(alpm_pkg_t *pkg)
 
 		case ALPM_PKG_FROM_LOCALDB:
 		default:
-			pm_asprintf(&string, "%s-%s", alpm_pkg_get_name(pkg), alpm_pkg_get_version(pkg));
+			mm_asprintf(&string, "%s-%s", alpm_pkg_get_name(pkg), alpm_pkg_get_version(pkg));
 			return string;
 	}
 }
@@ -1164,7 +1164,7 @@ void print_packages(const alpm_list_t *packages)
 		/* %s : size */
 		if(strstr(temp, "%s")) {
 			char *size;
-			pm_asprintf(&size, "%jd", (intmax_t)pkg_get_size(pkg));
+			mm_asprintf(&size, "%jd", (intmax_t)pkg_get_size(pkg));
 			string = strreplace(temp, "%s", size);
 			free(size);
 			free(temp);
@@ -1308,7 +1308,7 @@ void select_display(const alpm_list_t *pkglist)
 			dbname = alpm_db_get_name(db);
 		}
 		string = NULL;
-		pm_asprintf(&string, "%d) %s", nth, alpm_pkg_get_name(pkg));
+		mm_asprintf(&string, "%d) %s", nth, alpm_pkg_get_name(pkg));
 		list = alpm_list_add(list, string);
 		nth++;
 	}
@@ -1322,7 +1322,7 @@ static int parseindex(char *s, int *val, int min, int max)
 	int n = strtol(s, &endptr, 10);
 	if(*endptr == '\0') {
 		if(n < min || n > max) {
-			pm_printf(ALPM_LOG_ERROR,
+			mm_printf(ALPM_LOG_ERROR,
 					_("invalid value: %d is not between %d and %d\n"),
 					n, min, max);
 			return -1;
@@ -1330,7 +1330,7 @@ static int parseindex(char *s, int *val, int min, int max)
 		*val = n;
 		return 0;
 	} else {
-		pm_printf(ALPM_LOG_ERROR, _("invalid number: %s\n"), s);
+		mm_printf(ALPM_LOG_ERROR, _("invalid number: %s\n"), s);
 		return -1;
 	}
 }
@@ -1642,7 +1642,7 @@ int colon_printf(const char *fmt, ...)
 	return ret;
 }
 
-int pm_printf(alpm_loglevel_t level, const char *format, ...)
+int mm_printf(alpm_loglevel_t level, const char *format, ...)
 {
 	int ret;
 	va_list args;
@@ -1655,7 +1655,7 @@ int pm_printf(alpm_loglevel_t level, const char *format, ...)
 	return ret;
 }
 
-int pm_asprintf(char **string, const char *format, ...)
+int mm_asprintf(char **string, const char *format, ...)
 {
 	int ret = 0;
 	va_list args;
@@ -1663,7 +1663,7 @@ int pm_asprintf(char **string, const char *format, ...)
 	/* print the message using va_arg list */
 	va_start(args, format);
 	if(vasprintf(string, format, args) == -1) {
-		pm_printf(ALPM_LOG_ERROR, _("failed to allocate string\n"));
+		mm_printf(ALPM_LOG_ERROR, _("failed to allocate string\n"));
 		ret = -1;
 	}
 	va_end(args);
@@ -1671,7 +1671,7 @@ int pm_asprintf(char **string, const char *format, ...)
 	return ret;
 }
 
-int pm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...)
+int mm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...)
 {
 	int ret = 0;
 	va_list args;
@@ -1684,7 +1684,7 @@ int pm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...)
 	return ret;
 }
 
-int pm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_list args)
+int mm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_list args)
 {
 	int ret = 0;
 	char *msg = NULL;
@@ -1700,21 +1700,21 @@ int pm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_li
 	/* print a prefix to the message */
 	switch(level) {
 		case ALPM_LOG_ERROR:
-			pm_asprintf(string, "%s%s%s%s", config->colstr.err, _("error: "),
+			mm_asprintf(string, "%s%s%s%s", config->colstr.err, _("error: "),
 								config->colstr.nocolor, msg);
 			break;
 		case ALPM_LOG_WARNING:
-			pm_asprintf(string, "%s%s%s%s", config->colstr.warn, _("warning: "),
+			mm_asprintf(string, "%s%s%s%s", config->colstr.warn, _("warning: "),
 								config->colstr.nocolor, msg);
 			break;
 		case ALPM_LOG_DEBUG:
-			pm_asprintf(string, "debug: %s", msg);
+			mm_asprintf(string, "debug: %s", msg);
 			break;
 		case ALPM_LOG_FUNCTION:
-			pm_asprintf(string, "function: %s", msg);
+			mm_asprintf(string, "function: %s", msg);
 			break;
 		default:
-			pm_asprintf(string, "%s", msg);
+			mm_asprintf(string, "%s", msg);
 			break;
 	}
 	free(msg);
@@ -1722,7 +1722,7 @@ int pm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_li
 	return ret;
 }
 
-int pm_vfprintf(FILE *stream, alpm_loglevel_t level, const char *format, va_list args)
+int mm_vfprintf(FILE *stream, alpm_loglevel_t level, const char *format, va_list args)
 {
 	int ret = 0;
 

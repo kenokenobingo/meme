@@ -1,8 +1,12 @@
 /*
+ *  _ __ ___   ___ _ __ ___   ___
+ *  | '_ ` _ \ / _ \ '_ ` _ \ / _ \
+ *  | | | | | |  __/ | | | | |  __/
+ *  |_| |_| |_|\___|_| |_| |_|\___|
+ *
  *  meme.c
  *
- *  Copyright (c) 2006-2018 meme Development Team <meme-dev@archlinux.org>
- *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
+ *  Keno Westhoff <win@kenokeno.bingo>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -47,7 +51,7 @@
 #include "sighandler.h"
 
 /* list of targets specified on command line */
-static alpm_list_t *pm_targets;
+static alpm_list_t *mm_targets;
 
 /* Used to sort the options in --help */
 static int options_cmp(const void *p1, const void *p2)
@@ -104,7 +108,7 @@ static void usage(int op, const char * const myname)
 	char const *const str_opr  = _("operation");
 
 	/* please limit your strings to 80 characters in width */
-	if(op == PM_OP_MAIN) {
+	if(op == MM_OP_MAIN) {
 		printf("%s:  %s <%s> [...]\n", str_usg, myname, str_opr);
 		printf(_("operations:\n"));
 		printf("    %s {-h --help}\n", myname);
@@ -119,7 +123,7 @@ static void usage(int op, const char * const myname)
 		printf(_("\nuse '%s {-h --help}' with an operation for available options\n"),
 				myname);
 	} else {
-		if(op == PM_OP_REMOVE) {
+		if(op == MM_OP_REMOVE) {
 			printf("%s:  %s {-R --remove} [%s] <%s>\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
 			addlist(_("  -c, --cascade        remove packages and all packages that depend on them\n"));
@@ -127,11 +131,11 @@ static void usage(int op, const char * const myname)
 			addlist(_("  -s, --recursive      remove unnecessary dependencies\n"
 			          "                       (-ss includes explicitly installed dependencies)\n"));
 			addlist(_("  -u, --unneeded       remove unneeded packages\n"));
-		} else if(op == PM_OP_UPGRADE) {
+		} else if(op == MM_OP_UPGRADE) {
 			printf("%s:  %s {-U --upgrade} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
 			addlist(_("      --needed         do not reinstall up to date packages\n"));
 			printf("%s:\n", str_opt);
-		} else if(op == PM_OP_QUERY) {
+		} else if(op == MM_OP_QUERY) {
 			printf("%s:  %s {-Q --query} [%s] [%s]\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
 			addlist(_("  -c, --changelog      view the changelog of a package\n"));
@@ -150,7 +154,7 @@ static void usage(int op, const char * const myname)
 			addlist(_("  -t, --unrequired     list packages not (optionally) required by any\n"
 			          "                       package (-tt to ignore optdepends) [filter]\n"));
 			addlist(_("  -u, --upgrades       list outdated packages [filter]\n"));
-		} else if(op == PM_OP_SYNC) {
+		} else if(op == MM_OP_SYNC) {
 			printf("%s:  %s {-S --sync} [%s] [%s]\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
 			addlist(_("  -c, --clean          remove old packages from cache directory (-cc for all)\n"));
@@ -165,17 +169,17 @@ static void usage(int op, const char * const myname)
 			addlist(_("  -y, --refresh        download fresh package databases from the server\n"
 			          "                       (-yy to force a refresh even if up to date)\n"));
 			addlist(_("      --needed         do not reinstall up to date packages\n"));
-		} else if(op == PM_OP_DATABASE) {
+		} else if(op == MM_OP_DATABASE) {
 			printf("%s:  %s {-D --database} <%s> <%s>\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
 			addlist(_("      --asdeps         mark packages as non-explicitly installed\n"));
 			addlist(_("      --asexplicit     mark packages as explicitly installed\n"));
 			addlist(_("  -k, --check          test local database for validity (-kk for sync databases)\n"));
 			addlist(_("  -q, --quiet          suppress output of success messages\n"));
-		} else if(op == PM_OP_DEPTEST) {
+		} else if(op == MM_OP_DEPTEST) {
 			printf("%s:  %s {-T --deptest} [%s] [%s]\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
-		} else if(op == PM_OP_FILES) {
+		} else if(op == MM_OP_FILES) {
 			addlist(_("  -l, --list           list the files owned by the queried package\n"));
 			addlist(_("  -o, --owns <file>    query the package that owns <file>\n"));
 			addlist(_("  -q, --quiet          show less information for query and search\n"));
@@ -187,8 +191,8 @@ static void usage(int op, const char * const myname)
 			          "                       produce machine-readable output\n"));
 		}
 		switch(op) {
-			case PM_OP_SYNC:
-			case PM_OP_UPGRADE:
+			case MM_OP_SYNC:
+			case MM_OP_UPGRADE:
 				addlist(_("      --overwrite <path>\n"
 				          "                       overwrite conflicting files (can be used more than once)\n"));
 				addlist(_("      --asdeps         install packages as non-explicitly installed\n"));
@@ -197,7 +201,7 @@ static void usage(int op, const char * const myname)
 				addlist(_("      --ignoregroup <grp>\n"
 				          "                       ignore a group upgrade (can be used more than once)\n"));
 				/* pass through */
-			case PM_OP_REMOVE:
+			case MM_OP_REMOVE:
 				addlist(_("  -d, --nodeps         skip dependency version checks (-dd to skip all checks)\n"));
 				addlist(_("      --assume-installed <package=version>\n"
 				          "                       add a virtual package to satisfy dependencies\n"));
@@ -239,9 +243,8 @@ static void usage(int op, const char * const myname)
 static void version(void)
 {
 	printf("\n");
-	printf(" .--.                  meme v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
-	printf("/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2018 meme Development Team\n");
-	printf("\\  '-. '-'  '-'  '-'   Copyright (C) 2002-2006 Judd Vinet\n");
+    printf("meme");
+	printf("meme v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
 	printf(" '--'\n");
 	printf(_("                       This program may be freely redistributed under\n"
 	         "                       the terms of the GNU General Public License.\n"));
@@ -276,7 +279,7 @@ static void setuseragent(void)
 	len = snprintf(agent, 100, "meme/%s (%s %s) libalpm/%s",
 			PACKAGE_VERSION, un.sysname, un.machine, alpm_version());
 	if(len >= 100) {
-		pm_printf(ALPM_LOG_WARNING, _("HTTP_USER_AGENT truncated\n"));
+		mm_printf(ALPM_LOG_WARNING, _("HTTP_USER_AGENT truncated\n"));
 	}
 
 	setenv("HTTP_USER_AGENT", agent, 0);
@@ -292,7 +295,7 @@ static void cleanup(int ret)
 	if(config) {
 		/* free alpm library resources */
 		if(config->handle && alpm_release(config->handle) == -1) {
-			pm_printf(ALPM_LOG_ERROR, "error releasing alpm library\n");
+			mm_printf(ALPM_LOG_ERROR, "error releasing alpm library\n");
 		}
 
 		config_free(config);
@@ -300,14 +303,14 @@ static void cleanup(int ret)
 	}
 
 	/* free memory */
-	FREELIST(pm_targets);
+	FREELIST(mm_targets);
 	exit(ret);
 }
 
 static void invalid_opt(int used, const char *opt1, const char *opt2)
 {
 	if(used) {
-		pm_printf(ALPM_LOG_ERROR,
+		mm_printf(ALPM_LOG_ERROR,
 				_("invalid option: '%s' and '%s' may not be used together\n"),
 				opt1, opt2);
 		cleanup(1);
@@ -336,25 +339,25 @@ static int parsearg_op(int opt, int dryrun)
 		/* operations */
 		case 'D':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_DATABASE); break;
+            config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_DATABASE); break;
 		case 'F':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_FILES); break;
+            config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_FILES); break;
 		case 'Q':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_QUERY); break;
+            config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_QUERY); break;
 		case 'R':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_REMOVE); break;
+			config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_REMOVE); break;
 		case 'S':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_SYNC); break;
+			config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_SYNC); break;
 		case 'T':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_DEPTEST); break;
+            config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_DEPTEST); break;
 		case 'U':
 			if(dryrun) break;
-			config->op = (config->op != PM_OP_MAIN ? 0 : PM_OP_UPGRADE); break;
+			config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_UPGRADE); break;
 		case 'V':
 			if(dryrun) break;
 			config->version = 1; break;
@@ -386,13 +389,13 @@ static int parsearg_global(int opt)
 			break;
 		case OP_COLOR:
 			if(strcmp("never", optarg) == 0) {
-				config->color = PM_COLOR_OFF;
+				config->color = MM_COLOR_OFF;
 			} else if(strcmp("auto", optarg) == 0) {
-				config->color = isatty(fileno(stdout)) ? PM_COLOR_ON : PM_COLOR_OFF;
+				config->color = isatty(fileno(stdout)) ? MM_COLOR_ON : MM_COLOR_OFF;
 			} else if(strcmp("always", optarg) == 0) {
-				config->color = PM_COLOR_ON;
+				config->color = MM_COLOR_ON;
 			} else {
-				pm_printf(ALPM_LOG_ERROR, _("invalid argument '%s' for %s\n"),
+				mm_printf(ALPM_LOG_ERROR, _("invalid argument '%s' for %s\n"),
 						optarg, "--color");
 				return 1;
 			}
@@ -415,7 +418,7 @@ static int parsearg_global(int opt)
 						config->logmask |= ALPM_LOG_DEBUG;
 						break;
 					default:
-						pm_printf(ALPM_LOG_ERROR, _("'%s' is not a valid debug level\n"),
+						mm_printf(ALPM_LOG_ERROR, _("'%s' is not a valid debug level\n"),
 								optarg);
 						return 1;
 				}
@@ -449,7 +452,7 @@ static int parsearg_global(int opt)
 			break;
 		case OP_ROOT:
 		case 'r':
-			pm_printf(ALPM_LOG_WARNING,
+			mm_printf(ALPM_LOG_WARNING,
 					_("option --root is deprecated; use --sysroot instead\n"));
 			free(config->rootdir);
 			config->rootdir = strdup(optarg);
@@ -718,7 +721,7 @@ static int parsearg_upgrade(int opt)
 	}
 	switch(opt) {
 		case OP_FORCE:
-			pm_printf(ALPM_LOG_WARNING,
+			mm_printf(ALPM_LOG_WARNING,
 					_("option --force is deprecated; use --overwrite instead\n"));
 			config->flags |= ALPM_TRANS_FLAG_FORCE;
 			break;
@@ -979,7 +982,7 @@ static int parseargs(int argc, char *argv[])
 	}
 
 	if(config->op == 0) {
-		pm_printf(ALPM_LOG_ERROR, _("only one operation may be used at a time\n"));
+		mm_printf(ALPM_LOG_ERROR, _("only one operation may be used at a time\n"));
 		return 1;
 	}
 	if(config->help) {
@@ -1005,25 +1008,25 @@ static int parseargs(int argc, char *argv[])
 		}
 
 		switch(config->op) {
-			case PM_OP_DATABASE:
+			case MM_OP_DATABASE:
 				result = parsearg_database(opt);
 				break;
-			case PM_OP_QUERY:
+			case MM_OP_QUERY:
 				result = parsearg_query(opt);
 				break;
-			case PM_OP_REMOVE:
+			case MM_OP_REMOVE:
 				result = parsearg_remove(opt);
 				break;
-			case PM_OP_SYNC:
+			case MM_OP_SYNC:
 				result = parsearg_sync(opt);
 				break;
-			case PM_OP_UPGRADE:
+			case MM_OP_UPGRADE:
 				result = parsearg_upgrade(opt);
 				break;
-			case PM_OP_FILES:
+			case MM_OP_FILES:
 				result = parsearg_files(opt);
 				break;
-			case PM_OP_DEPTEST:
+            case MM_OP_DEPTEST:
 			default:
 				result = 1;
 				break;
@@ -1037,9 +1040,9 @@ static int parseargs(int argc, char *argv[])
 		if(result != 0) {
 			/* global option parsing failed, abort */
 			if(opt < OP_LONG_FLAG_MIN) {
-				pm_printf(ALPM_LOG_ERROR, _("invalid option '-%c'\n"), opt);
+				mm_printf(ALPM_LOG_ERROR, _("invalid option '-%c'\n"), opt);
 			} else {
-				pm_printf(ALPM_LOG_ERROR, _("invalid option '--%s'\n"),
+				mm_printf(ALPM_LOG_ERROR, _("invalid option '--%s'\n"),
 						opts[option_index].name);
 			}
 			return result;
@@ -1048,30 +1051,30 @@ static int parseargs(int argc, char *argv[])
 
 	while(optind < argc) {
 		/* add the target to our target array */
-		pm_targets = alpm_list_add(pm_targets, strdup(argv[optind]));
+		mm_targets = alpm_list_add(mm_targets, strdup(argv[optind]));
 		optind++;
 	}
 
 	switch(config->op) {
-		case PM_OP_DATABASE:
+		case MM_OP_DATABASE:
 			checkargs_database();
 			break;
-		case PM_OP_DEPTEST:
+		case MM_OP_DEPTEST:
 			/* no conflicting options */
 			break;
-		case PM_OP_SYNC:
+		case MM_OP_SYNC:
 			checkargs_sync();
 			break;
-		case PM_OP_QUERY:
+		case MM_OP_QUERY:
 			checkargs_query();
 			break;
-		case PM_OP_REMOVE:
+		case MM_OP_REMOVE:
 			checkargs_remove();
 			break;
-		case PM_OP_UPGRADE:
+		case MM_OP_UPGRADE:
 			checkargs_upgrade();
 			break;
-		case PM_OP_FILES:
+		case MM_OP_FILES:
 			checkargs_files();
 			break;
 		default:
@@ -1164,18 +1167,18 @@ int main(int argc, char *argv[])
 
 	/* check if we have sufficient permission for the requested operation */
 	if(myuid > 0 && needs_root()) {
-		pm_printf(ALPM_LOG_ERROR, _("you cannot perform this operation unless you are root.\n"));
+		mm_printf(ALPM_LOG_ERROR, _("you cannot perform this operation unless you are root.\n"));
 		cleanup(EXIT_FAILURE);
 	}
 
 	if(config->sysroot && (chroot(config->sysroot) != 0 || chdir("/") != 0)) {
-		pm_printf(ALPM_LOG_ERROR,
+		mm_printf(ALPM_LOG_ERROR,
 				_("chroot to '%s' failed: (%s)\n"), config->sysroot, strerror(errno));
 		cleanup(EXIT_FAILURE);
 	}
 
 	/* we support reading targets from stdin if a cmdline parameter is '-' */
-	if(alpm_list_find_str(pm_targets, "-")) {
+	if(alpm_list_find_str(mm_targets, "-")) {
 		if(!isatty(fileno(stdin))) {
 			int target_found = 0;
 			char *vdata, *line = NULL;
@@ -1183,7 +1186,7 @@ int main(int argc, char *argv[])
 			ssize_t nread;
 
 			/* remove the '-' from the list */
-			pm_targets = alpm_list_remove_str(pm_targets, "-", &vdata);
+			mm_targets = alpm_list_remove_str(mm_targets, "-", &vdata);
 			free(vdata);
 
 			while((nread = getline(&line, &line_size, stdin)) != -1) {
@@ -1195,7 +1198,7 @@ int main(int argc, char *argv[])
 					/* skip empty lines */
 					continue;
 				}
-				if(!alpm_list_append_strdup(&pm_targets, line)) {
+				if(!alpm_list_append_strdup(&mm_targets, line)) {
 					break;
 				}
 				target_found = 1;
@@ -1203,28 +1206,28 @@ int main(int argc, char *argv[])
 			free(line);
 
 			if(ferror(stdin)) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("failed to read arguments from stdin: (%s)\n"), strerror(errno));
 				cleanup(EXIT_FAILURE);
 			}
 
 			if(!freopen(ctermid(NULL), "r", stdin)) {
-				pm_printf(ALPM_LOG_ERROR, _("failed to reopen stdin for reading: (%s)\n"),
+				mm_printf(ALPM_LOG_ERROR, _("failed to reopen stdin for reading: (%s)\n"),
 						strerror(errno));
 			}
 
 			if(!target_found) {
-				pm_printf(ALPM_LOG_ERROR, _("argument '-' specified with empty stdin\n"));
+				mm_printf(ALPM_LOG_ERROR, _("argument '-' specified with empty stdin\n"));
 				cleanup(1);
 			}
 		} else {
 			/* do not read stdin from terminal */
-			pm_printf(ALPM_LOG_ERROR, _("argument '-' specified without input on stdin\n"));
+			mm_printf(ALPM_LOG_ERROR, _("argument '-' specified without input on stdin\n"));
 			cleanup(1);
 		}
 	}
 
-	pm_printf(ALPM_LOG_DEBUG, "meme v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
+	mm_printf(ALPM_LOG_DEBUG, "meme v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
 
 	/* parse the config file */
 	ret = parseconfig(config->configfile);
@@ -1264,7 +1267,7 @@ int main(int argc, char *argv[])
 		printf("Lock File : %s\n", alpm_option_get_lockfile(config->handle));
 		printf("Log File  : %s\n", alpm_option_get_logfile(config->handle));
 		printf("GPG Dir   : %s\n", alpm_option_get_gpgdir(config->handle));
-		list_display("Targets   :", pm_targets, 0);
+		list_display("Targets   :", mm_targets, 0);
 	}
 
 	/* Log command line */
@@ -1274,29 +1277,29 @@ int main(int argc, char *argv[])
 
 	/* start the requested operation */
 	switch(config->op) {
-		case PM_OP_DATABASE:
-			ret = meme_database(pm_targets);
+		case MM_OP_DATABASE:
+			ret = meme_database(mm_targets);
 			break;
-		case PM_OP_REMOVE:
-			ret = meme_remove(pm_targets);
+		case MM_OP_REMOVE:
+			ret = meme_remove(mm_targets);
 			break;
-		case PM_OP_UPGRADE:
-			ret = meme_upgrade(pm_targets);
+		case MM_OP_UPGRADE:
+			ret = meme_upgrade(mm_targets);
 			break;
-		case PM_OP_QUERY:
-			ret = meme_query(pm_targets);
+		case MM_OP_QUERY:
+			ret = meme_query(mm_targets);
 			break;
-		case PM_OP_SYNC:
-			ret = meme_sync(pm_targets);
+		case MM_OP_SYNC:
+			ret = meme_sync(mm_targets);
 			break;
-		case PM_OP_DEPTEST:
-			ret = meme_deptest(pm_targets);
+		case MM_OP_DEPTEST:
+			ret = meme_deptest(mm_targets);
 			break;
-		case PM_OP_FILES:
-			ret = meme_files(pm_targets);
+		case MM_OP_FILES:
+			ret = meme_files(mm_targets);
 			break;
 		default:
-			pm_printf(ALPM_LOG_ERROR, _("no operation specified (use -h for help)\n"));
+			mm_printf(ALPM_LOG_ERROR, _("no operation specified (use -h for help)\n"));
 			ret = EXIT_FAILURE;
 	}
 

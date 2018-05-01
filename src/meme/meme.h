@@ -21,7 +21,7 @@
 
 #include <alpm_list.h>
 
-#define PACMAN_CALLER_PREFIX "MEME"
+#define MEME_CALLER_PREFIX "MEME"
 
 /* database.c */
 int meme_database(alpm_list_t *targets);
