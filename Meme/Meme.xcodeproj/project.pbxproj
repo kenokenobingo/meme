@@ -136,9 +136,9 @@
 		B9BFDDAE2094A41800D8812C /* PKGBUILD.5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKGBUILD.5.txt; sourceTree = "<group>"; };
 		B9BFDDAF2094A41800D8812C /* index.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = index.txt; sourceTree = "<group>"; };
 		B9BFDDB02094A41800D8812C /* translation-help.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "translation-help.txt"; sourceTree = "<group>"; };
-		B9BFDDB12094A41800D8812C /* pacman-key.8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "pacman-key.8.txt"; sourceTree = "<group>"; };
+		B9BFDDB12094A41800D8812C /* meme-key.8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "meme-key.8.txt"; sourceTree = "<group>"; };
 		B9BFDDB22094A41800D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		B9BFDDB32094A41800D8812C /* pacman.8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = pacman.8.txt; sourceTree = "<group>"; };
+		B9BFDDB32094A41800D8812C /* meme.8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = meme.8.txt; sourceTree = "<group>"; };
 		B9BFDDB42094A41800D8812C /* makepkg.conf.5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = makepkg.conf.5.txt; sourceTree = "<group>"; };
 		B9BFDDB52094A41800D8812C /* makepkg-template.1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "makepkg-template.1.txt"; sourceTree = "<group>"; };
 		B9BFDDB62094A41800D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -149,14 +149,14 @@
 		B9BFDDBB2094A41800D8812C /* footer.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = footer.txt; sourceTree = "<group>"; };
 		B9BFDDBC2094A41800D8812C /* pkgdelta.8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = pkgdelta.8.txt; sourceTree = "<group>"; };
 		B9BFDDBD2094A41800D8812C /* submitting-patches.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "submitting-patches.txt"; sourceTree = "<group>"; };
-		B9BFDDBE2094A41800D8812C /* pacman.conf.5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = pacman.conf.5.txt; sourceTree = "<group>"; };
+		B9BFDDBE2094A41800D8812C /* meme.conf.5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = meme.conf.5.txt; sourceTree = "<group>"; };
 		B9BFDDC02094A41900D8812C /* acinclude.m4 */ = {isa = PBXFileReference; lastKnownFileType = text; path = acinclude.m4; sourceTree = "<group>"; };
 		B9BFDDC12094A41900D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B9BFDDC22094A41900D8812C /* gpgme.m4 */ = {isa = PBXFileReference; lastKnownFileType = text; path = gpgme.m4; sourceTree = "<group>"; };
-		B9BFDDC42094A41900D8812C /* pacman-key.sh.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pacman-key.sh.in"; sourceTree = "<group>"; };
+		B9BFDDC42094A41900D8812C /* meme-key.sh.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "meme-key.sh.in"; sourceTree = "<group>"; };
 		B9BFDDC52094A41900D8812C /* makepkg-template.pl.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "makepkg-template.pl.in"; sourceTree = "<group>"; };
 		B9BFDDC62094A41900D8812C /* makepkg.sh.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = makepkg.sh.in; sourceTree = "<group>"; };
-		B9BFDDC72094A41900D8812C /* pacman-db-upgrade.sh.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pacman-db-upgrade.sh.in"; sourceTree = "<group>"; };
+		B9BFDDC72094A41900D8812C /* meme-db-upgrade.sh.in */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "meme-db-upgrade.sh.in"; sourceTree = "<group>"; };
 		B9BFDDC92094A41900D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B9BFDDCA2094A41900D8812C /* bash_completion.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = bash_completion.in; sourceTree = "<group>"; };
 		B9BFDDCB2094A41900D8812C /* zsh_completion.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = zsh_completion.in; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 		B9BFDE422094A41900D8812C /* pl.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = pl.po; sourceTree = "<group>"; };
 		B9BFDE432094A41900D8812C /* LINGUAS */ = {isa = PBXFileReference; lastKnownFileType = text; path = LINGUAS; sourceTree = "<group>"; };
 		B9BFDE442094A41900D8812C /* pt.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = pt.po; sourceTree = "<group>"; };
-		B9BFDE452094A41900D8812C /* pacman-scripts.pot */ = {isa = PBXFileReference; lastKnownFileType = text; path = "pacman-scripts.pot"; sourceTree = "<group>"; };
+		B9BFDE452094A41900D8812C /* meme-scripts.pot */ = {isa = PBXFileReference; lastKnownFileType = text; path = "meme-scripts.pot"; sourceTree = "<group>"; };
 		B9BFDE462094A41900D8812C /* ru.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = ru.po; sourceTree = "<group>"; };
 		B9BFDE472094A41900D8812C /* eu.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = eu.po; sourceTree = "<group>"; };
 		B9BFDE482094A41900D8812C /* hr.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = hr.po; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 		B9BFDEA82094A41900D8812C /* sync003.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync003.py; sourceTree = "<group>"; };
 		B9BFDEA92094A41900D8812C /* upgrade074.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade074.py; sourceTree = "<group>"; };
 		B9BFDEAA2094A41900D8812C /* upgrade025.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade025.py; sourceTree = "<group>"; };
-		B9BFDEAB2094A41900D8812C /* pacman003.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pacman003.py; sourceTree = "<group>"; };
+		B9BFDEAB2094A41900D8812C /* meme003.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = meme003.py; sourceTree = "<group>"; };
 		B9BFDEAC2094A41900D8812C /* remove-recursive-cycle.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "remove-recursive-cycle.py"; sourceTree = "<group>"; };
 		B9BFDEAD2094A41900D8812C /* sync042.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync042.py; sourceTree = "<group>"; };
 		B9BFDEAE2094A41900D8812C /* sync102.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync102.py; sourceTree = "<group>"; };
@@ -435,7 +435,7 @@
 		B9BFDEE92094A41900D8812C /* sync002.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync002.py; sourceTree = "<group>"; };
 		B9BFDEEA2094A41900D8812C /* upgrade075.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade075.py; sourceTree = "<group>"; };
 		B9BFDEEB2094A41900D8812C /* upgrade024.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade024.py; sourceTree = "<group>"; };
-		B9BFDEEC2094A41900D8812C /* pacman002.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pacman002.py; sourceTree = "<group>"; };
+		B9BFDEEC2094A41900D8812C /* meme002.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = meme002.py; sourceTree = "<group>"; };
 		B9BFDEED2094A41900D8812C /* sync012.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync012.py; sourceTree = "<group>"; };
 		B9BFDEEE2094A41900D8812C /* hook-pkg-postinstall-trigger-match.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "hook-pkg-postinstall-trigger-match.py"; sourceTree = "<group>"; };
 		B9BFDEEF2094A41900D8812C /* sync043.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync043.py; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 		B9BFDF042094A41900D8812C /* sync130.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync130.py; sourceTree = "<group>"; };
 		B9BFDF052094A41900D8812C /* sync021.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync021.py; sourceTree = "<group>"; };
 		B9BFDF062094A41900D8812C /* upgrade046.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade046.py; sourceTree = "<group>"; };
-		B9BFDF072094A41900D8812C /* pacman005.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pacman005.py; sourceTree = "<group>"; };
+		B9BFDF072094A41900D8812C /* meme005.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = meme005.py; sourceTree = "<group>"; };
 		B9BFDF082094A41900D8812C /* upgrade081.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade081.py; sourceTree = "<group>"; };
 		B9BFDF092094A41900D8812C /* sync044.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync044.py; sourceTree = "<group>"; };
 		B9BFDF0A2094A41900D8812C /* sync104.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync104.py; sourceTree = "<group>"; };
@@ -482,7 +482,7 @@
 		B9BFDF182094A41900D8812C /* sync050.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync050.py; sourceTree = "<group>"; };
 		B9BFDF192094A41900D8812C /* sync040.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync040.py; sourceTree = "<group>"; };
 		B9BFDF1A2094A41900D8812C /* sync100.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync100.py; sourceTree = "<group>"; };
-		B9BFDF1B2094A41900D8812C /* pacman001.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pacman001.py; sourceTree = "<group>"; };
+		B9BFDF1B2094A41900D8812C /* meme001.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = meme001.py; sourceTree = "<group>"; };
 		B9BFDF1C2094A41900D8812C /* sync011.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync011.py; sourceTree = "<group>"; };
 		B9BFDF1D2094A41900D8812C /* upgrade027.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade027.py; sourceTree = "<group>"; };
 		B9BFDF1E2094A41900D8812C /* upgrade076.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade076.py; sourceTree = "<group>"; };
@@ -531,7 +531,7 @@
 		B9BFDF492094A41900D8812C /* sync131.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync131.py; sourceTree = "<group>"; };
 		B9BFDF4A2094A41900D8812C /* sync020.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync020.py; sourceTree = "<group>"; };
 		B9BFDF4B2094A41900D8812C /* upgrade016.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade016.py; sourceTree = "<group>"; };
-		B9BFDF4C2094A41900D8812C /* pacman004.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pacman004.py; sourceTree = "<group>"; };
+		B9BFDF4C2094A41900D8812C /* meme004.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = meme004.py; sourceTree = "<group>"; };
 		B9BFDF4D2094A41900D8812C /* upgrade080.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = upgrade080.py; sourceTree = "<group>"; };
 		B9BFDF4E2094A41900D8812C /* sync045.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sync045.py; sourceTree = "<group>"; };
 		B9BFDF4F2094A41900D8812C /* symlink012.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = symlink012.py; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 		B9BFDFAD2094A41900D8812C /* vercmptest.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = vercmptest.sh; sourceTree = "<group>"; };
 		B9BFDFAE2094A41900D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
 		B9BFDFAF2094A41900D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		B9BFDFB12094A41900D8812C /* pacman-db-upgrade-v9.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "pacman-db-upgrade-v9.py"; sourceTree = "<group>"; };
+		B9BFDFB12094A41900D8812C /* meme-db-upgrade-v9.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "meme-db-upgrade-v9.py"; sourceTree = "<group>"; };
 		B9BFDFB22094A41900D8812C /* human_to_size_test.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = human_to_size_test.sh; sourceTree = "<group>"; };
 		B9BFDFB32094A41900D8812C /* parseopts_test.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = parseopts_test.sh; sourceTree = "<group>"; };
 		B9BFDFB42094A41900D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
@@ -692,7 +692,7 @@
 		B9BFE0062094A41900D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
 		B9BFE0072094A41900D8812C /* ini.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ini.h; path = /Users/keno/meme/src/meme/ini.h; sourceTree = "<absolute>"; };
 		B9BFE0092094A41900D8812C /* lt.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = lt.po; sourceTree = "<group>"; };
-		B9BFE00A2094A41900D8812C /* pacman.pot */ = {isa = PBXFileReference; lastKnownFileType = text; path = pacman.pot; sourceTree = "<group>"; };
+		B9BFE00A2094A41900D8812C /* meme.pot */ = {isa = PBXFileReference; lastKnownFileType = text; path = meme.pot; sourceTree = "<group>"; };
 		B9BFE00B2094A41900D8812C /* sr.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = sr.po; sourceTree = "<group>"; };
 		B9BFE00C2094A41900D8812C /* hu.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = hu.po; sourceTree = "<group>"; };
 		B9BFE00D2094A41900D8812C /* uk.po */ = {isa = PBXFileReference; lastKnownFileType = text; path = uk.po; sourceTree = "<group>"; };
@@ -968,9 +968,9 @@
 				B9BFDDAE2094A41800D8812C /* PKGBUILD.5.txt */,
 				B9BFDDAF2094A41800D8812C /* index.txt */,
 				B9BFDDB02094A41800D8812C /* translation-help.txt */,
-				B9BFDDB12094A41800D8812C /* pacman-key.8.txt */,
+				B9BFDDB12094A41800D8812C /* meme-key.8.txt */,
 				B9BFDDB22094A41800D8812C /* Makefile.am */,
-				B9BFDDB32094A41800D8812C /* pacman.8.txt */,
+				B9BFDDB32094A41800D8812C /* meme.8.txt */,
 				B9BFDDB42094A41800D8812C /* makepkg.conf.5.txt */,
 				B9BFDDB52094A41800D8812C /* makepkg-template.1.txt */,
 				B9BFDDB62094A41800D8812C /* .gitignore */,
@@ -981,7 +981,7 @@
 				B9BFDDBB2094A41800D8812C /* footer.txt */,
 				B9BFDDBC2094A41800D8812C /* pkgdelta.8.txt */,
 				B9BFDDBD2094A41800D8812C /* submitting-patches.txt */,
-				B9BFDDBE2094A41800D8812C /* pacman.conf.5.txt */,
+				B9BFDDBE2094A41800D8812C /* meme.conf.5.txt */,
 			);
 			name = doc;
 			path = ../doc;
@@ -1001,10 +1001,10 @@
 		B9BFDDC32094A41900D8812C /* scripts */ = {
 			isa = PBXGroup;
 			children = (
-				B9BFDDC42094A41900D8812C /* pacman-key.sh.in */,
+				B9BFDDC42094A41900D8812C /* meme-key.sh.in */,
 				B9BFDDC52094A41900D8812C /* makepkg-template.pl.in */,
 				B9BFDDC62094A41900D8812C /* makepkg.sh.in */,
-				B9BFDDC72094A41900D8812C /* pacman-db-upgrade.sh.in */,
+				B9BFDDC72094A41900D8812C /* meme-db-upgrade.sh.in */,
 				B9BFDDC82094A41900D8812C /* completion */,
 				B9BFDDCC2094A41900D8812C /* library */,
 				B9BFDDD22094A41900D8812C /* libmakepkg */,
@@ -1210,7 +1210,7 @@
 				B9BFDE422094A41900D8812C /* pl.po */,
 				B9BFDE432094A41900D8812C /* LINGUAS */,
 				B9BFDE442094A41900D8812C /* pt.po */,
-				B9BFDE452094A41900D8812C /* pacman-scripts.pot */,
+				B9BFDE452094A41900D8812C /* meme-scripts.pot */,
 				B9BFDE462094A41900D8812C /* ru.po */,
 				B9BFDE472094A41900D8812C /* eu.po */,
 				B9BFDE482094A41900D8812C /* hr.po */,
@@ -1223,7 +1223,7 @@
 			isa = PBXGroup;
 			children = (
 				B9BFDE4D2094A41900D8812C /* tap.sh */,
-				B9BFDE4E2094A41900D8812C /* pacman */,
+				B9BFDE4E2094A41900D8812C /* meme */,
 				B9BFDFAC2094A41900D8812C /* util */,
 				B9BFDFAF2094A41900D8812C /* .gitignore */,
 				B9BFDFB02094A41900D8812C /* scripts */,
@@ -1232,7 +1232,7 @@
 			path = ../test;
 			sourceTree = "<group>";
 		};
-		B9BFDE4E2094A41900D8812C /* pacman */ = {
+		B9BFDE4E2094A41900D8812C /* meme */ = {
 			isa = PBXGroup;
 			children = (
 				B9BFDE4F2094A41900D8812C /* memetest.py */,
@@ -1252,7 +1252,7 @@
 				B9BFDFAA2094A41900D8812C /* mmpkg.py */,
 				B9BFDFAB2094A41900D8812C /* ldconfig.stub */,
 			);
-			path = pacman;
+			path = meme;
 			sourceTree = "<group>";
 		};
 		B9BFDE532094A41900D8812C /* tests */ = {
@@ -1345,7 +1345,7 @@
 				B9BFDEA82094A41900D8812C /* sync003.py */,
 				B9BFDEA92094A41900D8812C /* upgrade074.py */,
 				B9BFDEAA2094A41900D8812C /* upgrade025.py */,
-				B9BFDEAB2094A41900D8812C /* pacman003.py */,
+				B9BFDEAB2094A41900D8812C /* meme003.py */,
 				B9BFDEAC2094A41900D8812C /* remove-recursive-cycle.py */,
 				B9BFDEAD2094A41900D8812C /* sync042.py */,
 				B9BFDEAE2094A41900D8812C /* sync102.py */,
@@ -1410,7 +1410,7 @@
 				B9BFDEE92094A41900D8812C /* sync002.py */,
 				B9BFDEEA2094A41900D8812C /* upgrade075.py */,
 				B9BFDEEB2094A41900D8812C /* upgrade024.py */,
-				B9BFDEEC2094A41900D8812C /* pacman002.py */,
+				B9BFDEEC2094A41900D8812C /* meme002.py */,
 				B9BFDEED2094A41900D8812C /* sync012.py */,
 				B9BFDEEE2094A41900D8812C /* hook-pkg-postinstall-trigger-match.py */,
 				B9BFDEEF2094A41900D8812C /* sync043.py */,
@@ -1437,7 +1437,7 @@
 				B9BFDF042094A41900D8812C /* sync130.py */,
 				B9BFDF052094A41900D8812C /* sync021.py */,
 				B9BFDF062094A41900D8812C /* upgrade046.py */,
-				B9BFDF072094A41900D8812C /* pacman005.py */,
+				B9BFDF072094A41900D8812C /* meme005.py */,
 				B9BFDF082094A41900D8812C /* upgrade081.py */,
 				B9BFDF092094A41900D8812C /* sync044.py */,
 				B9BFDF0A2094A41900D8812C /* sync104.py */,
@@ -1457,7 +1457,7 @@
 				B9BFDF182094A41900D8812C /* sync050.py */,
 				B9BFDF192094A41900D8812C /* sync040.py */,
 				B9BFDF1A2094A41900D8812C /* sync100.py */,
-				B9BFDF1B2094A41900D8812C /* pacman001.py */,
+				B9BFDF1B2094A41900D8812C /* meme001.py */,
 				B9BFDF1C2094A41900D8812C /* sync011.py */,
 				B9BFDF1D2094A41900D8812C /* upgrade027.py */,
 				B9BFDF1E2094A41900D8812C /* upgrade076.py */,
@@ -1506,7 +1506,7 @@
 				B9BFDF492094A41900D8812C /* sync131.py */,
 				B9BFDF4A2094A41900D8812C /* sync020.py */,
 				B9BFDF4B2094A41900D8812C /* upgrade016.py */,
-				B9BFDF4C2094A41900D8812C /* pacman004.py */,
+				B9BFDF4C2094A41900D8812C /* meme004.py */,
 				B9BFDF4D2094A41900D8812C /* upgrade080.py */,
 				B9BFDF4E2094A41900D8812C /* sync045.py */,
 				B9BFDF4F2094A41900D8812C /* symlink012.py */,
@@ -1607,7 +1607,7 @@
 		B9BFDFB02094A41900D8812C /* scripts */ = {
 			isa = PBXGroup;
 			children = (
-				B9BFDFB12094A41900D8812C /* pacman-db-upgrade-v9.py */,
+				B9BFDFB12094A41900D8812C /* meme-db-upgrade-v9.py */,
 				B9BFDFB22094A41900D8812C /* human_to_size_test.sh */,
 				B9BFDFB32094A41900D8812C /* parseopts_test.sh */,
 				B9BFDFB42094A41900D8812C /* Makefile.am */,
@@ -1898,7 +1898,7 @@
 			isa = PBXGroup;
 			children = (
 				B9BFE0092094A41900D8812C /* lt.po */,
-				B9BFE00A2094A41900D8812C /* pacman.pot */,
+				B9BFE00A2094A41900D8812C /* meme.pot */,
 				B9BFE00B2094A41900D8812C /* sr.po */,
 				B9BFE00C2094A41900D8812C /* hu.po */,
 				B9BFE00D2094A41900D8812C /* uk.po */,
