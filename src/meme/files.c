@@ -21,7 +21,7 @@
 #include <alpm_list.h>
 #include <regex.h>
 
-/* pacman */
+/* meme */
 #include "meme.h"
 #include "util.h"
 #include "conf.h"
@@ -276,7 +276,7 @@ static int files_list(alpm_list_t *syncs, alpm_list_t *targets) {
 }
 
 
-int pacman_files(alpm_list_t *targets)
+int meme_files(alpm_list_t *targets)
 {
 	alpm_list_t *files_dbs = NULL;
 
@@ -289,7 +289,7 @@ int pacman_files(alpm_list_t *targets)
 	if(config->op_s_sync) {
 		/* grab a fresh package list */
 		colon_printf(_("Synchronizing package databases...\n"));
-		alpm_logaction(config->handle, PACMAN_CALLER_PREFIX,
+		alpm_logaction(config->handle, MEME_CALLER_PREFIX,
 				"synchronizing package lists\n");
 		if(!sync_syncdbs(config->op_s_sync, files_dbs)) {
 			return 1;
