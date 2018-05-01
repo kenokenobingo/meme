@@ -495,7 +495,7 @@ static int _parse_options(const char *key, char *value,
 		} else if(strcmp(key, "CheckSpace") == 0) {
 			config->checkspace = 1;
 		} else if(strcmp(key, "Color") == 0) {
-			if(config->color == PM_COLOR_UNSET) {
+			if(config->color == MM_COLOR_UNSET) {
 				config->color = isatty(fileno(stdout)) ? MM_COLOR_ON : MM_COLOR_OFF;
 				enable_colors(config->color);
 			}

@@ -38,7 +38,7 @@ static int check_file_exists(const char *pkgname, char *filepath, size_t rootlen
 			if(config->quiet) {
 				printf("%s %s\n", pkgname, filepath);
 			} else {
-				pm_printf(ALPM_LOG_WARNING, "%s: %s (%s)\n",
+				mm_printf(ALPM_LOG_WARNING, "%s: %s (%s)\n",
 						pkgname, filepath, strerror(errno));
 			}
 			return 1;
@@ -60,7 +60,7 @@ static int check_file_type(const char *pkgname, const char *filepath,
 		if(config->quiet) {
 			printf("%s %s\n", pkgname, filepath);
 		} else {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (File type mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (File type mismatch)\n"),
 					pkgname, filepath);
 		}
 		return 1;
@@ -79,7 +79,7 @@ static int check_file_permissions(const char *pkgname, const char *filepath,
 	if(st->st_uid != archive_entry_uid(entry)) {
 		errors++;
 		if(!config->quiet) {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (UID mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (UID mismatch)\n"),
 					pkgname, filepath);
 		}
 	}
@@ -88,7 +88,7 @@ static int check_file_permissions(const char *pkgname, const char *filepath,
 	if(st->st_gid != archive_entry_gid(entry)) {
 		errors++;
 		if(!config->quiet) {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (GID mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (GID mismatch)\n"),
 					pkgname, filepath);
 		}
 	}
@@ -98,7 +98,7 @@ static int check_file_permissions(const char *pkgname, const char *filepath,
 	if(fsmode != (~AE_IFMT & archive_entry_mode(entry))) {
 		errors++;
 		if(!config->quiet) {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (Permissions mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (Permissions mismatch)\n"),
 					pkgname, filepath);
 		}
 	}
@@ -120,7 +120,7 @@ static int check_file_time(const char *pkgname, const char *filepath,
 			return 0;
 		}
 		if(!config->quiet) {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (Modification time mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (Modification time mismatch)\n"),
 					pkgname, filepath);
 		}
 		return 1;
@@ -137,14 +137,14 @@ static int check_file_link(const char *pkgname, const char *filepath,
 
 	if(readlink(filepath, link, length) != st->st_size) {
 		/* this should not happen */
-		pm_printf(ALPM_LOG_ERROR, _("unable to read symlink contents: %s\n"), filepath);
+		mm_printf(ALPM_LOG_ERROR, _("unable to read symlink contents: %s\n"), filepath);
 		return 1;
 	}
 	link[length - 1] = '\0';
 
 	if(strcmp(link, archive_entry_symlink(entry)) != 0) {
 		if(!config->quiet) {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (Symlink path mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (Symlink path mismatch)\n"),
 					pkgname, filepath);
 		}
 		return 1;
@@ -167,7 +167,7 @@ static int check_file_size(const char *pkgname, const char *filepath,
 			return 0;
 		}
 		if(!config->quiet) {
-			pm_printf(ALPM_LOG_WARNING, _("%s: %s (Size mismatch)\n"),
+			mm_printf(ALPM_LOG_WARNING, _("%s: %s (Size mismatch)\n"),
 					pkgname, filepath);
 		}
 		return 1;
@@ -204,7 +204,7 @@ int check_pkg_fast(alpm_pkg_t *pkg)
 	rootlen = strlen(root);
 	if(rootlen + 1 > PATH_MAX) {
 		/* we are in trouble here */
-		pm_printf(ALPM_LOG_ERROR, _("path too long: %s%s\n"), root, "");
+		mm_printf(ALPM_LOG_ERROR, _("path too long: %s%s\n"), root, "");
 		return 1;
 	}
 	strcpy(filepath, root);
@@ -219,7 +219,7 @@ int check_pkg_fast(alpm_pkg_t *pkg)
 		size_t plen = strlen(path);
 
 		if(rootlen + 1 + plen > PATH_MAX) {
-			pm_printf(ALPM_LOG_WARNING, _("path too long: %s%s\n"), root, path);
+			mm_printf(ALPM_LOG_WARNING, _("path too long: %s%s\n"), root, path);
 			continue;
 		}
 		strcpy(filepath + rootlen, path);
@@ -229,7 +229,7 @@ int check_pkg_fast(alpm_pkg_t *pkg)
 			int expect_dir = path[plen - 1] == '/' ? 1 : 0;
 			int is_dir = S_ISDIR(st.st_mode) ? 1 : 0;
 			if(expect_dir != is_dir) {
-				pm_printf(ALPM_LOG_WARNING, _("%s: %s (File type mismatch)\n"),
+				mm_printf(ALPM_LOG_WARNING, _("%s: %s (File type mismatch)\n"),
 						pkgname, filepath);
 				++errors;
 			}
@@ -263,7 +263,7 @@ int check_pkg_full(alpm_pkg_t *pkg)
 	rootlen = strlen(root);
 	if(rootlen + 1 > PATH_MAX) {
 		/* we are in trouble here */
-		pm_printf(ALPM_LOG_ERROR, _("path too long: %s%s\n"), root, "");
+		mm_printf(ALPM_LOG_ERROR, _("path too long: %s%s\n"), root, "");
 		return 1;
 	}
 
@@ -309,7 +309,7 @@ int check_pkg_full(alpm_pkg_t *pkg)
 					alpm_option_get_dbpath(config->handle),
 					pkgname, alpm_pkg_get_version(pkg), dbfile);
 			if(filepath_len >= PATH_MAX) {
-				pm_printf(ALPM_LOG_WARNING, _("path too long: %slocal/%s-%s/%s\n"),
+				mm_printf(ALPM_LOG_WARNING, _("path too long: %slocal/%s-%s/%s\n"),
 						alpm_option_get_dbpath(config->handle),
 						pkgname, alpm_pkg_get_version(pkg), dbfile);
 				continue;
@@ -317,7 +317,7 @@ int check_pkg_full(alpm_pkg_t *pkg)
 		} else {
 			filepath_len = snprintf(filepath, PATH_MAX, "%s%s", root, path);
 			if(filepath_len >= PATH_MAX) {
-				pm_printf(ALPM_LOG_WARNING, _("path too long: %s%s\n"), root, path);
+				mm_printf(ALPM_LOG_WARNING, _("path too long: %s%s\n"), root, path);
 				continue;
 			}
 		}
@@ -336,7 +336,7 @@ int check_pkg_full(alpm_pkg_t *pkg)
 		type = archive_entry_filetype(entry);
 
 		if(type != AE_IFDIR && type != AE_IFREG && type != AE_IFLNK) {
-			pm_printf(ALPM_LOG_WARNING, _("file type not recognized: %s%s\n"), root, path);
+			mm_printf(ALPM_LOG_WARNING, _("file type not recognized: %s%s\n"), root, path);
 			continue;
 		}
 
