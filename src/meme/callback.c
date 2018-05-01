@@ -307,7 +307,7 @@ void cb_event(alpm_event_t *event)
 			break;
 		case ALPM_EVENT_DATABASE_MISSING:
 			if(!config->op_s_sync) {
-				pm_printf(ALPM_LOG_WARNING,
+				mm_printf(ALPM_LOG_WARNING,
 						"database file for '%s' does not exist (use '%s' to download)\n",
 						event->database_missing.dbname,
 						config->op == PM_OP_FILES ? "-Fy": "-Sy");
@@ -318,13 +318,13 @@ void cb_event(alpm_event_t *event)
 				alpm_event_pacnew_created_t *e = &event->pacnew_created;
 				if(on_progress) {
 					char *string = NULL;
-					pm_sprintf(&string, ALPM_LOG_WARNING, _("%s installed as %s.pacnew\n"),
+					mm_sprintf(&string, ALPM_LOG_WARNING, _("%s installed as %s.pacnew\n"),
 							e->file, e->file);
 					if(string != NULL) {
 						output = alpm_list_add(output, string);
 					}
 				} else {
-					pm_printf(ALPM_LOG_WARNING, _("%s installed as %s.pacnew\n"),
+					mm_printf(ALPM_LOG_WARNING, _("%s installed as %s.pacnew\n"),
 							e->file, e->file);
 				}
 			}
@@ -334,13 +334,13 @@ void cb_event(alpm_event_t *event)
 				alpm_event_pacsave_created_t *e = &event->pacsave_created;
 				if(on_progress) {
 					char *string = NULL;
-					pm_sprintf(&string, ALPM_LOG_WARNING, _("%s saved as %s.pacsave\n"),
+					mm_sprintf(&string, ALPM_LOG_WARNING, _("%s saved as %s.pacsave\n"),
 							e->file, e->file);
 					if(string != NULL) {
 						output = alpm_list_add(output, string);
 					}
 				} else {
-					pm_printf(ALPM_LOG_WARNING, _("%s saved as %s.pacsave\n"),
+					mm_printf(ALPM_LOG_WARNING, _("%s saved as %s.pacsave\n"),
 							e->file, e->file);
 				}
 			}

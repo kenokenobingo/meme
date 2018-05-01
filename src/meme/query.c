@@ -146,7 +146,7 @@ static int query_fileowner(alpm_list_t *targets)
 
 	/* This code is here for safety only */
 	if(targets == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no file was specified for --owns\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no file was specified for --owns\n"));
 		return 1;
 	}
 
@@ -167,7 +167,7 @@ static int query_fileowner(alpm_list_t *targets)
 		}
 
 		if(strcmp(filename, "") == 0) {
-			pm_printf(ALPM_LOG_ERROR, _("empty string passed to file owner query\n"));
+			mm_printf(ALPM_LOG_ERROR, _("empty string passed to file owner query\n"));
 			goto targcleanup;
 		}
 
@@ -194,7 +194,7 @@ static int query_fileowner(alpm_list_t *targets)
 
 		if(strncmp(rpath, root, rootlen) != 0) {
 			/* file is outside root, we know nothing can own it */
-			pm_printf(ALPM_LOG_ERROR, _("No package owns %s\n"), filename);
+			mm_printf(ALPM_LOG_ERROR, _("No package owns %s\n"), filename);
 			goto targcleanup;
 		}
 
@@ -203,7 +203,7 @@ static int query_fileowner(alpm_list_t *targets)
 		if((is_missing && is_dir) || (!is_missing && (is_dir = S_ISDIR(buf.st_mode)))) {
 			size_t rlen = strlen(rpath);
 			if(rlen + 2 >= PATH_MAX) {
-					pm_printf(ALPM_LOG_ERROR, _("path too long: %s/\n"), rpath);
+					mm_printf(ALPM_LOG_ERROR, _("path too long: %s/\n"), rpath);
 					goto targcleanup;
 			}
 			strcat(rpath + rlen, "/");
@@ -216,7 +216,7 @@ static int query_fileowner(alpm_list_t *targets)
 			}
 		}
 		if(!found) {
-			pm_printf(ALPM_LOG_ERROR, _("No package owns %s\n"), filename);
+			mm_printf(ALPM_LOG_ERROR, _("No package owns %s\n"), filename);
 		}
 
 targcleanup:
@@ -380,7 +380,7 @@ static int query_group(alpm_list_t *targets)
 					}
 				}
 			} else {
-				pm_printf(ALPM_LOG_ERROR, _("group '%s' was not found\n"), grpname);
+				mm_printf(ALPM_LOG_ERROR, _("group '%s' was not found\n"), grpname);
 				ret++;
 			}
 		}
@@ -423,7 +423,7 @@ int meme_query(alpm_list_t *targets)
 	 * invalid: isfile, owns */
 	if(targets == NULL) {
 		if(config->op_q_isfile || config->op_q_owns) {
-			pm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+			mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
 			return 1;
 		}
 
@@ -465,7 +465,7 @@ int meme_query(alpm_list_t *targets)
 			alpm_pkg_load(config->handle, strname, 1, 0, &pkg);
 
 			if(pkg == NULL) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("could not load package '%s': %s\n"), strname,
 						alpm_strerror(alpm_errno(config->handle)));
 			}
@@ -476,10 +476,10 @@ int meme_query(alpm_list_t *targets)
 			}
 
 			if(pkg == NULL) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("package '%s' was not found\n"), strname);
 				if(!config->op_q_isfile && access(strname, R_OK) == 0) {
-					pm_printf(ALPM_LOG_WARNING,
+					mm_printf(ALPM_LOG_WARNING,
 							_("'%s' is a file, you might want to use %s.\n"),
 							strname, "-p/--file");
 				}

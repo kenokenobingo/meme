@@ -47,7 +47,7 @@ static int change_install_reason(alpm_list_t *targets)
 	alpm_pkgreason_t reason;
 
 	if(targets == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
 		return 1;
 	}
 
@@ -56,7 +56,7 @@ static int change_install_reason(alpm_list_t *targets)
 	} else if(config->flags & ALPM_TRANS_FLAG_ALLEXPLICIT) { /* --asexplicit */
 		reason = ALPM_PKG_REASON_EXPLICIT;
 	} else {
-		pm_printf(ALPM_LOG_ERROR, _("no install reason specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no install reason specified (use -h for help)\n"));
 		return 1;
 	}
 
@@ -70,7 +70,7 @@ static int change_install_reason(alpm_list_t *targets)
 		char *pkgname = i->data;
 		alpm_pkg_t *pkg = alpm_db_get_pkg(db_local, pkgname);
 		if(!pkg || alpm_pkg_set_reason(pkg, reason)) {
-			pm_printf(ALPM_LOG_ERROR, _("could not set install reason for package %s (%s)\n"),
+			mm_printf(ALPM_LOG_ERROR, _("could not set install reason for package %s (%s)\n"),
 							pkgname, alpm_strerror(alpm_errno(config->handle)));
 			ret = 1;
 		} else {
@@ -100,7 +100,7 @@ static int check_db_missing_deps(alpm_list_t *pkglist)
 	for(i = data; i; i = alpm_list_next(i)) {
 		alpm_depmissing_t *miss = i->data;
 		char *depstring = alpm_dep_compute_string(miss->depend);
-		pm_printf(ALPM_LOG_ERROR, "missing '%s' dependency for '%s'\n",
+		mm_printf(ALPM_LOG_ERROR, "missing '%s' dependency for '%s'\n",
 				depstring, miss->target);
 		free(depstring);
 		ret++;
@@ -120,7 +120,7 @@ static int check_db_local_files(void)
 	dbpath = alpm_option_get_dbpath(config->handle);
 	snprintf(path, PATH_MAX, "%slocal", dbpath);
 	if(!(dbdir = opendir(path))) {
-		pm_printf(ALPM_LOG_ERROR, "could not open local database directory %s: %s\n",
+		mm_printf(ALPM_LOG_ERROR, "could not open local database directory %s: %s\n",
 				path, strerror(errno));
 		return 1;
 	}
@@ -133,12 +133,12 @@ static int check_db_local_files(void)
 		/* check for expected db files in local database */
 		snprintf(path, PATH_MAX, "%slocal/%s/desc", dbpath, ent->d_name);
 		if(access(path, F_OK)) {
-			pm_printf(ALPM_LOG_ERROR, "'%s': description file is missing\n", ent->d_name);
+			mm_printf(ALPM_LOG_ERROR, "'%s': description file is missing\n", ent->d_name);
 			ret++;
 		}
 		snprintf(path, PATH_MAX, "%slocal/%s/files", dbpath, ent->d_name);
 		if(access(path, F_OK)) {
-			pm_printf(ALPM_LOG_ERROR, "'%s': file list is missing\n", ent->d_name);
+			mm_printf(ALPM_LOG_ERROR, "'%s': file list is missing\n", ent->d_name);
 			ret++;
 		}
 	}
@@ -155,7 +155,7 @@ static int check_db_local_package_conflicts(alpm_list_t *pkglist)
 	data = alpm_checkconflicts(config->handle, pkglist);
 	for(i = data; i; i = i->next) {
 		alpm_conflict_t *conflict = i->data;
-		pm_printf(ALPM_LOG_ERROR, "'%s' conflicts with '%s'\n",
+		mm_printf(ALPM_LOG_ERROR, "'%s' conflicts with '%s'\n",
 				conflict->package1, conflict->package2);
 		ret++;
 	}
@@ -222,7 +222,7 @@ static int check_db_local_filelist_conflicts(alpm_list_t *pkglist)
 	for(j = 0; j < offset; j++) {
 		struct fileitem *fileitem = all_files + j;
 		if(prev_fileitem && fileitem_cmp(prev_fileitem, fileitem) == 0) {
-			pm_printf(ALPM_LOG_ERROR, "file owned by '%s' and '%s': '%s'\n",
+			mm_printf(ALPM_LOG_ERROR, "file owned by '%s' and '%s': '%s'\n",
 					alpm_pkg_get_name(prev_fileitem->pkg),
 					alpm_pkg_get_name(fileitem->pkg),
 					fileitem->file->name);

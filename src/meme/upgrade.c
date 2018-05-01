@@ -44,7 +44,7 @@ int meme_upgrade(alpm_list_t *targets)
 	unsigned int n, num_targets;
 
 	if(targets == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
 		return 1;
 	}
 
@@ -53,7 +53,7 @@ int meme_upgrade(alpm_list_t *targets)
 	/* Check for URL targets and process them */
 	file_is_remote = malloc(num_targets * sizeof(int));
 	if(file_is_remote == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("memory exhausted\n"));
+		mm_printf(ALPM_LOG_ERROR, _("memory exhausted\n"));
 		return 1;
 	}
 
@@ -61,7 +61,7 @@ int meme_upgrade(alpm_list_t *targets)
 		if(strstr(i->data, "://")) {
 			char *str = alpm_fetch_pkgurl(config->handle, i->data);
 			if(str == NULL) {
-				pm_printf(ALPM_LOG_ERROR, "'%s': %s\n",
+				mm_printf(ALPM_LOG_ERROR, "'%s': %s\n",
 						(char *)i->data, alpm_strerror(alpm_errno(config->handle)));
 				retval = 1;
 			} else {
@@ -98,13 +98,13 @@ int meme_upgrade(alpm_list_t *targets)
 		}
 
 		if(alpm_pkg_load(config->handle, targ, 1, siglevel, &pkg) != 0) {
-			pm_printf(ALPM_LOG_ERROR, "'%s': %s\n",
+			mm_printf(ALPM_LOG_ERROR, "'%s': %s\n",
 					targ, alpm_strerror(alpm_errno(config->handle)));
 			retval = 1;
 			continue;
 		}
 		if(alpm_add_pkg(config->handle, pkg) == -1) {
-			pm_printf(ALPM_LOG_ERROR, "'%s': %s\n",
+			mm_printf(ALPM_LOG_ERROR, "'%s': %s\n",
 					targ, alpm_strerror(alpm_errno(config->handle)));
 			alpm_pkg_free(pkg);
 			retval = 1;

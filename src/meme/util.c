@@ -809,7 +809,7 @@ static alpm_list_t *create_verbose_header(size_t count)
 	alpm_list_t *ret = NULL;
 
 	char *header;
-	pm_asprintf(&header, "%s (%zu)", _("Package"), count);
+	mm_asprintf(&header, "%s (%zu)", _("Package"), count);
 
 	add_table_cell(&ret, header, CELL_TITLE | CELL_FREE);
 	add_table_cell(&ret, _("Old Version"), CELL_TITLE);
@@ -821,7 +821,7 @@ static alpm_list_t *create_verbose_header(size_t count)
 }
 
 /* returns package info as list of strings */
-static alpm_list_t *create_verbose_row(pm_target_t *target)
+static alpm_list_t *create_verbose_row(mm_target_t *target)
 {
 	char *str;
 	off_t size = 0;
@@ -1649,7 +1649,7 @@ int mm_printf(alpm_loglevel_t level, const char *format, ...)
 
 	/* print the message using va_arg list */
 	va_start(args, format);
-	ret = pm_vfprintf(stderr, level, format, args);
+	ret = mm_vfprintf(stderr, level, format, args);
 	va_end(args);
 
 	return ret;
@@ -1678,7 +1678,7 @@ int mm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...)
 
 	/* print the message using va_arg list */
 	va_start(args, format);
-	ret = pm_vasprintf(string, level, format, args);
+	ret = mm_vasprintf(string, level, format, args);
 	va_end(args);
 
 	return ret;

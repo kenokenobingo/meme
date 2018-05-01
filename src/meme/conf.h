@@ -17,8 +17,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PM_CONF_H
-#define PM_CONF_H
+#ifndef MM_CONF_H
+#define MM_CONF_H
 
 #include <alpm.h>
 
@@ -141,14 +141,14 @@ typedef struct __config_t {
 
 /* Operations */
 enum {
-	PM_OP_MAIN = 1,
-	PM_OP_REMOVE,
-	PM_OP_UPGRADE,
-	PM_OP_QUERY,
-	PM_OP_SYNC,
-	PM_OP_DEPTEST,
-	PM_OP_DATABASE,
-	PM_OP_FILES
+	MM_OP_MAIN = 1,
+	MM_OP_REMOVE,
+	MM_OP_UPGRADE,
+	MM_OP_QUERY,
+    MM_OP_SYNC,
+	MM_OP_DEPTEST,
+	MM_OP_DATABASE,
+	MM_OP_FILES
 };
 
 /* Long Operations */
@@ -214,8 +214,8 @@ enum {
 
 /* clean method */
 enum {
-	PM_CLEAN_KEEPINST = 1,
-	PM_CLEAN_KEEPCUR = (1 << 1)
+	MM_CLEAN_KEEPINST = 1,
+	MM_CLEAN_KEEPCUR = (1 << 1)
 };
 
 /** package locality */
@@ -226,9 +226,9 @@ enum {
 };
 
 enum {
-	PM_COLOR_UNSET = 0,
-	PM_COLOR_OFF,
-	PM_COLOR_ON
+	MM_COLOR_UNSET = 0,
+	MM_COLOR_OFF,
+	MM_COLOR_ON
 };
 
 /* global config variable */
@@ -244,6 +244,6 @@ int config_set_arch(const char *arch);
 int parseconfig(const char *file);
 int parseconfigfile(const char *file);
 int setdefaults(config_t *c);
-#endif /* PM_CONF_H */
+#endif /* MM_CONF_H */
 
 /* vim: set noet: */

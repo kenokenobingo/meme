@@ -21,7 +21,7 @@
 #include <string.h>
 #include <errno.h>
 
-/* pacman */
+/* meme */
 #include "check.h"
 #include "conf.h"
 #include "util.h"

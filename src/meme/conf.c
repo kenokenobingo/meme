@@ -67,7 +67,7 @@ void enable_colors(int colors)
 {
 	colstr_t *colstr = &config->colstr;
 
-	if(colors == PM_COLOR_ON) {
+	if(colors == MM_COLOR_ON) {
 		colstr->colon   = BOLDBLUE "::" BOLD " ";
 		colstr->title   = BOLD;
 		colstr->repo    = BOLDMAGENTA;
@@ -94,14 +94,14 @@ config_t *config_new(void)
 {
 	config_t *newconfig = calloc(1, sizeof(config_t));
 	if(!newconfig) {
-		pm_printf(ALPM_LOG_ERROR,
+		mm_printf(ALPM_LOG_ERROR,
 				_n("malloc failure: could not allocate %zu byte\n",
 				   "malloc failure: could not allocate %zu bytes\n", sizeof(config_t)),
 				sizeof(config_t));
 		return NULL;
 	}
 	/* defaults which may get overridden later */
-	newconfig->op = PM_OP_MAIN;
+	newconfig->op = MM_OP_MAIN;
 	newconfig->logmask = ALPM_LOG_ERROR | ALPM_LOG_WARNING;
 	newconfig->configfile = strdup(CONFFILE);
 	newconfig->deltaratio = 0.0;
@@ -249,25 +249,25 @@ static int download_with_xfercommand(const char *url, const char *localpath,
 		cwdfd = open(".", O_RDONLY);
 	} while(cwdfd == -1 && errno == EINTR);
 	if(cwdfd < 0) {
-		pm_printf(ALPM_LOG_ERROR, _("could not get current working directory\n"));
+		mm_printf(ALPM_LOG_ERROR, _("could not get current working directory\n"));
 	}
 
 	/* cwd to the download directory */
 	if(chdir(localpath)) {
-		pm_printf(ALPM_LOG_WARNING, _("could not chdir to download directory %s\n"), localpath);
+		mm_printf(ALPM_LOG_WARNING, _("could not chdir to download directory %s\n"), localpath);
 		ret = -1;
 		goto cleanup;
 	}
 	/* execute the parsed command via /bin/sh -c */
-	pm_printf(ALPM_LOG_DEBUG, "running command: %s\n", parsedcmd);
+	mm_printf(ALPM_LOG_DEBUG, "running command: %s\n", parsedcmd);
 	retval = system(parsedcmd);
 
 	if(retval == -1) {
-		pm_printf(ALPM_LOG_WARNING, _("running XferCommand: fork failed!\n"));
+		mm_printf(ALPM_LOG_WARNING, _("running XferCommand: fork failed!\n"));
 		ret = -1;
 	} else if(retval != 0) {
 		/* download failed */
-		pm_printf(ALPM_LOG_DEBUG, "XferCommand command returned non-zero status "
+		mm_printf(ALPM_LOG_DEBUG, "XferCommand command returned non-zero status "
 				"code (%d)\n", retval);
 		ret = -1;
 	} else {
@@ -275,7 +275,7 @@ static int download_with_xfercommand(const char *url, const char *localpath,
 		ret = 0;
 		if(usepart) {
 			if(rename(tempfile, destfile)) {
-				pm_printf(ALPM_LOG_ERROR, _("could not rename %s to %s (%s)\n"),
+				mm_printf(ALPM_LOG_ERROR, _("could not rename %s to %s (%s)\n"),
 						tempfile, destfile, strerror(errno));
 				ret = -1;
 			}
@@ -286,7 +286,7 @@ cleanup:
 	/* restore the old cwd if we have it */
 	if(cwdfd >= 0) {
 		if(fchdir(cwdfd) != 0) {
-			pm_printf(ALPM_LOG_ERROR, _("could not restore working directory (%s)\n"),
+			mm_printf(ALPM_LOG_ERROR, _("could not restore working directory (%s)\n"),
 					strerror(errno));
 		}
 		close(cwdfd);
@@ -313,7 +313,7 @@ int config_set_arch(const char *arch)
 	} else {
 		config->arch = strdup(arch);
 	}
-	pm_printf(ALPM_LOG_DEBUG, "config: arch: %s\n", config->arch);
+	mm_printf(ALPM_LOG_DEBUG, "config: arch: %s\n", config->arch);
 	return 0;
 }
 
@@ -394,7 +394,7 @@ static int process_siglevel(alpm_list_t *values, int *storage,
 				SLSET(ALPM_SIG_DATABASE_MARGINAL_OK | ALPM_SIG_DATABASE_UNKNOWN_OK);
 			}
 		} else {
-			pm_printf(ALPM_LOG_ERROR,
+			mm_printf(ALPM_LOG_ERROR,
 					_("config file %s, line %d: invalid value for '%s' : '%s'\n"),
 					file, linenum, "SigLevel", original);
 			ret = 1;
@@ -408,7 +408,7 @@ static int process_siglevel(alpm_list_t *values, int *storage,
 	/* ensure we have sig checking ability and are actually turning it on */
 	if(!(alpm_capabilities() & ALPM_CAPABILITY_SIGNATURES) &&
 			level & (ALPM_SIG_PACKAGE | ALPM_SIG_DATABASE)) {
-		pm_printf(ALPM_LOG_ERROR,
+		mm_printf(ALPM_LOG_ERROR,
 				_("config file %s, line %d: '%s' option invalid, no signature support\n"),
 				file, linenum, "SigLevel");
 		ret = 1;
@@ -439,11 +439,11 @@ static int process_cleanmethods(alpm_list_t *values,
 	for(i = values; i; i = alpm_list_next(i)) {
 		const char *value = i->data;
 		if(strcmp(value, "KeepInstalled") == 0) {
-			config->cleanmethod |= PM_CLEAN_KEEPINST;
+			config->cleanmethod |= MM_CLEAN_KEEPINST;
 		} else if(strcmp(value, "KeepCurrent") == 0) {
-			config->cleanmethod |= PM_CLEAN_KEEPCUR;
+			config->cleanmethod |= MM_CLEAN_KEEPCUR;
 		} else {
-			pm_printf(ALPM_LOG_ERROR,
+			mm_printf(ALPM_LOG_ERROR,
 					_("config file %s, line %d: invalid value for '%s' : '%s'\n"),
 					file, linenum, "CleanMethod", value);
 			return 1;
@@ -467,7 +467,7 @@ static void setrepeatingoption(char *ptr, const char *option,
 	val = strtok_r(ptr, " ", &saveptr);
 	while(val) {
 		*list = alpm_list_add(*list, strdup(val));
-		pm_printf(ALPM_LOG_DEBUG, "config: %s: %s\n", option, val);
+		mm_printf(ALPM_LOG_DEBUG, "config: %s: %s\n", option, val);
 		val = strtok_r(NULL, " ", &saveptr);
 	}
 }
@@ -479,30 +479,30 @@ static int _parse_options(const char *key, char *value,
 		/* options without settings */
 		if(strcmp(key, "UseSyslog") == 0) {
 			config->usesyslog = 1;
-			pm_printf(ALPM_LOG_DEBUG, "config: usesyslog\n");
+			mm_printf(ALPM_LOG_DEBUG, "config: usesyslog\n");
 		} else if(strcmp(key, "ILoveCandy") == 0) {
 			config->chomp = 1;
-			pm_printf(ALPM_LOG_DEBUG, "config: chomp\n");
+			mm_printf(ALPM_LOG_DEBUG, "config: chomp\n");
 		} else if(strcmp(key, "VerbosePkgLists") == 0) {
 			config->verbosepkglists = 1;
-			pm_printf(ALPM_LOG_DEBUG, "config: verbosepkglists\n");
+			mm_printf(ALPM_LOG_DEBUG, "config: verbosepkglists\n");
 		} else if(strcmp(key, "UseDelta") == 0) {
 			config->deltaratio = 0.7;
-			pm_printf(ALPM_LOG_DEBUG, "config: usedelta (default 0.7)\n");
+			mm_printf(ALPM_LOG_DEBUG, "config: usedelta (default 0.7)\n");
 		} else if(strcmp(key, "TotalDownload") == 0) {
 			config->totaldownload = 1;
-			pm_printf(ALPM_LOG_DEBUG, "config: totaldownload\n");
+			mm_printf(ALPM_LOG_DEBUG, "config: totaldownload\n");
 		} else if(strcmp(key, "CheckSpace") == 0) {
 			config->checkspace = 1;
 		} else if(strcmp(key, "Color") == 0) {
 			if(config->color == PM_COLOR_UNSET) {
-				config->color = isatty(fileno(stdout)) ? PM_COLOR_ON : PM_COLOR_OFF;
+				config->color = isatty(fileno(stdout)) ? MM_COLOR_ON : MM_COLOR_OFF;
 				enable_colors(config->color);
 			}
 		} else if(strcmp(key, "DisableDownloadTimeout") == 0) {
 			config->disable_dl_timeout = 1;
 		} else {
-			pm_printf(ALPM_LOG_WARNING,
+			mm_printf(ALPM_LOG_WARNING,
 					_("config file %s, line %d: directive '%s' in section '%s' not recognized.\n"),
 					file, linenum, key, "options");
 		}
@@ -539,38 +539,38 @@ static int _parse_options(const char *key, char *value,
 			setlocale(LC_NUMERIC, oldlocale);
 
 			if(*endptr != '\0' || ratio < 0.0 || ratio > 2.0) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("config file %s, line %d: invalid value for '%s' : '%s'\n"),
 						file, linenum, "UseDelta", value);
 				return 1;
 			}
 			config->deltaratio = ratio;
-			pm_printf(ALPM_LOG_DEBUG, "config: usedelta = %f\n", ratio);
+			mm_printf(ALPM_LOG_DEBUG, "config: usedelta = %f\n", ratio);
 		} else if(strcmp(key, "DBPath") == 0) {
 			/* don't overwrite a path specified on the command line */
 			if(!config->dbpath) {
 				config->dbpath = strdup(value);
-				pm_printf(ALPM_LOG_DEBUG, "config: dbpath: %s\n", value);
+				mm_printf(ALPM_LOG_DEBUG, "config: dbpath: %s\n", value);
 			}
 		} else if(strcmp(key, "RootDir") == 0) {
 			/* don't overwrite a path specified on the command line */
 			if(!config->rootdir) {
 				config->rootdir = strdup(value);
-				pm_printf(ALPM_LOG_DEBUG, "config: rootdir: %s\n", value);
+				mm_printf(ALPM_LOG_DEBUG, "config: rootdir: %s\n", value);
 			}
 		} else if(strcmp(key, "GPGDir") == 0) {
 			if(!config->gpgdir) {
 				config->gpgdir = strdup(value);
-				pm_printf(ALPM_LOG_DEBUG, "config: gpgdir: %s\n", value);
+				mm_printf(ALPM_LOG_DEBUG, "config: gpgdir: %s\n", value);
 			}
 		} else if(strcmp(key, "LogFile") == 0) {
 			if(!config->logfile) {
 				config->logfile = strdup(value);
-				pm_printf(ALPM_LOG_DEBUG, "config: logfile: %s\n", value);
+				mm_printf(ALPM_LOG_DEBUG, "config: logfile: %s\n", value);
 			}
 		} else if(strcmp(key, "XferCommand") == 0) {
 			config->xfercommand = strdup(value);
-			pm_printf(ALPM_LOG_DEBUG, "config: xfercommand: %s\n", value);
+			mm_printf(ALPM_LOG_DEBUG, "config: xfercommand: %s\n", value);
 		} else if(strcmp(key, "CleanMethod") == 0) {
 			alpm_list_t *methods = NULL;
 			setrepeatingoption(value, "CleanMethod", &methods);
@@ -607,7 +607,7 @@ static int _parse_options(const char *key, char *value,
 			}
 			FREELIST(values);
 		} else {
-			pm_printf(ALPM_LOG_WARNING,
+			mm_printf(ALPM_LOG_WARNING,
 					_("config file %s, line %d: directive '%s' in section '%s' not recognized.\n"),
 					file, linenum, key, "options");
 		}
@@ -619,7 +619,7 @@ static int _parse_options(const char *key, char *value,
 static char *replace_server_vars(config_t *c, config_repo_t *r, const char *s)
 {
 	if(c->arch == NULL && strstr(s, "$arch")) {
-		pm_printf(ALPM_LOG_ERROR,
+		mm_printf(ALPM_LOG_ERROR,
 				_("mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"),
 				s, "$arch", "Architecture");
 		return NULL;
@@ -643,8 +643,8 @@ static char *replace_server_vars(config_t *c, config_repo_t *r, const char *s)
 static int _add_mirror(alpm_db_t *db, char *value)
 {
 	if(alpm_db_add_server(db, value) != 0) {
-		/* pm_errno is set by alpm_db_setserver */
-		pm_printf(ALPM_LOG_ERROR, _("could not add server URL to database '%s': %s (%s)\n"),
+		/* mm_errno is set by alpm_db_setserver */
+		mm_printf(ALPM_LOG_ERROR, _("could not add server URL to database '%s': %s (%s)\n"),
 				alpm_db_get_name(db), value, alpm_strerror(alpm_errno(config->handle)));
 		return 1;
 	}
@@ -659,12 +659,12 @@ static int register_repo(config_repo_t *repo)
 
 	db = alpm_register_syncdb(config->handle, repo->name, repo->siglevel);
 	if(db == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("could not register '%s' database (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("could not register '%s' database (%s)\n"),
 				repo->name, alpm_strerror(alpm_errno(config->handle)));
 		return 1;
 	}
 
-	pm_printf(ALPM_LOG_DEBUG, "setting usage of %d for %s repository\n",
+	mm_printf(ALPM_LOG_DEBUG, "setting usage of %d for %s repository\n",
 			repo->usage, repo->name);
 	alpm_db_set_usage(db, repo->usage);
 
@@ -690,12 +690,12 @@ static int setup_libalpm(void)
 	alpm_handle_t *handle;
 	alpm_list_t *i;
 
-	pm_printf(ALPM_LOG_DEBUG, "setup_libalpm called\n");
+	mm_printf(ALPM_LOG_DEBUG, "setup_libalpm called\n");
 
 	/* initialize library */
 	handle = alpm_initialize(config->rootdir, config->dbpath, &err);
 	if(!handle) {
-		pm_printf(ALPM_LOG_ERROR, _("failed to initialize alpm library\n(%s: %s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("failed to initialize alpm library\n(%s: %s)\n"),
 		        alpm_strerror(err), config->dbpath);
 		if(err == ALPM_ERR_DB_VERSION) {
 			fprintf(stderr, _("try running meme-db-upgrade\n"));
@@ -710,13 +710,13 @@ static int setup_libalpm(void)
 	alpm_option_set_questioncb(handle, cb_question);
 	alpm_option_set_progresscb(handle, cb_progress);
 
-	if(config->op == PM_OP_FILES) {
+	if(config->op == MM_OP_FILES) {
 		alpm_option_set_dbext(handle, ".files");
 	}
 
 	ret = alpm_option_set_logfile(handle, config->logfile);
 	if(ret != 0) {
-		pm_printf(ALPM_LOG_ERROR, _("problem setting logfile '%s' (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("problem setting logfile '%s' (%s)\n"),
 				config->logfile, alpm_strerror(alpm_errno(handle)));
 		return ret;
 	}
@@ -725,7 +725,7 @@ static int setup_libalpm(void)
 	 * rootdir is defined. Reasoning: gpgdir contains configuration data. */
 	ret = alpm_option_set_gpgdir(handle, config->gpgdir);
 	if(ret != 0) {
-		pm_printf(ALPM_LOG_ERROR, _("problem setting gpgdir '%s' (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("problem setting gpgdir '%s' (%s)\n"),
 				config->gpgdir, alpm_strerror(alpm_errno(handle)));
 		return ret;
 	}
@@ -735,7 +735,7 @@ static int setup_libalpm(void)
 	/* add hook directories 1-by-1 to avoid overwriting the system directory */
 	for(i = config->hookdirs; i; i = alpm_list_next(i)) {
 		if((ret = alpm_option_add_hookdir(handle, i->data)) != 0) {
-			pm_printf(ALPM_LOG_ERROR, _("problem adding hookdir '%s' (%s)\n"),
+			mm_printf(ALPM_LOG_ERROR, _("problem adding hookdir '%s' (%s)\n"),
 					(char *) i->data, alpm_strerror(alpm_errno(handle)));
 			return ret;
 		}
@@ -757,7 +757,7 @@ static int setup_libalpm(void)
 	if(config->xfercommand) {
 		alpm_option_set_fetchcb(handle, download_with_xfercommand);
 	} else if(!(alpm_capabilities() & ALPM_CAPABILITY_DOWNLOADER)) {
-		pm_printf(ALPM_LOG_WARNING, _("no '%s' configured\n"), "XferCommand");
+		mm_printf(ALPM_LOG_WARNING, _("no '%s' configured\n"), "XferCommand");
 	}
 
 	if(config->totaldownload) {
@@ -782,12 +782,12 @@ static int setup_libalpm(void)
 		if(!dep) {
 			return 1;
 		}
-		pm_printf(ALPM_LOG_DEBUG, "parsed assume installed: %s %s\n", dep->name, dep->version);
+		mm_printf(ALPM_LOG_DEBUG, "parsed assume installed: %s %s\n", dep->name, dep->version);
 
 		ret = alpm_option_add_assumeinstalled(handle, dep);
 		alpm_dep_free(dep);
 		if(ret) {
-			pm_printf(ALPM_LOG_ERROR, _("Failed to pass %s entry to libalpm"), "assume-installed");
+			mm_printf(ALPM_LOG_ERROR, _("Failed to pass %s entry to libalpm"), "assume-installed");
 			return ret;
 		}
 	 }
@@ -826,7 +826,7 @@ static int process_usage(alpm_list_t *values, int *usage,
 		} else if(strcmp(key, "All") == 0) {
 			level |= ALPM_DB_USAGE_ALL;
 		} else {
-			pm_printf(ALPM_LOG_ERROR,
+			mm_printf(ALPM_LOG_ERROR,
 					_("config file %s, line %d: '%s' option '%s' not recognized\n"),
 					file, linenum, "Usage", key);
 			ret = 1;
@@ -847,7 +847,7 @@ static int _parse_repo(const char *key, char *value, const char *file,
 
 	if(strcmp(key, "Server") == 0) {
 		if(!value) {
-			pm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: directive '%s' needs a value\n"),
+			mm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: directive '%s' needs a value\n"),
 					file, line, key);
 			ret = 1;
 		} else {
@@ -855,7 +855,7 @@ static int _parse_repo(const char *key, char *value, const char *file,
 		}
 	} else if(strcmp(key, "SigLevel") == 0) {
 		if(!value) {
-			pm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: directive '%s' needs a value\n"),
+			mm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: directive '%s' needs a value\n"),
 					file, line, key);
 		} else {
 			alpm_list_t *values = NULL;
@@ -877,7 +877,7 @@ static int _parse_repo(const char *key, char *value, const char *file,
 			FREELIST(values);
 		}
 	} else {
-		pm_printf(ALPM_LOG_WARNING,
+		mm_printf(ALPM_LOG_WARNING,
 				_("config file %s, line %d: directive '%s' in section '%s' not recognized.\n"),
 				file, line, key, repo->name);
 	}
@@ -898,13 +898,13 @@ static int process_include(const char *value, void *data,
 	static const int config_max_recursion = 10;
 
 	if(value == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: directive '%s' needs a value\n"),
+		mm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: directive '%s' needs a value\n"),
 				file, linenum, "Include");
 		return 1;
 	}
 
 	if(section->depth >= config_max_recursion) {
-		pm_printf(ALPM_LOG_ERROR,
+		mm_printf(ALPM_LOG_ERROR,
 				_("config parsing exceeded max recursion depth of %d.\n"),
 				config_max_recursion);
 		return 1;
@@ -916,23 +916,23 @@ static int process_include(const char *value, void *data,
 	globret = glob(value, GLOB_NOCHECK, NULL, &globbuf);
 	switch(globret) {
 		case GLOB_NOSPACE:
-			pm_printf(ALPM_LOG_DEBUG,
+			mm_printf(ALPM_LOG_DEBUG,
 					"config file %s, line %d: include globbing out of space\n",
 					file, linenum);
 			break;
 		case GLOB_ABORTED:
-			pm_printf(ALPM_LOG_DEBUG,
+			mm_printf(ALPM_LOG_DEBUG,
 					"config file %s, line %d: include globbing read error for %s\n",
 					file, linenum, value);
 			break;
 		case GLOB_NOMATCH:
-			pm_printf(ALPM_LOG_DEBUG,
+			mm_printf(ALPM_LOG_DEBUG,
 					"config file %s, line %d: no include found for %s\n",
 					file, linenum, value);
 			break;
 		default:
 			for(gindex = 0; gindex < globbuf.gl_pathc; gindex++) {
-				pm_printf(ALPM_LOG_DEBUG, "config file %s, line %d: including %s\n",
+				mm_printf(ALPM_LOG_DEBUG, "config file %s, line %d: including %s\n",
 						file, linenum, globbuf.gl_pathv[gindex]);
 				ret = parse_ini(globbuf.gl_pathv[gindex], _parse_directive, data);
 				if(ret) {
@@ -953,12 +953,12 @@ static int _parse_directive(const char *file, int linenum, const char *name,
 {
 	struct section_t *section = data;
 	if(!name && !key && !value) {
-		pm_printf(ALPM_LOG_ERROR, _("config file %s could not be read: %s\n"),
+		mm_printf(ALPM_LOG_ERROR, _("config file %s could not be read: %s\n"),
 				file, strerror(errno));
 		return 1;
 	} else if(!key && !value) {
 		section->name = name;
-		pm_printf(ALPM_LOG_DEBUG, "config: new section '%s'\n", name);
+		mm_printf(ALPM_LOG_DEBUG, "config: new section '%s'\n", name);
 		if(strcmp(name, "options") == 0) {
 			section->repo = NULL;
 		} else {
@@ -976,7 +976,7 @@ static int _parse_directive(const char *file, int linenum, const char *name,
 	}
 
 	if(section->name == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: All directives must belong to a section.\n"),
+		mm_printf(ALPM_LOG_ERROR, _("config file %s, line %d: All directives must belong to a section.\n"),
 				file, linenum);
 		return 1;
 	}
@@ -1015,7 +1015,7 @@ int setdefaults(config_t *c)
 	SETDEFAULT(c->gpgdir, strdup(GPGDIR));
 	SETDEFAULT(c->cachedirs, alpm_list_add(NULL, strdup(CACHEDIR)));
 	SETDEFAULT(c->hookdirs, alpm_list_add(NULL, strdup(HOOKDIR)));
-	SETDEFAULT(c->cleanmethod, PM_CLEAN_KEEPINST);
+	SETDEFAULT(c->cleanmethod, MM_CLEAN_KEEPINST);
 
 	c->localfilesiglevel = merge_siglevel(c->siglevel,
 			c->localfilesiglevel, c->localfilesiglevel_mask);
@@ -1047,7 +1047,7 @@ int parseconfigfile(const char *file)
 {
 	struct section_t section;
 	memset(&section, 0, sizeof(struct section_t));
-	pm_printf(ALPM_LOG_DEBUG, "config: attempting to read file %s\n", file);
+	mm_printf(ALPM_LOG_DEBUG, "config: attempting to read file %s\n", file);
 	return parse_ini(file, _parse_directive, &section);
 }
 
@@ -1064,7 +1064,7 @@ int parseconfig(const char *file)
 	if((ret = setdefaults(config))) {
 		return ret;
 	}
-	pm_printf(ALPM_LOG_DEBUG, "config: finished parsing %s\n", file);
+	mm_printf(ALPM_LOG_DEBUG, "config: finished parsing %s\n", file);
 	if((ret = setup_libalpm())) {
 		return ret;
 	}

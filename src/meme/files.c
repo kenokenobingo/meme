@@ -219,7 +219,7 @@ static int files_list(alpm_list_t *syncs, alpm_list_t *targets) {
 
 			if(c) {
 				if(! *(c + 1)) {
-					pm_printf(ALPM_LOG_ERROR,
+					mm_printf(ALPM_LOG_ERROR,
 						_("invalid package: '%s'\n"), targ);
 					ret += 1;
 					continue;
@@ -251,7 +251,7 @@ static int files_list(alpm_list_t *syncs, alpm_list_t *targets) {
 			}
 			if(!found) {
 				targ = i->data;
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("package '%s' was not found\n"), targ);
 				ret += 1;
 			}
@@ -297,7 +297,7 @@ int meme_files(alpm_list_t *targets)
 	}
 
 	if(targets == NULL && (config->op_q_owns | config->op_s_search)) {
-		pm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
 		return 1;
 	}
 
@@ -317,7 +317,7 @@ int meme_files(alpm_list_t *targets)
 	}
 
 	if(targets != NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no options specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no options specified (use -h for help)\n"));
 		return 1;
 	}
 

@@ -34,7 +34,7 @@ int meme_query(alpm_list_t *targets);
 /* remove.c */
 int meme_remove(alpm_list_t *targets);
 /* sync.c */
-int memen_sync(alpm_list_t *targets);
+int meme_sync(alpm_list_t *targets);
 int sync_prepare_execute(void);
 /* upgrade.c */
 int meme_upgrade(alpm_list_t *targets);

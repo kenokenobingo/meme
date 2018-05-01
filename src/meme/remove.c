@@ -60,7 +60,7 @@ static int remove_target(const char *target)
 		/* fallback to group */
 	alpm_group_t *grp = alpm_db_get_group(db_local, target);
 	if(grp == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("target not found: %s\n"), target);
+		mm_printf(ALPM_LOG_ERROR, _("target not found: %s\n"), target);
 		return -1;
 	}
 	for(p = grp->packages; p; p = alpm_list_next(p)) {
@@ -88,7 +88,7 @@ int meme_remove(alpm_list_t *targets)
 	alpm_list_t *i, *data = NULL;
 
 	if(targets == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
 		return 1;
 	}
 
@@ -115,7 +115,7 @@ int meme_remove(alpm_list_t *targets)
 	/* Step 2: prepare the transaction based on its type, targets and flags */
 	if(alpm_trans_prepare(config->handle, &data) == -1) {
 		alpm_errno_t err = alpm_errno(config->handle);
-		pm_printf(ALPM_LOG_ERROR, _("failed to prepare transaction (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("failed to prepare transaction (%s)\n"),
 		        alpm_strerror(err));
 		switch(err) {
 			case ALPM_ERR_UNSATISFIED_DEPS:
@@ -172,7 +172,7 @@ int meme_remove(alpm_list_t *targets)
 	}
 
 	if(alpm_trans_commit(config->handle, &data) == -1) {
-		pm_printf(ALPM_LOG_ERROR, _("failed to commit transaction (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("failed to commit transaction (%s)\n"),
 		        alpm_strerror(alpm_errno(config->handle)));
 		retval = 1;
 	}

@@ -42,7 +42,7 @@ typedef struct _pm_target_t {
 	alpm_pkg_t *remove;
 	alpm_pkg_t *install;
 	int is_explicit;
-} pm_target_t;
+} mm_target_t;
 
 void trans_init_error(void);
 /* flags is a bitfield of alpm_transflag_t flags */
@@ -77,11 +77,11 @@ int colon_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 int yesno(const char *format, ...) __attribute__((format(printf, 1, 2)));
 int noyes(const char *format, ...) __attribute__((format(printf, 1, 2)));
 
-int pm_printf(alpm_loglevel_t level, const char *format, ...) __attribute__((format(printf,2,3)));
-int pm_asprintf(char **string, const char *format, ...) __attribute__((format(printf,2,3)));
-int pm_vfprintf(FILE *stream, alpm_loglevel_t level, const char *format, va_list args) __attribute__((format(printf,3,0)));
-int pm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...) __attribute__((format(printf,3,4)));
-int pm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_list args) __attribute__((format(printf,3,0)));
+int mm_printf(alpm_loglevel_t level, const char *format, ...) __attribute__((format(printf,2,3)));
+int mm_asprintf(char **string, const char *format, ...) __attribute__((format(printf,2,3)));
+int mm_vfprintf(FILE *stream, alpm_loglevel_t level, const char *format, va_list args) __attribute__((format(printf,3,0)));
+int mm_sprintf(char **string, alpm_loglevel_t level, const char *format, ...) __attribute__((format(printf,3,4)));
+int mm_vasprintf(char **string, alpm_loglevel_t level, const char *format, va_list args) __attribute__((format(printf,3,0)));
 
 #endif /* MM_UTIL_H */
 
