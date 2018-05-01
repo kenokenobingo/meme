@@ -30,7 +30,7 @@ Internal (and thus private) functions should be named "_alpm_XXX" for instance
 used inside a single file should be defined as "static".
 
 
-[Initialization]
+## Initialization
 
 alpm_initialize() is used to initialize library internals and to create
 a transparent handle object. Before its call, the library can't be used.
@@ -39,7 +39,7 @@ alpm_release() just does the opposite (memory used by the library, and the
 handle is freed). After its call, the library is no longer available.
 
 
-[Options]
+## Options
 
 The library does not use any configuration file. It is up to the front end to
 configure the library as needed; the handle holds a number of configuration
@@ -84,7 +84,7 @@ The following options are read-only, having ONLY alpm_option_get_* functions:
 * lockfile: The file used for locking the database (Default: <dbpath>/db.lck)
 
 
-[Transactions]
+## Transactions
 
 The transaction structure permits easy manipulations of several packages
 at a time (i.e. adding, upgrade and removal operations).
@@ -118,7 +118,7 @@ callback is called, allowing the frontend to be aware of the progress of
 the resolution. Can be useful to implement a progress bar.
 
 
-[Package Cache]
+## Package Cache
 
 libalpm maintains two caches for each DB. One is a general package cache, the
 other is a group cache (for package groups). These caches are loaded on demand,
@@ -130,7 +130,7 @@ database is always updated by the library after an operation changing the
 database content (adding and/or removal of packages).  Beware frontends ;)
 
 
-[Package]
+## Package
 
 The package structure maintains all information for a package. In general,
 packages should never be freed from front-ends, as they should always be part
@@ -143,7 +143,7 @@ cache have data members filled on demand. For this reason, the alpm_pkg_get_*
 functions will load the data from the DB as needed.
 
 
-[Errors]
+## Errors
 
 The library provides a global variable pm_errno.
 It aims at being to the library what errno is for C system calls.
@@ -158,7 +158,7 @@ specified error code into a more friendly sentence, and alpm_strerrorlast()
 does the same for the last error encountered (represented by pm_errno).
 
 
-[List - alpm_list_t]
+## List - alpm_list_t
 
 The alpm_list_t structure is a doubly-linked list for use with the libalpm
 routines. This type is provided publicly so that frontends are free to use it
@@ -183,7 +183,7 @@ itself has to be upgraded. In such a case, the frontend can choose to
 perform a special action.
 
 
-[MAIN] (see pacman.c)
+## MAIN (see pacman.c)
 
 Calls for alpm_initialize(), and alpm_release().
 Read the configuration file, and parse command line arguments.
@@ -192,7 +192,7 @@ Based on the action requested, it initiates the appropriate transactions
 remove.c and sync.c).
 
 
-[CONFIGURATION] (see conf.h)
+## CONFIGURATION (see conf.h)
 
 The frontend is using a configuration file, usually "/etc/pacman.conf".  Some
 of these options are only useful for the frontend only (mainly the ones used to
@@ -200,7 +200,7 @@ control the output like totaldownload, or the behavior with cleanmethod and
 syncfirst).  The rest is used to configure the library.
 
 
-[UPGRADE/REMOVE/SYNC]
+## UPGRADE/REMOVE/SYNC
 
 The file pacman.c has been divided into several smaller files, namely
 upgrade.c, remove.c, sync.c and query.c, to hold the big parts: pacman_upgrade,

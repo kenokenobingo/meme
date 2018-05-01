@@ -21,7 +21,7 @@
 #
 
 # gettext initialization
-export TEXTDOMAIN='pacman-scripts'
+export TEXTDOMAIN='meme-scripts'
 export TEXTDOMAINDIR='@localedir@'
 
 declare -r myver="@PACKAGE_VERSION@"
@@ -54,11 +54,11 @@ VERIFY=0
 m4_include(library/output_format.sh)
 
 usage() {
-	printf "pacman-key (pacman) %s\n" ${myver}
+	printf "meme-key (meme) %s\n" ${myver}
 	echo
 	printf -- "$(gettext "Usage: %s [options] operation [targets]")\n" $(basename $0)
 	echo
-	printf -- "$(gettext "Manage pacman's list of trusted keys")\n"
+	printf -- "$(gettext "Manage meme’s list of trusted keys")\n"
 	echo
 	printf -- "$(gettext "Operations:")\n"
 	printf -- "$(gettext "  -a, --add                 Add the specified keys (empty for stdin)")\n"
@@ -67,7 +67,7 @@ usage() {
 	printf -- "$(gettext "  -f, --finger              List fingerprint for specified or all keyids")\n"
 	printf -- "$(gettext "  -l, --list-keys           List the specified or all keys")\n"
 	printf -- "$(gettext "  -r, --recv-keys           Fetch the specified keyids")\n"
-	printf -- "$(gettext "  -u, --updatedb            Update the trustdb of pacman")\n"
+	printf -- "$(gettext "  -u, --updatedb            Update the trustdb of meme")\n"
 	printf -- "$(gettext "  -v, --verify              Verify the file(s) specified by the signature(s)")\n"
 	printf -- "$(gettext "  --edit-key                Present a menu for key management task on keyids")\n"
 	printf -- "$(gettext "  --import                  Imports pubring.gpg from dir(s)")\n"
@@ -81,9 +81,9 @@ usage() {
 	echo
 	printf -- "$(gettext "Options:")\n"
 	printf -- "$(gettext "  --config <file>           Use an alternate config file (instead of\n\
-                            '%s')")\n" "@sysconfdir@/pacman.conf"
+                            '%s')")\n" "@sysconfdir@/meme.conf"
 	printf -- "$(gettext "  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\n\
-                            of '%s')")\n" "@sysconfdir@/pacman.d/gnupg"
+                            of '%s')")\n" "@sysconfdir@/meme.d/gnupg"
 	printf -- "$(gettext "  --keyserver <server-url>  Specify a keyserver to use if necessary")\n"
 	echo
 	printf -- "$(gettext "  -h, --help                Show this help message and exit")\n"
@@ -91,7 +91,7 @@ usage() {
 }
 
 version() {
-	printf "pacman-key (pacman) %s\n" "${myver}"
+	printf "meme-key (meme) %s\n" "${myver}"
 	printf -- "$(gettext "\
 Copyright (c) 2010-2018 Pacman Development Team <pacman-dev@archlinux.org>.\n\
 This is free software; see the source for copying conditions.\n\
@@ -122,7 +122,7 @@ key_lookup_from_name() {
 	local ids
 
 	mapfile -t ids < \
-		<("${GPG_PACMAN[@]}" --search-keys --batch --with-colons "$1" 2>/dev/null |
+		<("${GPG_MEME[@]}" --search-keys --batch --with-colons "$1" 2>/dev/null |
 			awk -F: '$1 == "pub" { print $2 }')
 
 	# only return success on non-ambiguous lookup
@@ -144,13 +144,13 @@ key_lookup_from_name() {
 
 generate_master_key() {
 	# Generate the master key, which will be in both pubring and secring
-	"${GPG_PACMAN[@]}" --gen-key --batch <<EOF
-%echo Generating pacman keyring master key...
+	"${GPG_MEME[@]}" --gen-key --batch <<EOF
+%echo Generating meme keyring master key...
 Key-Type: RSA
 Key-Length: 2048
 Key-Usage: sign
-Name-Real: Pacman Keyring Master Key
-Name-Email: pacman@localhost
+Name-Real: meme Keyring Master Key
+Name-Email: meme@localhost
 Expire-Date: 0
 %no-protection
 %commit
@@ -159,7 +159,7 @@ EOF
 }
 
 secret_keys_available() {
-	"${GPG_PACMAN[@]}" -K --with-colons | wc -l
+	"${GPG_MEME[@]}" -K --with-colons | wc -l
 }
 
 # Adds the given gpg.conf option if it is not present in the file.
@@ -177,8 +177,8 @@ add_gpg_conf_option() {
 check_keyids_exist() {
 	local ret=0
 	for key in "$@"; do
-		# Verify if the key exists in pacman's keyring
-		if ! "${GPG_PACMAN[@]}" --list-keys "$key" &>/dev/null ; then
+		# Verify if the key exists in meme's keyring
+		if ! "${GPG_MEME[@]}" --list-keys "$key" &>/dev/null ; then
 			error "$(gettext "The key identified by %s could not be found locally.")" "$key"
 			ret=1
 		fi
@@ -192,17 +192,17 @@ initialize() {
 	local conffile keyserv
 	# Check for simple existence rather than for a directory as someone
 	# may want to use a symlink here
-	[[ -e ${PACMAN_KEYRING_DIR} ]] || mkdir -p -m 755 "${PACMAN_KEYRING_DIR}"
+	[[ -e ${MEME_KEYRING_DIR} ]] || mkdir -p -m 755 "${MEME_KEYRING_DIR}"
 
 	# keyring files
-	[[ -f ${PACMAN_KEYRING_DIR}/pubring.gpg ]] || touch ${PACMAN_KEYRING_DIR}/pubring.gpg
-	[[ -f ${PACMAN_KEYRING_DIR}/secring.gpg ]] || touch ${PACMAN_KEYRING_DIR}/secring.gpg
-	[[ -f ${PACMAN_KEYRING_DIR}/trustdb.gpg ]] || "${GPG_PACMAN[@]}" --update-trustdb
-	chmod 644 ${PACMAN_KEYRING_DIR}/{pubring,trustdb}.gpg
-	chmod 600 ${PACMAN_KEYRING_DIR}/secring.gpg
+	[[ -f ${MEME_KEYRING_DIR}/pubring.gpg ]] || touch ${MEME_KEYRING_DIR}/pubring.gpg
+	[[ -f ${MEME_KEYRING_DIR}/secring.gpg ]] || touch ${MEME_KEYRING_DIR}/secring.gpg
+	[[ -f ${MEME_KEYRING_DIR}/trustdb.gpg ]] || "${GPG_MEME[@]}" --update-trustdb
+	chmod 644 ${MEME_KEYRING_DIR}/{pubring,trustdb}.gpg
+	chmod 600 ${MEME_KEYRING_DIR}/secring.gpg
 
 	# gpg.conf
-	conffile="${PACMAN_KEYRING_DIR}/gpg.conf"
+	conffile="${MEME_KEYRING_DIR}/gpg.conf"
 	[[ -f $conffile ]] || touch "$conffile"
 	chmod 644 "$conffile"
 	add_gpg_conf_option "$conffile" 'no-greeting'
@@ -211,7 +211,7 @@ initialize() {
 	add_gpg_conf_option "$conffile" 'keyserver-options' 'timeout=10'
 
 	# gpg-agent.conf
-	agent_conffile="${PACMAN_KEYRING_DIR}/gpg-agent.conf"
+	agent_conffile="${MEME_KEYRING_DIR}/gpg-agent.conf"
 	[[ -f $agent_conffile ]] || touch "$agent_conffile"
 	chmod 644 "$agent_conffile"
 	add_gpg_conf_option "$agent_conffile" 'disable-scdaemon'
@@ -224,17 +224,17 @@ initialize() {
 }
 
 check_keyring() {
-	if [[ ! -r ${PACMAN_KEYRING_DIR}/pubring.gpg || \
-			! -r ${PACMAN_KEYRING_DIR}/trustdb.gpg ]]; then
-		error "$(gettext "You do not have sufficient permissions to read the %s keyring.")" "pacman"
-		msg "$(gettext "Use '%s' to correct the keyring permissions.")" "pacman-key --init"
+	if [[ ! -r ${MEME_KEYRING_DIR}/pubring.gpg || \
+			! -r ${MEME_KEYRING_DIR}/trustdb.gpg ]]; then
+		error "$(gettext "You do not have sufficient permissions to read the %s keyring.")" "meme"
+		msg "$(gettext "Use '%s' to correct the keyring permissions.")" "meme-key --init"
 		exit 1
 	fi
 
 	if (( (EXPORT || FINGER || LIST || VERIFY) && EUID != 0 )); then
-		if ! grep -q "^[[:space:]]*lock-never[[:space:]]*$" ${PACMAN_KEYRING_DIR}/gpg.conf &>/dev/null; then
+		if ! grep -q "^[[:space:]]*lock-never[[:space:]]*$" ${MEME_KEYRING_DIR}/gpg.conf &>/dev/null; then
 			error "$(gettext "You do not have sufficient permissions to run this command.")"
-			msg "$(gettext "Use '%s' to correct the keyring permissions.")" "pacman-key --init"
+			msg "$(gettext "Use '%s' to correct the keyring permissions.")" "meme-key --init"
 			exit 1
 		fi
 	fi
@@ -242,7 +242,7 @@ check_keyring() {
 	if (( LSIGNKEY )); then
 		if [[ $(secret_keys_available) -lt 1 ]]; then
 			error "$(gettext "There is no secret key available to sign with.")"
-			msg "$(gettext "Use '%s' to generate a default secret key.")" "pacman-key --init"
+			msg "$(gettext "Use '%s' to generate a default secret key.")" "meme-key --init"
 			exit 1
 		fi
 	fi
@@ -284,7 +284,7 @@ populate_keyring() {
 	# Add keys from requested keyrings
 	for keyring in "${KEYRINGIDS[@]}"; do
 		msg "$(gettext "Appending keys from %s.gpg...")" "$keyring"
-		"${GPG_PACMAN[@]}" --quiet --import "${KEYRING_IMPORT_DIR}/${keyring}.gpg"
+		"${GPG_MEME[@]}" --quiet --import "${KEYRING_IMPORT_DIR}/${keyring}.gpg"
 	done
 
 	# Read the trusted key IDs to an array. Because this is an ownertrust
@@ -311,7 +311,7 @@ populate_keyring() {
 		msg "$(gettext "Importing owner trust values...")"
 		for keyring in "${KEYRINGIDS[@]}"; do
 			if [[ -s "${KEYRING_IMPORT_DIR}/${keyring}-trusted" ]]; then
-				"${GPG_PACMAN[@]}" --import-ownertrust "${KEYRING_IMPORT_DIR}/${keyring}-trusted"
+				"${GPG_MEME[@]}" --import-ownertrust "${KEYRING_IMPORT_DIR}/${keyring}-trusted"
 			fi
 		done
 	fi
@@ -329,13 +329,13 @@ populate_keyring() {
 		msg "$(gettext "Disabling revoked keys in keyring...")"
 		for key_id in "${!revoked_ids[@]}"; do
 			msg2 "$(gettext "Disabling key %s...")" "${key_id}"
-			printf 'disable\nquit\n' | LANG=C "${GPG_PACMAN[@]}" --command-fd 0 --quiet --batch --edit-key "${key_id}" 2>/dev/null
+			printf 'disable\nquit\n' | LANG=C "${GPG_MEME[@]}" --command-fd 0 --quiet --batch --edit-key "${key_id}" 2>/dev/null
 		done
 	fi
 }
 
 add_keys() {
-	if ! "${GPG_PACMAN[@]}" --quiet --batch --import "$@" ; then
+	if ! "${GPG_MEME[@]}" --quiet --batch --import "$@" ; then
 		error "$(gettext "A specified keyfile could not be added to the keyring.")"
 		exit 1
 	fi
@@ -343,7 +343,7 @@ add_keys() {
 
 delete_keys() {
 	check_keyids_exist "$@"
-	if ! "${GPG_PACMAN[@]}" --quiet --batch --delete-key --yes "$@" ; then
+	if ! "${GPG_MEME[@]}" --quiet --batch --delete-key --yes "$@" ; then
 		error "$(gettext "A specified key could not be removed from the keyring.")"
 		exit 1
 	fi
@@ -353,7 +353,7 @@ edit_keys() {
 	check_keyids_exist "$@"
 	local ret=0
 	for key in "$@"; do
-		if ! "${GPG_PACMAN[@]}" --edit-key "$key" ; then
+		if ! "${GPG_MEME[@]}" --edit-key "$key" ; then
 			error "$(gettext "The key identified by %s could not be edited.")" "$key"
 			ret=1
 		fi
@@ -365,7 +365,7 @@ edit_keys() {
 
 export_keys() {
 	check_keyids_exist "$@"
-	if ! "${GPG_PACMAN[@]}" --armor --export "$@" ; then
+	if ! "${GPG_[MEME@]}" --armor --export "$@" ; then
 		error "$(gettext "A specified key could not be exported from the keyring.")"
 		exit 1
 	fi
@@ -373,7 +373,7 @@ export_keys() {
 
 finger_keys() {
 	check_keyids_exist
-	if ! "${GPG_PACMAN[@]}" --batch --fingerprint "$@" ; then
+	if ! "${GPG_MEME[@]}" --batch --fingerprint "$@" ; then
 		error "$(gettext "The fingerprint of a specified key could not be determined.")"
 		exit 1
 	fi
@@ -385,7 +385,7 @@ import_trustdb() {
 	for importdir in "$@"; do
 		if [[ -f "${importdir}/trustdb.gpg" ]]; then
 			gpg --homedir "${importdir}" --export-ownertrust | \
-				"${GPG_PACMAN[@]}" --import-ownertrust -
+				"${GPG_MEME[@]}" --import-ownertrust -
 			if (( PIPESTATUS )); then
 				error "$(gettext "%s could not be imported.")" "${importdir}/trustdb.gpg"
 				ret=1
@@ -405,7 +405,7 @@ import() {
 	local ret=0
 	for importdir in "$@"; do
 		if [[ -f "${importdir}/pubring.gpg" ]]; then
-			if ! "${GPG_PACMAN[@]}" --quiet --batch --import "${importdir}/pubring.gpg" ; then
+			if ! "${GPG_MEME[@]}" --quiet --batch --import "${importdir}/pubring.gpg" ; then
 				error "$(gettext "%s could not be imported.")" "${importdir}/pubring.gpg"
 				ret=1
 			fi
@@ -421,7 +421,7 @@ import() {
 
 list_keys() {
 	check_keyids_exist
-	if ! "${GPG_PACMAN[@]}" --batch --list-keys "$@" ; then
+	if ! "${GPG_MEME[@]}" --batch --list-keys "$@" ; then
 		error "$(gettext "A specified key could not be listed.")"
 		exit 1
 	fi
@@ -429,7 +429,7 @@ list_keys() {
 
 list_sigs() {
 	check_keyids_exist
-	if ! "${GPG_PACMAN[@]}" --batch --list-sigs "$@" ; then
+	if ! "${GPG_MEME[@]}" --batch --list-sigs "$@" ; then
 		error "$(gettext "A specified signature could not be listed.")"
 		exit 1
 	fi
@@ -442,7 +442,7 @@ lsign_keys() {
 	for key_id in "$@"; do
 		msg2 "$(gettext "Locally signing key %s...")" "${key_id}"
 		# we cannot use --yes here as gpg would still ask for confirmation if a key has more than one uid
-		printf 'y\ny\n' | LANG=C "${GPG_PACMAN[@]}" --command-fd 0 --quiet --batch --lsign-key "${key_id}" 2>/dev/null
+		printf 'y\ny\n' | LANG=C "${GPG_MEME[@]}" --command-fd 0 --quiet --batch --lsign-key "${key_id}" 2>/dev/null
 		if (( PIPESTATUS[1] )); then
 			error "$(gettext "%s could not be locally signed.")" "${key_id}"
 			ret=1
@@ -470,7 +470,7 @@ receive_keys() {
 
 	(( ${#keyids[*]} > 0 )) || exit 1
 
-	if ! "${GPG_PACMAN[@]}" --recv-keys "${keyids[@]}" ; then
+	if ! "${GPG_MEME[@]}" --recv-keys "${keyids[@]}" ; then
 		error "$(gettext "Remote key not fetched correctly from keyserver.")"
 		exit 1
 	fi
@@ -478,7 +478,7 @@ receive_keys() {
 
 refresh_keys() {
 	check_keyids_exist "$@"
-	if ! "${GPG_PACMAN[@]}" --refresh-keys "$@" ; then
+	if ! "${GPG_MEME[@]}" --refresh-keys "$@" ; then
 		error "$(gettext "A specified local key could not be updated from a keyserver.")"
 		exit 1
 	fi
@@ -492,7 +492,7 @@ verify_sig() {
 			error "$(gettext "Cannot use armored signatures for packages: %s")" "$sig"
 			return 1
 		fi
-		if ! "${GPG_PACMAN[@]}" --status-fd 1 --verify "$sig" | grep -qE '^\[GNUPG:\] TRUST_(FULLY|ULTIMATE).*$'; then
+		if ! "${GPG_MEME[@]}" --status-fd 1 --verify "$sig" | grep -qE '^\[GNUPG:\] TRUST_(FULLY|ULTIMATE).*$'; then
 			error "$(gettext "The signature identified by %s could not be verified.")" "$sig"
 			ret=1
 		fi
@@ -502,7 +502,7 @@ verify_sig() {
 
 updatedb() {
 	msg "$(gettext "Updating trust database...")"
-	if ! "${GPG_PACMAN[@]}" --batch --check-trustdb ; then
+	if ! "${GPG_MEME[@]}" --batch --check-trustdb ; then
 		error "$(gettext "Trust database could not be updated.")"
 		exit 1
 	fi
@@ -539,7 +539,7 @@ while (( $# )); do
 		--edit-key)       EDITKEY=1 UPDATEDB=1 ;;
 		-e|--export)      EXPORT=1 ;;
 		-f|--finger)      FINGER=1 ;;
-		--gpgdir)         shift; PACMAN_KEYRING_DIR=$1 ;;
+		--gpgdir)         shift; MEME_KEYRING_DIR=$1 ;;
 		--import)         IMPORT=1 UPDATEDB=1 ;;
 		--import-trustdb) IMPORT_TRUSTDB=1 UPDATEDB=1 ;;
 		--init)           INIT=1 ;;
@@ -565,28 +565,28 @@ done
 m4_include(library/term_colors.sh)
 
 if ! type -p gpg >/dev/null; then
-	error "$(gettext "Cannot find the %s binary required for all %s operations.")" "gpg" "pacman-key"
+	error "$(gettext "Cannot find the %s binary required for all %s operations.")" "gpg" "meme-key"
 	exit 1
 fi
 
 if (( (ADD || DELETE || EDITKEY || IMPORT || IMPORT_TRUSTDB || INIT || LSIGNKEY || POPULATE || RECEIVE || REFRESH || UPDATEDB) && EUID != 0 )); then
-	error "$(gettext "%s needs to be run as root for this operation.")" "pacman-key"
+	error "$(gettext "%s needs to be run as root for this operation.")" "meme-key"
 	exit 1
 fi
 
-CONFIG=${CONFIG:-@sysconfdir@/pacman.conf}
+CONFIG=${CONFIG:-@sysconfdir@/meme.conf}
 if [[ ! -r "${CONFIG}" ]]; then
-	error "$(gettext "%s configuration file '%s' not found.")" "pacman" "$CONFIG"
+	error "$(gettext "%s configuration file '%s' not found.")" "meme" "$CONFIG"
 	exit 1
 fi
 
-# if PACMAN_KEYRING_DIR isn't assigned, try to get it from the config
+# if MEME_KEYRING_DIR isn't assigned, try to get it from the config
 # file, falling back on a hard default
-PACMAN_KEYRING_DIR=${PACMAN_KEYRING_DIR:-$(pacman-conf --config="$CONFIG" gpgdir)}
+MEME_KEYRING_DIR=${MEME_KEYRING_DIR:-$(meme-conf --config="$CONFIG" gpgdir)}
 
-GPG_PACMAN=(gpg --homedir "${PACMAN_KEYRING_DIR}" --no-permission-warning)
+GPG_MEME=(gpg --homedir "${MEME_KEYRING_DIR}" --no-permission-warning)
 if [[ -n ${KEYSERVER} ]]; then
-	GPG_PACMAN+=(--keyserver "${KEYSERVER}")
+	GPG_MEME+=(--keyserver "${KEYSERVER}")
 fi
 
 # check only a single operation has been given
@@ -603,7 +603,7 @@ case $numopt in
 		;;
 	[!1])
 		error "$(gettext "Multiple operations specified.")"
-		msg "$(gettext "Please run %s with each operation separately.")" "pacman-key"
+		msg "$(gettext "Please run %s with each operation separately.")" "meme-key"
 		exit 1
 		;;
 esac

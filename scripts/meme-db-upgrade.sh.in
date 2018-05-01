@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-#   pacman-db-upgrade - upgrade the local pacman db to a newer format
+#   meme-db-upgrade - upgrade the local meme db to a newer format
 #   @configure_input@
 #
 #   Copyright (c) 2010-2018 Pacman Development Team <pacman-dev@archlinux.org>
@@ -23,7 +23,7 @@
 umask 022
 
 # gettext initialization
-export TEXTDOMAIN='pacman-scripts'
+export TEXTDOMAIN='meme-scripts'
 export TEXTDOMAINDIR='@localedir@'
 
 declare -r myver='@PACKAGE_VERSION@'
@@ -36,9 +36,9 @@ LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
 source "$LIBRARY"/util/parseopts.sh
 
 usage() {
-	printf "pacman-db-upgrade (pacman) %s\n" "${myver}"
+	printf "meme-db-upgrade (meme) %s\n" "${myver}"
 	echo
-	printf -- "$(gettext "Upgrade the local pacman database to a newer format")\n"
+	printf -- "$(gettext "Upgrade the local meme database to a newer format")\n"
 	echo
 	printf -- "$(gettext "Usage: %s [options]")\n" "$0"
 	echo
@@ -53,7 +53,7 @@ usage() {
 }
 
 version() {
-	printf "pacman-db-upgrade (pacman) %s\n" "$myver"
+	printf "meme-db-upgrade (meme) %s\n" "$myver"
 	printf -- "$(gettext "\
 Copyright (c) 2010-2018 Pacman Development Team <pacman-dev@archlinux.org>.\n\
 This is free software; see the source for copying conditions.\n\
@@ -108,9 +108,9 @@ while true; do
 	shift
 done
 
-conffile=${conffile:-@sysconfdir@/pacman.conf}
-[[ -z $pacroot ]] && pacroot=$(pacman-conf --config="$conffile" rootdir)
-[[ -z $dbroot ]] && dbroot=$(pacman-conf --config="$conffile" --rootdir="$pacroot" dbpath)
+conffile=${conffile:-@sysconfdir@/meme.conf}
+[[ -z $pacroot ]] && pacroot=$(meme-conf --config="$conffile" rootdir)
+[[ -z $dbroot ]] && dbroot=$(meme-conf --config="$conffile" --rootdir="$pacroot" dbpath)
 
 m4_include(library/term_colors.sh)
 
@@ -119,7 +119,7 @@ if [[ ! -d $dbroot ]]; then
 fi
 
 if [[ ! -d $dbroot/local ]]; then
-	die "$(gettext "%s is not a pacman database directory.")" "$dbroot"
+	die "$(gettext "%s is not a meme database directory.")" "$dbroot"
 fi
 
 if [[ ! -w $dbroot ]]; then
@@ -131,11 +131,11 @@ dbroot="${dbroot%/}"
 # form the path to our lockfile location
 lockfile="${dbroot}/db.lck"
 
-# make sure pacman isn't running
+# make sure meme isn't running
 if [[ -f $lockfile ]]; then
-	die "$(gettext "Pacman lock file was found. Cannot run while pacman is running.")"
+	die "$(gettext "meme lock file was found. Cannot run while meme is running.")"
 fi
-# do not let pacman run while we do this
+# do not let meme run while we do this
 touch "$lockfile"
 
 if [[ -f "${dbroot}"/local/ALPM_DB_VERSION ]]; then
@@ -143,7 +143,7 @@ if [[ -f "${dbroot}"/local/ALPM_DB_VERSION ]]; then
 fi
 
 if [[ -z "$db_version" ]]; then
-	# pacman-3.4 to 3.5 upgrade - merge depends into desc
+	# meme-3.4 to 3.5 upgrade - merge depends into desc
 	if [[ $(find "$dbroot"/local -name depends) ]]; then
 		msg "$(gettext "Pre-3.5 database format detected - upgrading...")"
 		for i in "$dbroot"/local/*; do
@@ -155,7 +155,7 @@ if [[ -z "$db_version" ]]; then
 		msg "$(gettext "Done.")"
 	fi
 
-	# pacman 4.1 to 4.2 upgrade - remove directory symlink support
+	# meme 4.1 to 4.2 upgrade - remove directory symlink support
 	msg "$(gettext "Pre-4.2 database format detected - upgrading...")"
 
 	dirlist=()
@@ -178,7 +178,7 @@ if [[ -z "$db_version" ]]; then
 
 			# verify realdir is inside root
 			if [[ ${realdir:0:${#pacroot}} != $pacroot ]]; then
-				warning "$(gettext "symlink '%s' points outside pacman root, manual repair required")" "$dir"
+				warning "$(gettext "symlink '%s' points outside meme root, manual repair required")" "$dir"
 				continue
 			fi
 

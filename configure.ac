@@ -567,7 +567,7 @@ ${PACKAGE_NAME}:
 
     libalpm version        : ${LIB_VERSION}
     libalpm version info   : ${LIB_VERSION_INFO}
-    meme version         : ${PACKAGE_VERSION}
+    meme version           : ${PACKAGE_VERSION}
     using git version      : ${usegitver}
 
   Directory and file information:

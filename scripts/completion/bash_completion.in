@@ -27,8 +27,8 @@ _arch_incomp() {
   local r="\s-(-${1#* }\s|\w*${1% *})"; [[ $COMP_LINE =~ $r ]]
 }
 
-_pacman_keyids() {
-  \pacman-key --list-keys 2>/dev/null | awk '
+_meme_keyids() {
+  \meme-key --list-keys 2>/dev/null | awk '
     $1 == "pub" {
       # key id
       split($2, a, "/"); print a[2]
@@ -40,7 +40,7 @@ _pacman_keyids() {
     }'
 }
 
-_pacman_key() {
+_meme_key() {
   local o cur opts prev wantfiles
   COMPREPLY=()
   _get_comp_words_by_ref cur prev
@@ -60,12 +60,12 @@ _pacman_key() {
   # options for which we want file completion
   wantfiles='-@(c|-config|g|-gpgdir)'
 
-  if [[ $prev = 'pacman-key' || ( $cur = -* && $prev != $wantfiles ) ]]; then
+  if [[ $prev = 'meme-key' || ( $cur = -* && $prev != $wantfiles ) ]]; then
     _arch_ptr2comp opts
   elif [[ $prev = @(-k|--keyserver) ]]; then
     return
   elif [[ $prev != $wantfiles && $o ]]; then
-    COMPREPLY=($(compgen -W '$(_pacman_keyids)' -- "$cur"))
+    COMPREPLY=($(compgen -W '$(_meme_keyids)' -- "$cur"))
   fi
   true
 }
@@ -86,21 +86,21 @@ _makepkg() {
   true
 }
 
-_pacman_pkg() {
+_meme_pkg() {
   _arch_compgen "$(
     if [[ $2 ]]; then
-      \pacman -$1 2>/dev/null | \cut -d' ' -f1 | \sort -u
+      \meme -$1 2>/dev/null | \cut -d' ' -f1 | \sort -u
     else
-      \pacman -$1 2>/dev/null
+      \meme -$1 2>/dev/null
     fi
   )"
 }
 
-_pacman_repo_list() {
-  _arch_compgen "$(pacman-conf --repo-list)"
+_meme_repo_list() {
+  _arch_compgen "$(meme-conf --repo-list)"
 }
 
-_pacman() {
+_meme() {
   local common core cur database files prev query remove sync upgrade o
   COMPREPLY=()
   _get_comp_words_by_ref cur prev
@@ -129,32 +129,32 @@ _pacman() {
     [[ $cur = -* ]] && _arch_ptr2comp ${o#* } common ||
       case ${o% *} in
       D|R)
-          _pacman_pkg Qq;;
+          _meme_pkg Qq;;
       F)
-          _arch_incomp 'l list'   && _pacman_pkg Slq;
+          _arch_incomp 'l list'   && _meme_pkg Slq;
           ;;
       Q)
-        { _arch_incomp 'g groups' && _pacman_pkg Qg sort; }    ||
-        { _arch_incomp 'p file'   && _pacman_file; }           ||
+        { _arch_incomp 'g groups' && _meme_pkg Qg sort; }    ||
+        { _arch_incomp 'p file'   && _meme_file; }           ||
           _arch_incomp 'o owns'   || _arch_incomp 'u upgrades' ||
-          _pacman_pkg Qq;;
+          _meme_pkg Qq;;
       S)
-        { _arch_incomp 'g groups' && _pacman_pkg Sg; }      ||
-        { _arch_incomp 'l list'   && _pacman_repo_list; } ||
-          _pacman_pkg Slq;;
+        { _arch_incomp 'g groups' && _meme_pkg Sg; }      ||
+        { _arch_incomp 'l list'   && _meme_repo_list; } ||
+          _meme_pkg Slq;;
       U)
-          _pacman_file;;
+          _meme_file;;
       esac
   fi
   true
 }
 
-_pacman_file() {
+_meme_file() {
   compopt -o filenames; _filedir 'pkg.tar*'
 }
 
-complete -F _pacman -o default pacman
+complete -F _meme -o default meme
 complete -F _makepkg -o default makepkg
-complete -F _pacman_key -o default pacman-key
+complete -F _meme_key -o default meme-key
 
 # ex:et ts=2 sw=2 ft=sh
