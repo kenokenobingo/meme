@@ -1,4 +1,4 @@
-SUBDIRS = lib/libalpm src/util src/pacman scripts etc test/pacman test/util test/scripts
+SUBDIRS = lib/libalpm src/util src/meme scripts etc test/meme test/util test/scripts
 if WANT_DOC
 SUBDIRS += doc
 endif
@@ -23,15 +23,15 @@ dist_pkgdata_DATA = \
 	proto/PKGBUILD-vcs.proto \
 	proto/proto.install
 
-$(top_srcdir)/test/pacman/tests/TESTS: $(wildcard test/pacman/tests/*.py)
+$(top_srcdir)/test/meme/tests/TESTS: $(wildcard test/meme/tests/*.py)
 	@printf "TESTS += %s\n" $^ | LC_ALL=C sort -u > "$@"
 
 TESTS =  test/scripts/parseopts_test.sh \
 				 test/scripts/human_to_size_test.sh \
 				 test/scripts/makepkg-template_test.sh \
-				 test/scripts/pacman-db-upgrade-v9.py \
+				 test/scripts/meme-db-upgrade-v9.py \
 				 test/util/vercmptest.sh
-include $(top_srcdir)/test/pacman/tests/TESTS
+include $(top_srcdir)/test/meme/tests/TESTS
 
 TEST_SUITE_LOG = test/test-suite.log
 TEST_EXTENSIONS = .py
@@ -44,16 +44,16 @@ LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) \
 								 $(top_srcdir)/build-aux/tap-driver.sh
 PY_LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) \
 								 $(top_srcdir)/build-aux/tap-driver.sh
-PY_LOG_COMPILER = $(PYTHON) $(top_srcdir)/test/pacman/pactest.py
+PY_LOG_COMPILER = $(PYTHON) $(top_srcdir)/test/meme/pactest.py
 AM_PY_LOG_FLAGS = \
 		--scriptlet-shell $(SCRIPTLET_SHELL) \
 		--ldconfig $(LDCONFIG) \
-		--bindir $(top_builddir)/src/pacman \
+		--bindir $(top_builddir)/src/meme \
 		--bindir $(top_builddir)/scripts
 
-# create the pacman DB, cache, makepkg-template and system hook directories upon install
+# create the meme DB, cache, makepkg-template and system hook directories upon install
 install-data-local:
-	for dir in "$(DESTDIR)$(localstatedir)/lib/pacman" "$(DESTDIR)$(localstatedir)/cache/pacman/pkg" \
+	for dir in "$(DESTDIR)$(localstatedir)/lib/meme" "$(DESTDIR)$(localstatedir)/cache/meme/pkg" \
 	           "$(DESTDIR)$(datarootdir)/makepkg-template" "$(DESTDIR)$(datarootdir)/libalpm/hooks"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
@@ -61,10 +61,10 @@ install-data-local:
 update-po:
 	$(MAKE) -C lib/libalpm/po update-po
 	$(MAKE) -C scripts/po update-po
-	$(MAKE) -C src/pacman/po update-po
+	$(MAKE) -C src/meme/po update-po
 
 update-copyright:
-	for file in $(shell sh -c 'git grep -l "Copyright .* Pacman Development" | grep -v "\.po"'); do \
+	for file in $(shell sh -c 'git grep -l "Copyright .* Meme Development" | grep -v "\.po"'); do \
 	  sed -i -e "/Copyright (/s/-$(OLD)/-$(NEW)/" -e "/Copyright (/s/ $(OLD)/ $(OLD)-$(NEW)/" "$$file"; \
 	done
 
