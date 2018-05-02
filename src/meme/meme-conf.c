@@ -161,10 +161,10 @@ static void show_list_str(const char *directive, alpm_list_t *list)
 
 static void show_cleanmethod(const char *directive, unsigned int method)
 {
-	if(method & PM_CLEAN_KEEPINST) {
+	if(method & MM_CLEAN_KEEPINST) {
 		show_str(directive, "KeepInstalled");
 	}
-	if(method & PM_CLEAN_KEEPCUR) {
+	if(method & MM_CLEAN_KEEPCUR) {
 		show_str(directive, "KeepCurrent");
 	}
 }

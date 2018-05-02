@@ -26,7 +26,7 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
+/* meme */
 #include "meme.h"
 #include "conf.h"
 #include "util.h"
@@ -278,7 +278,7 @@ static int check_db_sync(void) {
 	return ret;
 }
 
-int pacman_database(alpm_list_t *targets)
+int meme_database(alpm_list_t *targets)
 {
 	int ret = 0;
 
