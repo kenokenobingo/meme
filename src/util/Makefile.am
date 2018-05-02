@@ -1,8 +1,8 @@
 # paths set at make time
-conffile  = ${sysconfdir}/pacman.conf
-dbpath    = ${localstatedir}/lib/pacman/
-gpgdir    = ${sysconfdir}/pacman.d/gnupg/
-cachedir  = ${localstatedir}/cache/pacman/pkg/
+conffile  = ${sysconfdir}/meme.conf
+dbpath    = ${localstatedir}/lib/meme/
+gpgdir    = ${sysconfdir}/meme.d/gnupg/
+cachedir  = ${localstatedir}/cache/meme/pkg/
 
 bin_PROGRAMS = vercmp testpkg cleanupdelta
 
