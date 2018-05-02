@@ -621,7 +621,7 @@
 		B9BFDFA32094A41900D8812C /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		B9BFDFA42094A41900D8812C /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		B9BFDFA52094A41900D8812C /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		B9BFDFA62094A41900D8812C /* mmetest.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmetest.py; sourceTree = "<group>"; };
+		B9BFDFA62094A41900D8812C /* mmtest.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmtest.py; sourceTree = "<group>"; };
 		B9BFDFA72094A41900D8812C /* tap.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = tap.py; sourceTree = "<group>"; };
 		B9BFDFA82094A41900D8812C /* mmdb.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = mmdb.py; sourceTree = "<group>"; };
 		B9BFDFA92094A41900D8812C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -1245,7 +1245,7 @@
 				B9BFDFA32094A41900D8812C /* README */,
 				B9BFDFA42094A41900D8812C /* TODO */,
 				B9BFDFA52094A41900D8812C /* Makefile.am */,
-				B9BFDFA62094A41900D8812C /* mmetest.py */,
+				B9BFDFA62094A41900D8812C /* mmtest.py */,
 				B9BFDFA72094A41900D8812C /* tap.py */,
 				B9BFDFA82094A41900D8812C /* mmdb.py */,
 				B9BFDFA92094A41900D8812C /* .gitignore */,
