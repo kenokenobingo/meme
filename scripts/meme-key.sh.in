@@ -58,7 +58,7 @@ usage() {
 	echo
 	printf -- "$(gettext "Usage: %s [options] operation [targets]")\n" $(basename $0)
 	echo
-	printf -- "$(gettext "Manage meme’s list of trusted keys")\n"
+	printf -- "$(gettext "Manage meme's list of trusted keys")\n"
 	echo
 	printf -- "$(gettext "Operations:")\n"
 	printf -- "$(gettext "  -a, --add                 Add the specified keys (empty for stdin)")\n"

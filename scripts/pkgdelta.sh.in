@@ -23,7 +23,7 @@
 set -o errexit
 
 # gettext initialization
-export TEXTDOMAIN='pacman-scripts'
+export TEXTDOMAIN='meme-scripts'
 export TEXTDOMAINDIR='@localedir@'
 
 declare -r myver='@PACKAGE_VERSION@'
@@ -51,7 +51,7 @@ m4_include(library/output_format.sh)
 
 # print usage instructions
 usage() {
-	printf "pkgdelta (pacman) %s\n" "${myver}"
+	printf "pkgdelta (meme) %s\n" "${myver}"
 	echo
 	printf -- "$(gettext "Usage: pkgdelta [options] <package1> <package2>\n")"
 	echo
@@ -59,7 +59,7 @@ usage() {
 pkgdelta will create a delta file between two packages.\n\
 This delta file can then be added to a database using repo-add.\n")"
 	echo
-	printf -- "$(gettext "Example:  pkgdelta pacman-3.0.0.pkg.tar.gz pacman-3.0.1.pkg.tar.gz")\n"
+	printf -- "$(gettext "Example:  pkgdelta meme-3.0.0.pkg.tar.gz meme-3.0.1.pkg.tar.gz")\n"
 	echo
 	printf -- "$(gettext "Options:\n")"
 	printf -- "$(gettext "  -q, --quiet       minimize output\n")"
@@ -69,7 +69,7 @@ This delta file can then be added to a database using repo-add.\n")"
 }
 
 version() {
-	printf "pkgdelta (pacman) %s\n" "$myver"
+	printf "pkgdelta (meme) %s\n" "$myver"
 	printf -- "$(gettext "\
 Copyright (c) 2009 Xavier Chantry <shiningxc@gmail.com>.\n\n\
 This is free software; see the source for copying conditions.\n\

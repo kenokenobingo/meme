@@ -1,0 +1,7 @@
+* TODO Programmieren
+** TODO Nicht-ASCII-Ausgabe implementieren
+- [ ] dfd
+
+* TODO Arbeit schreiben
+
+* TODO Server aufsetzen
