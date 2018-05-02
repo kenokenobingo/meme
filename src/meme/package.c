@@ -372,7 +372,7 @@ static const char *get_backup_file_status(const char *root,
 		char *md5sum = alpm_compute_md5sum(path);
 
 		if(md5sum == NULL) {
-			pm_printf(ALPM_LOG_ERROR,
+			mm_printf(ALPM_LOG_ERROR,
 					_("could not calculate checksums for %s\n"), path);
 			return NULL;
 		}
