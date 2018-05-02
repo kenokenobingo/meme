@@ -310,7 +310,7 @@ void cb_event(alpm_event_t *event)
 				mm_printf(ALPM_LOG_WARNING,
 						"database file for '%s' does not exist (use '%s' to download)\n",
 						event->database_missing.dbname,
-						config->op == PM_OP_FILES ? "-Fy": "-Sy");
+						config->op == MM_OP_FILES ? "-Fy": "-Sy");
 			}
 			break;
 		case ALPM_EVENT_PACNEW_CREATED:
@@ -876,12 +876,12 @@ void cb_log(alpm_loglevel_t level, const char *fmt, va_list args)
 
 	if(on_progress) {
 		char *string = NULL;
-		pm_vasprintf(&string, level, fmt, args);
+		mm_vasprintf(&string, level, fmt, args);
 		if(string != NULL) {
 			output = alpm_list_add(output, string);
 		}
 	} else {
-		pm_vfprintf(stderr, level, fmt, args);
+		mm_vfprintf(stderr, level, fmt, args);
 	}
 }
 
