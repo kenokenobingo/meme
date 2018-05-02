@@ -540,26 +540,26 @@ original=NULL, current=Y, new=Z::
 Examples
 --------
 
-pacman -Ss ne.hack::
+meme -Ss ne.hack::
 	Search for regexp "ne.hack" in package database.
 
-pacman -S gpm::
+meme -S gpm::
 	Download and install gpm including dependencies.
 
-pacman -U /home/user/ceofhack-0.6-1-x86_64.pkg.tar.gz::
+meme -U /home/user/ceofhack-0.6-1-x86_64.pkg.tar.gz::
 	Install ceofhack-0.6-1 package from a local file.
 
-pacman -Syu::
+meme -Syu::
 	Update package list and upgrade all packages afterwards.
 
-pacman -Syu gpm::
+meme -Syu gpm::
 	Update package list, upgrade all packages, and then install gpm if it
 	wasn't already installed.
 
 
 Configuration
 -------------
-See linkman:pacman.conf[5] for more details on configuring meme using the
+See linkman:meme.conf[5] for more details on configuring meme using the
 'meme.conf' file.
 
 

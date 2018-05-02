@@ -28,14 +28,14 @@ Example
 
 --------
 #
-# pacman.conf
+#  meme.conf
 #
 [options]
 NoUpgrade = etc/passwd etc/group etc/shadow
 NoUpgrade = etc/fstab
 
 [core]
-Include = /etc/pacman.d/core
+Include = /etc/meme/core
 
 [custom]
 Server = file:///home/pkgs
