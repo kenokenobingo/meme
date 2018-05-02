@@ -25,7 +25,7 @@ The advantage to a script-based build is that the work is only done once. Once
 you have the build script for a package, 'makepkg' will do the rest: download and
 validate source files, check dependencies, configure the build-time settings,
 build the package, install the package into a temporary root, make
-customizations, generate meta-info, and package the whole thing up for pacman
+customizations, generate meta-info, and package the whole thing up for meme
 to use.
 
 NOTE: 'makepkg' uses your current locale by default and does not unset it when
@@ -100,7 +100,7 @@ Options
 
 *-i, \--install*::
 	Install or upgrade the package after a successful build using
-	linkman:pacman[8].
+	linkman:meme[8].
 
 *-L, \--log*::
 	Enable logging. This will use the *tee* program to send the output of each
@@ -132,8 +132,8 @@ Options
 	PKGBUILD and the build itself will not change.
 
 *-s, \--syncdeps*::
-	Install missing dependencies using pacman. When build-time or run-time
-	dependencies are not found, pacman will try to resolve them. If
+	Install missing dependencies using meme. When build-time or run-time
+	dependencies are not found, meme will try to resolve them. If
 	successful, the missing packages will be downloaded and installed.
 
 *-S, \--source*::
@@ -163,7 +163,7 @@ Options
 *\--noarchive*::
 	Do not create the archive at the end of the build process. This can be
 	useful to test the package() function or if your target distribution does
-	not use pacman.
+	not use meme.
 
 *\--nocheck*::
 	Do not run the check() function in the PKGBUILD or handle the checkdepends.
@@ -184,19 +184,19 @@ Options
 	default key from the keyring will be used.
 
 *\--noconfirm*::
-	(Passed to pacman) Prevent pacman from waiting for user input before
+	(Passed to meme) Prevent meme from waiting for user input before
 	proceeding with operations.
 
 *\--needed*::
-	(Passed to pacman) Tell pacman not to reinstall a target if it is already
+	(Passed to meme) Tell meme not to reinstall a target if it is already
 	up-to-date. (used with '-i' / '\--install').
 
 *\--asdeps*::
-	(Passed to pacman) Install packages as non-explicitly installed (used
+	(Passed to meme) Install packages as non-explicitly installed (used
 	with '-i' / '\--install').
 
 *\--noprogressbar*::
-	(Passed to pacman) Prevent pacman from displaying a progress bar;
+	(Passed to meme) Prevent meme from displaying a progress bar;
 	useful if you are redirecting makepkg output to file.
 
 *\--packagelist*::
@@ -230,11 +230,11 @@ before building.
 
 Environment Variables
 ---------------------
-**PACMAN**::
+**meme**::
 	The command that will be used to check for missing dependencies and to
-	install and remove packages. Pacman's '-Qq', '-Rns', '-S', '-T', and '-U'
+	install and remove packages. meme's '-Qq', '-Rns', '-S', '-T', and '-U'
 	operations must be supported by this command. If the variable is not
-	set or empty, makepkg will fall back to `pacman'.
+	set or empty, makepkg will fall back to `meme'.
 
 **MAKEPKG_CONF=**"/path/to/file"::
 	Use an alternate config file instead of the +{sysconfdir}/makepkg.conf+
@@ -347,6 +347,6 @@ On exit, makepkg will return one of the following error codes.
 
 See Also
 --------
-linkman:makepkg.conf[5], linkman:PKGBUILD[5], linkman:pacman[8]
+linkman:makepkg.conf[5], linkman:PKGBUILD[5], linkman:meme[8]
 
 include::footer.txt[]

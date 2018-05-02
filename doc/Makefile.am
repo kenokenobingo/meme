@@ -5,16 +5,16 @@
 
 ASCIIDOC_MANS = \
 	alpm-hooks.5 \
-	pacman.8 \
+	meme.8 \
 	makepkg.8 \
 	makepkg-template.1 \
 	repo-add.8 \
 	vercmp.8 \
 	pkgdelta.8 \
-	pacman-key.8 \
+	meme-key.8 \
 	PKGBUILD.5 \
 	makepkg.conf.5 \
-	pacman.conf.5 \
+	meme.conf.5 \
 	libalpm.3 \
 	BUILDINFO.5
 
@@ -22,16 +22,16 @@ DOXYGEN_MANS = $(wildcard man3/*.3)
 
 HTML_MANPAGES = \
 	alpm-hooks.5.html \
-	pacman.8.html \
+	meme.8.html \
 	makepkg.8.html \
 	makepkg-template.1.html \
 	repo-add.8.html \
 	vercmp.8.html \
 	pkgdelta.8.html \
-	pacman-key.8.html \
+	meme-key.8.html \
 	PKGBUILD.5.html \
 	makepkg.conf.5.html \
-	pacman.conf.5.html \
+	meme.conf.5.html \
 	libalpm.3.html
 
 HTML_OTHER = \
@@ -48,17 +48,17 @@ EXTRA_DIST = \
 	asciidoc.conf \
 	asciidoc-override.css \
 	alpm-hooks.5.txt \
-	pacman.8.txt \
+	meme.8.txt \
 	makepkg.8.txt \
 	makepkg-template.1.txt \
 	repo-add.8.txt \
 	vercmp.8.txt \
 	pkgdelta.8.txt \
-	pacman-key.8.txt \
+	meme-key.8.txt \
 	PKGBUILD.5.txt \
 	PKGBUILD-example.txt \
 	makepkg.conf.5.txt \
-	pacman.conf.5.txt \
+	meme.conf.5.txt \
 	BUILDINFO.5.txt \
 	libalpm.3.txt \
 	footer.txt \
@@ -116,8 +116,8 @@ pkgdatadir = ${datadir}/${PACKAGE}
 
 ASCIIDOC_OPTS = \
 	-f $(srcdir)/asciidoc.conf \
-	-a pacman_version="$(REAL_PACKAGE_VERSION)" \
-	-a pacman_date="`date +%Y-%m-%d`" \
+	-a meme_version="$(REAL_PACKAGE_VERSION)" \
+	-a meme_date="`date +%Y-%m-%d`" \
 	-a pkgdatadir=$(pkgdatadir) \
 	-a localstatedir=$(localstatedir) \
 	-a sysconfdir=$(sysconfdir) \
@@ -151,16 +151,16 @@ $(HTML_OTHER): asciidoc.conf Makefile.am
 
 # Dependency rules
 alpm-hooks.5 alpm-hooks.5.html: alpm-hooks.5.txt
-pacman.8 pacman.8.html: pacman.8.txt
+meme.8 meme.8.html: meme.8.txt
 makepkg.8 makepkg.8.html: makepkg.8.txt
 makepkg-template.1 makepkg-template.1.html: makepkg-template.1.txt
 repo-add.8 repo-add.8.html: repo-add.8.txt
 vercmp.8 vercmp.8.html: vercmp.8.txt
 pkgdelta.8 pkgdelta.8.html: pkgdelta.8.txt
-pacman-key.8 pacman-key.8.html: pacman-key.8.txt
+meme-key.8 meme-key.8.html: meme-key.8.txt
 PKGBUILD.5 PKGBUILD.5.html: PKGBUILD.5.txt PKGBUILD-example.txt
 makepkg.conf.5 makepkg.conf.5.html: makepkg.conf.5.txt
-pacman.conf.5 pacman.conf.5.html: pacman.conf.5.txt
+meme.conf.5 meme.conf.5.html: meme.conf.5.txt
 libalpm.3 libalpm.3.html: libalpm.3.txt
 # this one is just a symlink
 repo-remove.8: repo-add.8

@@ -62,6 +62,6 @@ BUILDINFO file format.
 
 See Also
 --------
-linkman:makepkg[8], linkman:pacman[8], linkman:makepkg.conf[5]
+linkman:makepkg[8], linkman:meme[8], linkman:makepkg.conf[5]
 
 include::footer.txt[]
