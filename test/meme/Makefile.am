@@ -1,13 +1,13 @@
 SUBDIRS = tests
 
 check_SCRIPTS = \
-	pactest.py \
-	pmdb.py \
-	pmenv.py \
-	pmfile.py \
-	pmpkg.py \
-	pmrule.py \
-	pmtest.py \
+	memetest.py \
+	mmdb.py \
+	mmenv.py \
+	mmfile.py \
+	mmpkg.py \
+	mmrule.py \
+	mmtest.py \
 	tap.py \
 	util.py
 
