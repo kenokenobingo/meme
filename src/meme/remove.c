@@ -66,7 +66,7 @@ static int remove_target(const char *target)
 	for(p = grp->packages; p; p = alpm_list_next(p)) {
 		pkg = p->data;
 		if(alpm_remove_pkg(config->handle, pkg) == -1) {
-			pm_printf(ALPM_LOG_ERROR, "'%s': %s\n", target,
+			mm_printf(ALPM_LOG_ERROR, "'%s': %s\n", target,
 					alpm_strerror(alpm_errno(config->handle)));
 			return -1;
 		}

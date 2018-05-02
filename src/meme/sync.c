@@ -44,7 +44,7 @@ static int unlink_verbose(const char *pathname, int ignore_missing)
 		if(ignore_missing && errno == ENOENT) {
 			ret = 0;
 		} else {
-			pm_printf(ALPM_LOG_ERROR, _("could not remove %s: %s\n"),
+			mm_printf(ALPM_LOG_ERROR, _("could not remove %s: %s\n"),
 					pathname, strerror(errno));
 		}
 	}
@@ -60,7 +60,7 @@ static int sync_cleandb(const char *dbpath)
 
 	dir = opendir(dbpath);
 	if(dir == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("could not access database directory\n"));
+		mm_printf(ALPM_LOG_ERROR, _("could not access database directory\n"));
 		return 1;
 	}
 
@@ -86,12 +86,12 @@ static int sync_cleandb(const char *dbpath)
 
 		/* remove all non-skipped directories and non-database files */
 		if(stat(path, &buf) == -1) {
-			pm_printf(ALPM_LOG_ERROR, _("could not remove %s: %s\n"),
+			mm_printf(ALPM_LOG_ERROR, _("could not remove %s: %s\n"),
 					path, strerror(errno));
 		}
 		if(S_ISDIR(buf.st_mode)) {
 			if(rmrf(path)) {
-				pm_printf(ALPM_LOG_ERROR, _("could not remove %s: %s\n"),
+				mm_printf(ALPM_LOG_ERROR, _("could not remove %s: %s\n"),
 						path, strerror(errno));
 			}
 			continue;
@@ -160,15 +160,15 @@ static int sync_cleancache(int level)
 
 	if(!config->cleanmethod) {
 		/* default to KeepInstalled if user did not specify */
-		config->cleanmethod = PM_CLEAN_KEEPINST;
+		config->cleanmethod = MM_CLEAN_KEEPINST;
 	}
 
 	if(level == 1) {
 		printf(_("Packages to keep:\n"));
-		if(config->cleanmethod & PM_CLEAN_KEEPINST) {
+		if(config->cleanmethod & MM_CLEAN_KEEPINST) {
 			printf(_("  All locally installed packages\n"));
 		}
-		if(config->cleanmethod & PM_CLEAN_KEEPCUR) {
+		if(config->cleanmethod & MM_CLEAN_KEEPCUR) {
 			printf(_("  All current sync database packages\n"));
 		}
 	}
@@ -197,7 +197,7 @@ static int sync_cleancache(int level)
 
 		dir = opendir(cachedir);
 		if(dir == NULL) {
-			pm_printf(ALPM_LOG_ERROR,
+			mm_printf(ALPM_LOG_ERROR,
 					_("could not access cache directory %s\n"), cachedir);
 			ret++;
 			continue;
@@ -252,25 +252,25 @@ static int sync_cleancache(int level)
 			 * simply skip it and move on. we don't need a full load of the package,
 			 * just the metadata. */
 			if(alpm_pkg_load(config->handle, path, 0, 0, &localpkg) != 0) {
-				pm_printf(ALPM_LOG_DEBUG, "skipping %s, could not load as package\n",
+				mm_printf(ALPM_LOG_DEBUG, "skipping %s, could not load as package\n",
 						path);
 				continue;
 			}
 			local_name = alpm_pkg_get_name(localpkg);
 			local_version = alpm_pkg_get_version(localpkg);
 
-			if(config->cleanmethod & PM_CLEAN_KEEPINST) {
+			if(config->cleanmethod & MM_CLEAN_KEEPINST) {
 				/* check if this package is in the local DB */
 				pkg = alpm_db_get_pkg(db_local, local_name);
 				if(pkg != NULL && alpm_pkg_vercmp(local_version,
 							alpm_pkg_get_version(pkg)) == 0) {
 					/* package was found in local DB and version matches, keep it */
-					pm_printf(ALPM_LOG_DEBUG, "package %s-%s found in local db\n",
+					mm_printf(ALPM_LOG_DEBUG, "package %s-%s found in local db\n",
 							local_name, local_version);
 					delete = 0;
 				}
 			}
-			if(config->cleanmethod & PM_CLEAN_KEEPCUR) {
+			if(config->cleanmethod & MM_CLEAN_KEEPCUR) {
 				alpm_list_t *j;
 				/* check if this package is in a sync DB */
 				for(j = sync_dbs; j && delete; j = alpm_list_next(j)) {
@@ -279,7 +279,7 @@ static int sync_cleancache(int level)
 					if(pkg != NULL && alpm_pkg_vercmp(local_version,
 								alpm_pkg_get_version(pkg)) == 0) {
 						/* package was found in a sync DB and version matches, keep it */
-						pm_printf(ALPM_LOG_DEBUG, "package %s-%s found in sync db\n",
+						mm_printf(ALPM_LOG_DEBUG, "package %s-%s found in sync db\n",
 								local_name, local_version);
 						delete = 0;
 					}
@@ -420,12 +420,12 @@ static int sync_info(alpm_list_t *syncs, alpm_list_t *targets)
 			}
 
 			if(!founddb) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("repository '%s' does not exist\n"), repo);
 				ret++;
 			}
 			if(!foundpkg) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 						_("package '%s' was not found\n"), target);
 				ret++;
 			}
@@ -466,7 +466,7 @@ static int sync_list(alpm_list_t *syncs, alpm_list_t *targets)
 			}
 
 			if(db == NULL) {
-				pm_printf(ALPM_LOG_ERROR,
+				mm_printf(ALPM_LOG_ERROR,
 					_("repository \"%s\" was not found.\n"), repo);
 				ret = 1;
 			}
@@ -523,10 +523,10 @@ static int process_pkg(alpm_pkg_t *pkg)
 		alpm_errno_t err = alpm_errno(config->handle);
 		if(err == ALPM_ERR_TRANS_DUP_TARGET) {
 			/* just skip duplicate targets */
-			pm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), alpm_pkg_get_name(pkg));
+			mm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), alpm_pkg_get_name(pkg));
 			return 0;
 		} else {
-			pm_printf(ALPM_LOG_ERROR, "'%s': %s\n", alpm_pkg_get_name(pkg),
+			mm_printf(ALPM_LOG_ERROR, "'%s': %s\n", alpm_pkg_get_name(pkg),
 					alpm_strerror(err));
 			return 1;
 		}
@@ -543,7 +543,7 @@ static int process_group(alpm_list_t *dbs, const char *group, int error)
 	int count = alpm_list_count(pkgs);
 
 	if(!count) {
-		pm_printf(ALPM_LOG_ERROR, _("target not found: %s\n"), group);
+		mm_printf(ALPM_LOG_ERROR, _("target not found: %s\n"), group);
 		return 1;
 	}
 
@@ -608,7 +608,7 @@ static int process_targname(alpm_list_t *dblist, const char *targname,
 
 	/* skip ignored packages when user says no */
 	if(alpm_errno(config->handle) == ALPM_ERR_PKG_IGNORED) {
-			pm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), targname);
+			mm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), targname);
 			return 0;
 	}
 
@@ -637,7 +637,7 @@ static int process_target(const char *target, int error)
 		dbname = targstring;
 		db = get_db(dbname);
 		if(!db) {
-			pm_printf(ALPM_LOG_ERROR, _("database not found: %s\n"),
+			mm_printf(ALPM_LOG_ERROR, _("database not found: %s\n"),
 					dbname);
 			ret = 1;
 			goto cleanup;
@@ -664,7 +664,7 @@ static int process_target(const char *target, int error)
 cleanup:
 	free(targstring);
 	if(ret && access(target, R_OK) == 0) {
-		pm_printf(ALPM_LOG_WARNING,
+		mm_printf(ALPM_LOG_WARNING,
 				_("'%s' is a file, did you mean %s instead of %s?\n"),
 				target, "-U/--upgrade", "-S/--sync");
 	}
@@ -701,7 +701,7 @@ static int sync_trans(alpm_list_t *targets)
 					"starting full system upgrade\n");
 		}
 		if(alpm_sync_sysupgrade(config->handle, config->op_s_upgrade >= 2) == -1) {
-			pm_printf(ALPM_LOG_ERROR, "%s\n", alpm_strerror(alpm_errno(config->handle)));
+			mm_printf(ALPM_LOG_ERROR, "%s\n", alpm_strerror(alpm_errno(config->handle)));
 			trans_release();
 			return 1;
 		}
@@ -739,7 +739,7 @@ int sync_prepare_execute(void)
 	/* Step 2: "compute" the transaction based on targets and flags */
 	if(alpm_trans_prepare(config->handle, &data) == -1) {
 		alpm_errno_t err = alpm_errno(config->handle);
-		pm_printf(ALPM_LOG_ERROR, _("failed to prepare transaction (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("failed to prepare transaction (%s)\n"),
 		        alpm_strerror(err));
 		switch(err) {
 			case ALPM_ERR_PKG_INVALID_ARCH:
@@ -809,7 +809,7 @@ int sync_prepare_execute(void)
 
 	if(alpm_trans_commit(config->handle, &data) == -1) {
 		alpm_errno_t err = alpm_errno(config->handle);
-		pm_printf(ALPM_LOG_ERROR, _("failed to commit transaction (%s)\n"),
+		mm_printf(ALPM_LOG_ERROR, _("failed to commit transaction (%s)\n"),
 		        alpm_strerror(err));
 		switch(err) {
 			case ALPM_ERR_FILE_CONFLICTS:
@@ -935,7 +935,7 @@ int meme_sync(alpm_list_t *targets)
 		} else {
 			/* don't proceed here unless we have an operation that doesn't require a
 			 * target list */
-			pm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+			mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
 			return 1;
 		}
 	}
