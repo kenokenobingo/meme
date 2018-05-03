@@ -1,7 +1,26 @@
 * TODO Programmieren
 ** TODO Nicht-ASCII-Ausgabe implementieren
-- [ ] dfd
-
-* TODO Arbeit schreiben
+** TODO Einreichen ermöglichen
+** TODO Selektion
 
 * TODO Server aufsetzen
+** TODO Grafische Oberfläche gestalten
+** DONE Apache aufsetzen
+** TODO Domain konfigurieren
+** TODO HTTPS konfigurieren
+
+* TODO Repository erstellen
+** TODO Memes sammeln
+** TODO Memes sortieren
+** TODO Namenskonvention entwickeln
+** TODO Memes in Paket packen
+** TODO Aktualisierung der Pakete automatisieren
+** TODO Repository veröffentlichen
+
+* TODO Arbeit schreiben
+** TODO freies vs. selektives Internet
+** TODO Filterbubbles analysieren
+
+* TODO Installation
+** TODO konzipieren
+** TODO aufbauen

@@ -77,4 +77,4 @@ CheckSpace
 #Server = file:///home/custompkgs
 
 [meme]
-Server = http://mememgmt.tk/meme/os/$arch/
+Server = http://mememgmt.tk/
