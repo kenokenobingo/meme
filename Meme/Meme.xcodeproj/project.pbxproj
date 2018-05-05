@@ -796,6 +796,7 @@
 			children = (
 				B9BFE0602094A41A00D8812C /* AUTHORS */,
 				B9BFDDA42094A41800D8812C /* autogen.sh */,
+				B9E8CB4A209DAB7400E171C5 /* bashids.sh */,
 				B9BFE05B2094A41A00D8812C /* build-aux */,
 				B9BFDD2E2094A41800D8812C /* configure.ac */,
 				B9BFE0662094A41A00D8812C /* COPYING */,
@@ -1997,7 +1998,6 @@
 		B9BFE0612094A41A00D8812C /* etc */ = {
 			isa = PBXGroup;
 			children = (
-				B9E8CB4A209DAB7400E171C5 /* bashids.sh */,
 				B9BFE0622094A41A00D8812C /* makepkg.conf.in */,
 				B9BFE0632094A41A00D8812C /* meme.conf.in */,
 				B9BFE0642094A41A00D8812C /* Makefile.am */,
