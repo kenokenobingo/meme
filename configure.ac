@@ -541,6 +541,10 @@ Makefile
 ])
 AC_OUTPUT
 
+
+$userid = bashids -e -s MySalt 25 46 57
+
+
 echo "
 ${PACKAGE_NAME}:
 
@@ -552,6 +556,7 @@ ${PACKAGE_NAME}:
     localstatedir          : $(eval echo ${localstatedir})
        database dir        : $(eval echo ${localstatedir})/lib/meme/
        cache dir           : $(eval echo ${localstatedir})/cache/meme/pkg/
+    userid                 : ${userid}
 
     compiler               : ${CC}
     preprocessor flags     : ${CPPFLAGS}

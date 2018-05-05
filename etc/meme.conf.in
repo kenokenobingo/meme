@@ -21,6 +21,7 @@ HoldPkg     = meme glibc
 #CleanMethod = KeepInstalled
 #UseDelta    = 0.7
 Architecture = auto
+UserID = @userid@
 
 # Meme won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
 #IgnorePkg   =
