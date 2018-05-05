@@ -1,12 +1,12 @@
 /////
 vim:set ts=4 sw=4 syntax=asciidoc noet spell spelllang=en_us:
 /////
-pacman.conf(5)
+meme.conf(5)
 ==============
 
 Name
 ----
-pacman.conf - pacman package manager configuration file
+meme.conf - pacman package manager configuration file
 
 
 Synopsis
