@@ -524,6 +524,7 @@ AC_CONFIG_FILES([
 lib/libalpm/Makefile
 lib/libalpm/po/Makefile.in
 lib/libalpm/libalpm.pc
+lib/hashids/Makefile
 src/common/Makefile
 src/meme/Makefile
 src/meme/po/Makefile.in
