@@ -787,7 +787,6 @@
 		B9BFE06F2094A41A00D8812C /* PKGBUILD-split.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = "PKGBUILD-split.proto"; sourceTree = "<group>"; };
 		B9BFE0702094A41A00D8812C /* PKGBUILD.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKGBUILD.proto; sourceTree = "<group>"; };
 		B9BFE0712094A91400D8812C /* util-common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "util-common.h"; sourceTree = "<group>"; };
-		B9E8CB4A209DAB7400E171C5 /* bashids.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = bashids.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -796,7 +795,6 @@
 			children = (
 				B9BFE0602094A41A00D8812C /* AUTHORS */,
 				B9BFDDA42094A41800D8812C /* autogen.sh */,
-				B9E8CB4A209DAB7400E171C5 /* bashids.sh */,
 				B9BFE05B2094A41A00D8812C /* build-aux */,
 				B9BFDD2E2094A41800D8812C /* configure.ac */,
 				B9BFE0662094A41A00D8812C /* COPYING */,

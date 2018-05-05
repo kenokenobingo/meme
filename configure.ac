@@ -295,6 +295,19 @@ AS_IF([test "x$have_gpgme" = xno -a "x$with_gpgme" = xyes],
 	[AC_MSG_FAILURE([--with-gpgme was given, but gpgme was not found])])
 AM_CONDITIONAL([HAVE_LIBGPGME], [test "x$have_gpgme" = "xyes"])
 
+# T O   B E   D O N E
+# Checks for bashids
+# have_bashids=no
+# if test "x$with_bashids" != "xno"; then
+# PKG_CHECK_MODULES(BASHIDS, [bashids >= 0.1],
+# [AC_DEFINE(HAVE_LIBCURL, 1, [Define if libcurl is available]) have_libcurl=yes], have_libcurl=no)
+# if test "x$have_libcurl" = xno -a "x$with_libcurl" = xyes; then
+# AC_MSG_ERROR([*** libcurl >= 7.32.0 is required for internal downloader support])
+# fi
+# fi
+# AM_CONDITIONAL(HAVE_LIBCURL, [test "$have_libcurl" = "yes"])
+
+
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h float.h glob.h langinfo.h libintl.h limits.h \
                   locale.h mntent.h netinet/in.h netinet/tcp.h \
@@ -552,7 +565,7 @@ ${PACKAGE_NAME}:
     localstatedir          : $(eval echo ${localstatedir})
        database dir        : $(eval echo ${localstatedir})/lib/meme/
        cache dir           : $(eval echo ${localstatedir})/cache/meme/pkg/
-    userid                 : echo ./bashids -e -s MySalt 25 46 57
+    userid                 : bashids -e -s MySalt 25 46 57
 
     compiler               : ${CC}
     preprocessor flags     : ${CPPFLAGS}
