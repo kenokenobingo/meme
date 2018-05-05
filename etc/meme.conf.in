@@ -77,4 +77,5 @@ CheckSpace
 #Server = file:///home/custompkgs
 
 [meme]
+SigLevel = Required
 Server = http://mememgmt.tk/

@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-#   pacman-key - manages pacman's keyring
+#   meme-key — manages meme’s keyring
+#                Based on Arch Linux, from Pacman
 #                Based on apt-key, from Debian
 #   @configure_input@
 #

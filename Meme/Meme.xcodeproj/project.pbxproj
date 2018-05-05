@@ -787,6 +787,10 @@
 		B9BFE06F2094A41A00D8812C /* PKGBUILD-split.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = "PKGBUILD-split.proto"; sourceTree = "<group>"; };
 		B9BFE0702094A41A00D8812C /* PKGBUILD.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKGBUILD.proto; sourceTree = "<group>"; };
 		B9BFE0712094A91400D8812C /* util-common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "util-common.h"; sourceTree = "<group>"; };
+		B9E8CB45209D9D8E00E171C5 /* hashids.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hashids.h; sourceTree = "<group>"; };
+		B9E8CB46209D9D8E00E171C5 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		B9E8CB47209D9D8E00E171C5 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		B9E8CB48209D9D8E00E171C5 /* hashids.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hashids.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -821,6 +825,7 @@
 		B9BFDD2F2094A41800D8812C /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B9E8CB44209D9D8E00E171C5 /* hashids */,
 				B9BFDD302094A41800D8812C /* libalpm */,
 			);
 			name = lib;
@@ -2028,6 +2033,17 @@
 			);
 			name = proto;
 			path = ../proto;
+			sourceTree = "<group>";
+		};
+		B9E8CB44209D9D8E00E171C5 /* hashids */ = {
+			isa = PBXGroup;
+			children = (
+				B9E8CB45209D9D8E00E171C5 /* hashids.h */,
+				B9E8CB46209D9D8E00E171C5 /* Makefile.am */,
+				B9E8CB47209D9D8E00E171C5 /* main.c */,
+				B9E8CB48209D9D8E00E171C5 /* hashids.c */,
+			);
+			path = hashids;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
