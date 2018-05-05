@@ -3,6 +3,7 @@ EXTRA_DIST = makepkg.conf.in meme.conf.in
 
 # Files that should be removed, but which Automake does not know.
 MOSTLYCLEANFILES = $(dist_sysconf_DATA)
+userid = bashids -e -s MySalt 25 46 57
 
 SED_PROCESS = \
 	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && \
