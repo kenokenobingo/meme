@@ -1,6 +1,6 @@
 dist_sysconf_DATA = makepkg.conf meme.conf
 EXTRA_DIST = makepkg.conf.in meme.conf.in
-userid=$(bashids -e -s MySalt 25 46 57)
+userid=$(shell bashids -e -s MySalt 25 46 57)
 
 # Files that should be removed, but which Automake does not know.
 MOSTLYCLEANFILES = $(dist_sysconf_DATA)
