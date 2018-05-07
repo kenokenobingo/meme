@@ -1,6 +1,9 @@
 dist_sysconf_DATA = makepkg.conf meme.conf
 EXTRA_DIST = makepkg.conf.in meme.conf.in
-userid=$(shell bashids -e -s MySalt 25 46 57)
+a = $(shell awk -v min=0 -v max=100 'BEGIN{srand(); print int(min+rand()*(max-min+1))}')
+b = $(shell awk -v min=0 -v max=100 'BEGIN{srand(); print int(min+rand()*(max-min+1))}')
+c = $(shell awk -v min=0 -v max=100 'BEGIN{srand(); print int(min+rand()*(max-min+1))}')
+userid = $(shell bashids -e -s FriederNake $a $b $c)
 
 # Files that should be removed, but which Automake does not know.
 MOSTLYCLEANFILES = $(dist_sysconf_DATA)
