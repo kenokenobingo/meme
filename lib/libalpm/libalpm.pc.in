@@ -3,8 +3,8 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libalpm
-Description: Arch Linux package management library
+Name: libmlpm
+Description: Meme package management library
 URL: http://www.archlinux.org/pacman/
 Version: @LIB_VERSION@
 Cflags: -I${includedir} @LFS_CFLAGS@

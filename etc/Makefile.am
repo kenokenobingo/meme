@@ -3,6 +3,7 @@ EXTRA_DIST = makepkg.conf.in meme.conf.in
 a = $(shell awk -v min=0 -v max=100 'BEGIN{srand(); print int(min+rand()*(max-min+1))}')
 b = $(shell awk -v min=0 -v max=100 'BEGIN{srand(); print int(min+rand()*(max-min+1))}')
 c = $(shell awk -v min=0 -v max=100 'BEGIN{srand(); print int(min+rand()*(max-min+1))}')
+# Frieder Nake is the impersonation of chaos. Thus, he is the salt of the ID.
 userid = $(shell bashids -e -s FriederNake $a $b $c)
 
 # Files that should be removed, but which Automake does not know.
