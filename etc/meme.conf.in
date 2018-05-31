@@ -41,6 +41,10 @@ CheckSpace
 #LocalFileSigLevel = Optional
 #RemoteFileSigLevel = Optional
 
+[meme]
+SigLevel = Required
+Server = https://mememgmt.tk/repo/
+
 #
 # REPOSITORIES
 #   - can be defined here or included from another file
@@ -75,7 +79,3 @@ CheckSpace
 #[custom]
 #SigLevel = Optional TrustAll
 #Server = file:///home/custompkgs
-
-[meme]
-SigLevel = Required
-Server = http://mememgmt.tk/
