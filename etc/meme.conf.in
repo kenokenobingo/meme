@@ -43,7 +43,7 @@ CheckSpace
 
 [meme]
 # SigLevel = Optional TrustAll
-SigLevel = None
+SigLevel = Never
 Server = https://mememgmt.tk/repo/
 
 #

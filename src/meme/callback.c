@@ -40,7 +40,7 @@
 /* download progress bar */
 static off_t list_xfered = 0.0;
 static off_t list_total = 0.0;
-const char martini[5] = {0xF0, 0x9F, 0x8D, 0xB8, '\0'};
+const wchar_t martini_emoji = 0x1F378;
 
 /* delayed output during progress bar */
 static int on_progress = 0;
@@ -134,13 +134,13 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 						}
 					}
 				} else if(i % 3 == 0) {
-					fputs("\033[0;37mo\033[m", stdout);
+					fputs(martini, stdout);
 				} else {
-					fputs("\033[0;37m \033[m", stdout);
+					fputs(martini, stdout);
 				}
 			} /* else regular progress bar */
 			else if(i > hashlen - hash) {
-				putchar('#');
+				putchar(martini);
 			} else {
 				putchar('-');
 			}
