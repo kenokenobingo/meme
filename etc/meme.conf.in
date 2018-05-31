@@ -42,7 +42,8 @@ CheckSpace
 #RemoteFileSigLevel = Optional
 
 [meme]
-SigLevel = Optional TrustAll
+# SigLevel = Optional TrustAll
+SigLevel = None
 Server = https://mememgmt.tk/repo/
 
 #
