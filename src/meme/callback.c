@@ -40,7 +40,7 @@
 /* download progress bar */
 static off_t list_xfered = 0.0;
 static off_t list_total = 0.0;
-const wchar_t martini_emoji = 0x1F378;
+const wchar_t martini = 0x1F378;
 
 /* delayed output during progress bar */
 static int on_progress = 0;
