@@ -40,7 +40,7 @@
 /* download progress bar */
 static off_t list_xfered = 0.0;
 static off_t list_total = 0.0;
-const wchar_t martini = 0x1F378;
+const char martini[5] = {0xF0, 0x9F, 0x8D, 0xB8, '\0'};
 
 /* delayed output during progress bar */
 static int on_progress = 0;
