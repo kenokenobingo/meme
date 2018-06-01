@@ -122,25 +122,25 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 						if(mouth) {
 							fprintf(stdout, "%s", progress);
 						} else {
-							fprintf(stdout, "%s", progess);
+							fprintf(stdout, "%s", progress);
 						}
 					} else {
 						lasthash = hash;
 						mouth = mouth == 1 ? 0 : 1;
 						if(mouth) {
-							fprintf(stdout, "%s", progess);
+							fprintf(stdout, "%s", progress);
 						} else {
-							fprintf(stdout, "%s", progess);
+							fprintf(stdout, "%s", progress);
 						}
 					}
 				} else if(i % 3 == 0) {
-					fprintf(stdout, "%s", progess);
+					fprintf(stdout, "%s", progress);
 				} else {
 					fprintf(stdout, "%s", progress);
 				}
 			} /* else regular progress bar */
 			else if(i > hashlen - hash) {
-				fprintf(stdout, "%s", martini);
+				fprintf(stdout, "%s", progress);
 			} else {
 				putchar('-');
 			}
