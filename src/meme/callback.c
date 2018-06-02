@@ -587,7 +587,7 @@ void cb_progress(alpm_progress_t event, const char *pkgname, int percent,
 	digits = number_length(howmany);
 
 	/* determine room left for non-digits text [not ( 1/12) part] */
-	textlen = infolen - 3 /* (/) */ - (8 * digits) - 1 /* space */;
+	textlen = infolen - 3 /* (/) */ - (4 * digits) - 1 /* space */;
 
 	/* In order to deal with characters from all locales, we have to worry
 	 * about wide characters and their column widths. A lot of stuff is
@@ -632,7 +632,7 @@ void cb_progress(alpm_progress_t event, const char *pkgname, int percent,
 	free(wcstr);
 
 	/* call refactored fill progress function */
-	fill_progress(percent, percent, cols - infolen);
+	fill_progress(percent, percent, cols - (infolen*2));
 
 	if(percent == 100) {
 		alpm_list_t *i = NULL;
@@ -863,9 +863,9 @@ void cb_dl_progress(const char *filename, off_t file_xfered, off_t file_total)
 	free(wcfname);
 
 	if(totaldownload) {
-		fill_progress(file_percent, total_percent, cols - infolen);
+		fill_progress(file_percent, total_percent, cols - (infolen*2));
 	} else {
-		fill_progress(file_percent, file_percent, cols - infolen);
+		fill_progress(file_percent, file_percent, cols - (infolen*2));
 	}
 	return;
 }
