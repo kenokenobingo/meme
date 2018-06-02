@@ -41,7 +41,7 @@
 static off_t list_xfered = 0.0;
 static off_t list_total = 0.0;
 /* emojis for download progress bar as UTF-8 bytes */
-const char lit[5] = {0xF0, 0x9F, 0x94, 0xA5, '\0'}
+const char lit[5] = {0xF0, 0x9F, 0x94, 0xA5, '\0'};
 const char progress[5] = {0xF0, 0x9F, 0x98, 0x80, '\0'};
 
 /* delayed output during progress bar */
