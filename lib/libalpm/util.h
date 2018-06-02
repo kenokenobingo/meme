@@ -41,6 +41,11 @@
 
 #include <archive.h> /* struct archive */
 
+/* MSG_NOSIGNAL not available in Darwin */
+#ifdef __APPLE__
+#    define MSG_NOSIGNAL 0
+#endif
+
 #ifdef ENABLE_NLS
 #include <libintl.h> /* here so it doesn't need to be included elsewhere */
 /* define _() as shortcut for gettext() */

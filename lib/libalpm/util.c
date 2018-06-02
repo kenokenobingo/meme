@@ -58,6 +58,7 @@
 #include "trans.h"
 
 #ifndef HAVE_STRSEP
+
 /** Extracts tokens from a string.
  * Replaces strset which is not portable (missing on Solaris).
  * Copyright (c) 2001 by François Gouget <fgouget_at_codeweavers.com>
