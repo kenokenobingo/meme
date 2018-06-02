@@ -442,14 +442,14 @@ void cb_question(alpm_question_t *question)
 					count++;
 				}
 				colon_printf(_n(
-							"The following package cannot be upgraded due to unresolvable dependencies:\n",
-							"The following packages cannot be upgraded due to unresolvable dependencies:\n",
+							"The following meme cannot be upgraded due to unresolvable dependencies:\n",
+							"The following memes cannot be upgraded due to unresolvable dependencies:\n",
 							count));
 				list_display("     ", namelist, getcols());
 				printf("\n");
 				q->skip = noyes(_n(
-							"Do you want to skip the above package for this upgrade?",
-							"Do you want to skip the above packages for this upgrade?",
+							"Do you want to skip the above meme for this upgrade?",
+							"Do you want to skip the above memes for this upgrade?",
 							count));
 				alpm_list_free(namelist);
 			}
@@ -567,13 +567,13 @@ void cb_progress(alpm_progress_t event, const char *pkgname, int percent,
 			opr = _("checking available disk space");
 			break;
 		case ALPM_PROGRESS_INTEGRITY_START:
-			opr = _("checking package integrity");
+			opr = _("checking meme integrity");
 			break;
 		case ALPM_PROGRESS_KEYRING_START:
 			opr = _("checking keys in keyring");
 			break;
 		case ALPM_PROGRESS_LOAD_START:
-			opr = _("loading package files");
+			opr = _("loading meme files");
 			break;
 		default:
 			return;
