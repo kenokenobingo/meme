@@ -37,6 +37,10 @@
 #include "package.h"
 #include "conf.h"
 
+const char bin[5] = {0xF0, 0x9F, 0x97, 0x91, '\0'};
+const char su[5] = {0xF0, 0x9F, 0x91, 0x8D, '\0'};
+const char cycle[5] = {0xF0, 0x9F, 0x94, 0x84, '\0'};
+
 static int unlink_verbose(const char *pathname, int ignore_missing)
 {
 	int ret = unlink(pathname);
@@ -135,10 +139,10 @@ static int sync_cleandb_all(void)
 
 	dbpath = alpm_option_get_dbpath(config->handle);
 	printf(_("Database directory: %s\n"), dbpath);
-	if(!yesno(_("Do you want to remove unused repositories?"))) {
+	if(!yesno(_("%s Do you want to remove unused repositories?"), bin)) {
 		return 0;
 	}
-	printf(_("removing unused sync repositories...\n"));
+	printf(_("%s removing unused sync repositories...\n"), bin);
 
 	if(asprintf(&syncdbpath, "%s%s", dbpath, "sync/") < 0) {
 		ret += 1;
@@ -164,12 +168,12 @@ static int sync_cleancache(int level)
 	}
 
 	if(level == 1) {
-		printf(_("Packages to keep:\n"));
+		printf(_("Memes to keep:\n"));
 		if(config->cleanmethod & MM_CLEAN_KEEPINST) {
-			printf(_("  All locally installed packages\n"));
+			printf(_("  All locally installed memes\n"));
 		}
 		if(config->cleanmethod & MM_CLEAN_KEEPCUR) {
-			printf(_("  All current sync database packages\n"));
+			printf(_("  All current sync database memes\n"));
 		}
 	}
 	printf("\n");
@@ -182,17 +186,17 @@ static int sync_cleancache(int level)
 		printf(_("Cache directory: %s\n"), (const char *)i->data);
 
 		if(level == 1) {
-			if(!yesno(_("Do you want to remove all other packages from cache?"))) {
+			if(!yesno(_("%s Do you want to remove all other meme from cache?"), bin)) {
 				printf("\n");
 				continue;
 			}
-			printf(_("removing old packages from cache...\n"));
+			printf(_("%s removing old packages from cache...\n"), bin);
 		} else {
-			if(!noyes(_("Do you want to remove ALL files from cache?"))) {
+			if(!noyes(_("%s Do you want to remove ALL files from cache?"), bin)) {
 				printf("\n");
 				continue;
 			}
-			printf(_("removing all files from cache...\n"));
+			printf(_("%s removing all files from cache...\n"), bin);
 		}
 
 		dir = opendir(cachedir);
@@ -252,7 +256,7 @@ static int sync_cleancache(int level)
 			 * simply skip it and move on. we don't need a full load of the package,
 			 * just the metadata. */
 			if(alpm_pkg_load(config->handle, path, 0, 0, &localpkg) != 0) {
-				mm_printf(ALPM_LOG_DEBUG, "skipping %s, could not load as package\n",
+				mm_printf(ALPM_LOG_DEBUG, "skipping %s, could not load as meme\n",
 						path);
 				continue;
 			}
@@ -265,7 +269,7 @@ static int sync_cleancache(int level)
 				if(pkg != NULL && alpm_pkg_vercmp(local_version,
 							alpm_pkg_get_version(pkg)) == 0) {
 					/* package was found in local DB and version matches, keep it */
-					mm_printf(ALPM_LOG_DEBUG, "package %s-%s found in local db\n",
+					mm_printf(ALPM_LOG_DEBUG, "memes %s-%s found in local db\n",
 							local_name, local_version);
 					delete = 0;
 				}
@@ -279,7 +283,7 @@ static int sync_cleancache(int level)
 					if(pkg != NULL && alpm_pkg_vercmp(local_version,
 								alpm_pkg_get_version(pkg)) == 0) {
 						/* package was found in a sync DB and version matches, keep it */
-						mm_printf(ALPM_LOG_DEBUG, "package %s-%s found in sync db\n",
+						mm_printf(ALPM_LOG_DEBUG, "meme %s-%s found in sync db\n",
 								local_name, local_version);
 						delete = 0;
 					}
@@ -426,7 +430,7 @@ static int sync_info(alpm_list_t *syncs, alpm_list_t *targets)
 			}
 			if(!foundpkg) {
 				mm_printf(ALPM_LOG_ERROR,
-						_("package '%s' was not found\n"), target);
+						_("meme '%s' was not found\n"), target);
 				ret++;
 			}
 			free(name);
@@ -696,9 +700,9 @@ static int sync_trans(alpm_list_t *targets)
 
 	if(config->op_s_upgrade) {
 		if(!config->print) {
-			colon_printf(_("Starting full system upgrade...\n"));
+			colon_printf(_("%s Starting full meme upgrade...\n"), su);
 			alpm_logaction(config->handle, MEME_CALLER_PREFIX,
-					"starting full system upgrade\n");
+					"starting full meme upgrade\n");
 		}
 		if(alpm_sync_sysupgrade(config->handle, config->op_s_upgrade >= 2) == -1) {
 			mm_printf(ALPM_LOG_ERROR, "%s\n", alpm_strerror(alpm_errno(config->handle)));
@@ -895,7 +899,7 @@ int meme_sync(alpm_list_t *targets)
 
 	if(config->op_s_sync) {
 		/* grab a fresh package list */
-		colon_printf(_("Synchronizing meme databases...\n"));
+		colon_printf(_("%s Synchronizing meme databases...\n"), cycle);
 		alpm_logaction(config->handle, MEME_CALLER_PREFIX,
 				"synchronizing meme lists\n");
 		if(!sync_syncdbs(config->op_s_sync, sync_dbs)) {

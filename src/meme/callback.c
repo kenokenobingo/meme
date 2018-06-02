@@ -103,7 +103,7 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 {
 	/* 8 = 1 space + 1 [ + 1 ] + 5 for percent */
     int hashlen = proglen > 8 ? proglen - 8 : 0;
-    hashlen = hashlen / 2;
+    hashlen = hashlen / 2 - 1;
 	const int hash = bar_percent * hashlen / 100;
 	static int lasthash = 0, mouth = 0;
 	int i;
