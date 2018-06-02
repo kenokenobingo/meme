@@ -102,7 +102,8 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 		const int proglen)
 {
 	/* 8 = 1 space + 1 [ + 1 ] + 5 for percent */
-	const int hashlen = proglen > 8 ? proglen - 8 : 0;
+    int hashlen = proglen > 8 ? proglen - 8 : 0;
+    hashlen = hashlen / 2;
 	const int hash = bar_percent * hashlen / 100;
 	static int lasthash = 0, mouth = 0;
 	int i;
@@ -116,9 +117,9 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 		fputs(" [", stdout);
 		for(i = hashlen; i > 0; --i) {
 			/* if special progress bar enabled */
-			if(config->chomp) {
-				if(i > hashlen - hash) {
-					putchar('-');
+            if(config->chomp) {
+                if(i > hashlen - hash) {
+                    putchar('-');
 				} else if(i == hashlen - hash) {
 					if(lasthash == hash) {
 						if(mouth) {
@@ -208,7 +209,7 @@ void cb_event(alpm_event_t *event)
 			printf(_("resolving dependencies...\n"));
 			break;
 		case ALPM_EVENT_INTERCONFLICTS_START:
-			printf(_("looking for conflicting packages...\n"));
+			printf(_("looking for conflicting memes...\n"));
 			break;
 		case ALPM_EVENT_TRANSACTION_START:
 			colon_printf(_("Processing package changes...\n"));
@@ -254,7 +255,7 @@ void cb_event(alpm_event_t *event)
 			break;
 		case ALPM_EVENT_INTEGRITY_START:
 			if(config->noprogressbar) {
-				printf(_("checking package integrity...\n"));
+				printf(_("checking meme integrity...\n"));
 			}
 			break;
 		case ALPM_EVENT_KEYRING_START:
@@ -267,7 +268,7 @@ void cb_event(alpm_event_t *event)
 			break;
 		case ALPM_EVENT_LOAD_START:
 			if(config->noprogressbar) {
-				printf(_("loading package files...\n"));
+				printf(_("loading meme files...\n"));
 			}
 			break;
 		case ALPM_EVENT_DELTA_INTEGRITY_START:
@@ -632,7 +633,7 @@ void cb_progress(alpm_progress_t event, const char *pkgname, int percent,
 	free(wcstr);
 
 	/* call refactored fill progress function */
-	fill_progress(percent, percent, cols - (infolen*2));
+	fill_progress(percent, percent, cols - infolen);
 
 	if(percent == 100) {
 		alpm_list_t *i = NULL;
@@ -839,7 +840,7 @@ void cb_dl_progress(const char *filename, off_t file_xfered, off_t file_total)
 	rate_human = humanize_size((off_t)rate, '\0', -1, &rate_label);
 	xfered_human = humanize_size(xfered, '\0', -1, &xfered_label);
 
-	printf(" %ls%-*s ", wcfname, padwid, "");
+	printf("%s %ls%-*s ", lit, wcfname, padwid, "");
 	/* We will show 1.62M/s, 11.6M/s, but 116K/s and 1116K/s */
 	if(rate_human < 9.995) {
 		printf("%6.1f %3s  %4.2f%c/s ",
@@ -863,9 +864,9 @@ void cb_dl_progress(const char *filename, off_t file_xfered, off_t file_total)
 	free(wcfname);
 
 	if(totaldownload) {
-		fill_progress(file_percent, total_percent, cols - (infolen*2));
+		fill_progress(file_percent, total_percent, cols - infolen);
 	} else {
-		fill_progress(file_percent, file_percent, cols - (infolen*2));
+		fill_progress(file_percent, file_percent, cols - infolen);
 	}
 	return;
 }

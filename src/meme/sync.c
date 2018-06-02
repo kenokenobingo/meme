@@ -850,7 +850,7 @@ int sync_prepare_execute(void)
 				break;
 		}
 		/* TODO: stderr? */
-		printf(_("Errors occurred, no packages were upgraded.\n"));
+		printf(_("Errors occurred, no memes were upgraded.\n"));
 		retval = 1;
 		goto cleanup;
 	}
@@ -895,9 +895,9 @@ int meme_sync(alpm_list_t *targets)
 
 	if(config->op_s_sync) {
 		/* grab a fresh package list */
-		colon_printf(_("Synchronizing package databases...\n"));
+		colon_printf(_("Synchronizing meme databases...\n"));
 		alpm_logaction(config->handle, MEME_CALLER_PREFIX,
-				"synchronizing package lists\n");
+				"synchronizing meme lists\n");
 		if(!sync_syncdbs(config->op_s_sync, sync_dbs)) {
 			return 1;
 		}
