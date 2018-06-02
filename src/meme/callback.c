@@ -587,7 +587,7 @@ void cb_progress(alpm_progress_t event, const char *pkgname, int percent,
 	digits = number_length(howmany);
 
 	/* determine room left for non-digits text [not ( 1/12) part] */
-	textlen = infolen - 3 /* (/) */ - (4 * digits) - 1 /* space */;
+	textlen = infolen - 3 /* (/) */ - (8 * digits) - 1 /* space */;
 
 	/* In order to deal with characters from all locales, we have to worry
 	 * about wide characters and their column widths. A lot of stuff is
