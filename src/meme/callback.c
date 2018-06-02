@@ -31,7 +31,7 @@
 
 #include <alpm.h>
 
-/* pacman */
+/* meme */
 #include "meme.h"
 #include "callback.h"
 #include "util.h"
@@ -40,6 +40,8 @@
 /* download progress bar */
 static off_t list_xfered = 0.0;
 static off_t list_total = 0.0;
+/* emojis for download progress bar as UTF-8 bytes */
+const char lit[5] = {0xF0, 0x9F, 0x94, 0xA5, '\0'}
 const char progress[5] = {0xF0, 0x9F, 0x98, 0x80, '\0'};
 
 /* delayed output during progress bar */
@@ -100,7 +102,7 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 		const int proglen)
 {
 	/* 8 = 1 space + 1 [ + 1 ] + 5 for percent */
-	const int hashlen = proglen > 4 ? proglen - 4 : 0;
+	const int hashlen = proglen > 8 ? proglen - 8 : 0;
 	const int hash = bar_percent * hashlen / 100;
 	static int lasthash = 0, mouth = 0;
 	int i;
@@ -585,7 +587,7 @@ void cb_progress(alpm_progress_t event, const char *pkgname, int percent,
 	digits = number_length(howmany);
 
 	/* determine room left for non-digits text [not ( 1/12) part] */
-	textlen = infolen - 3 /* (/) */ - (2 * digits) - 1 /* space */;
+	textlen = infolen - 3 /* (/) */ - (4 * digits) - 1 /* space */;
 
 	/* In order to deal with characters from all locales, we have to worry
 	 * about wide characters and their column widths. A lot of stuff is
