@@ -17,8 +17,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PM_UTIL_COMMON_H
-#define PM_UTIL_COMMON_H
+#ifndef MM_UTIL_COMMON_H
+#define MM_UTIL_COMMON_H
 
 #include <stdio.h>
 #include <sys/stat.h> /* struct stat */
