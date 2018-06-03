@@ -29,6 +29,7 @@
 #include "meme.h"
 #include "conf.h"
 #include "util.h"
+#include "emoji.h"
 
 /**
  * @brief Upgrade a specified list of packages.
@@ -53,7 +54,7 @@ int meme_upgrade(alpm_list_t *targets)
 	/* Check for URL targets and process them */
 	file_is_remote = malloc(num_targets * sizeof(int));
 	if(file_is_remote == NULL) {
-		mm_printf(ALPM_LOG_ERROR, _("memory exhausted\n"));
+		mm_printf(ALPM_LOG_ERROR, _("%s memory exhausted\n"), exhausted);
 		return 1;
 	}
 
@@ -84,7 +85,7 @@ int meme_upgrade(alpm_list_t *targets)
 		goto fail_free;
 	}
 
-	printf(_("loading packages...\n"));
+	printf(_("%s loading memes ...\n"), cycle);
 	/* add targets to the created transaction */
 	for(i = targets, n = 0; i; i = alpm_list_next(i), n++) {
 		const char *targ = i->data;

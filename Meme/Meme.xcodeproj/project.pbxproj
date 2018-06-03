@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		B937F5D920C3DD8200C0A64C /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		B9BFDD2C2094A41800D8812C /* RELEASE */ = {isa = PBXFileReference; lastKnownFileType = text; name = RELEASE; path = ../RELEASE; sourceTree = "<group>"; };
 		B9BFDD2D2094A41800D8812C /* NEWS */ = {isa = PBXFileReference; lastKnownFileType = text; name = NEWS; path = ../NEWS; sourceTree = "<group>"; };
 		B9BFDD2E2094A41800D8812C /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; name = configure.ac; path = ../configure.ac; sourceTree = "<group>"; };
@@ -1890,6 +1891,7 @@
 				B9BFE0492094A41900D8812C /* upgrade.c */,
 				B9BFE04A2094A41900D8812C /* callback.h */,
 				B9BFE04B2094A41900D8812C /* sighandler.h */,
+				B937F5D920C3DD8200C0A64C /* emoji.h */,
 			);
 			path = meme;
 			sourceTree = "<group>";

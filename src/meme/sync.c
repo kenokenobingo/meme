@@ -36,10 +36,7 @@
 #include "util.h"
 #include "package.h"
 #include "conf.h"
-
-const char bin[5] = {0xF0, 0x9F, 0x97, 0x91, '\0'};
-const char su[5] = {0xF0, 0x9F, 0x91, 0x8D, '\0'};
-const char cycle[5] = {0xF0, 0x9F, 0x94, 0x84, '\0'};
+#include "emoji.h"
 
 static int unlink_verbose(const char *pathname, int ignore_missing)
 {
