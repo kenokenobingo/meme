@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		B91498F220C535FA008DC55D /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = install.sh; path = ../install.sh; sourceTree = "<group>"; };
 		B937F5D920C3DD8200C0A64C /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		B9BFDD2C2094A41800D8812C /* RELEASE */ = {isa = PBXFileReference; lastKnownFileType = text; name = RELEASE; path = ../RELEASE; sourceTree = "<group>"; };
 		B9BFDD2D2094A41800D8812C /* NEWS */ = {isa = PBXFileReference; lastKnownFileType = text; name = NEWS; path = ../NEWS; sourceTree = "<group>"; };
@@ -798,6 +799,7 @@
 				B9BFDDA42094A41800D8812C /* autogen.sh */,
 				B9BFE05B2094A41A00D8812C /* build-aux */,
 				B9BFDD2E2094A41800D8812C /* configure.ac */,
+				B91498F220C535FA008DC55D /* install.sh */,
 				B9BFE0662094A41A00D8812C /* COPYING */,
 				B9BFDDA72094A41800D8812C /* doc */,
 				B9BFE0612094A41A00D8812C /* etc */,

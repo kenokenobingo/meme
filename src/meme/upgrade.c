@@ -45,7 +45,7 @@ int meme_upgrade(alpm_list_t *targets)
 	unsigned int n, num_targets;
 
 	if(targets == NULL) {
-		mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+		mm_printf(ALPM_LOG_ERROR, _("%s no targets specified (use -h for help)\n"), error);
 		return 1;
 	}
 

@@ -258,11 +258,11 @@ void cb_event(alpm_event_t *event)
 			break;
 		case ALPM_EVENT_KEYRING_START:
 			if(config->noprogressbar) {
-				printf(_("checking keyring...\n"));
+				printf(_("%s checking keyring...\n"), keymoji);
 			}
 			break;
 		case ALPM_EVENT_KEY_DOWNLOAD_START:
-			printf(_("downloading required keys...\n"));
+			printf(_("%s downloading required keys...\n"), keymoji);
 			break;
 		case ALPM_EVENT_LOAD_START:
 			if(config->noprogressbar) {
@@ -290,7 +290,7 @@ void cb_event(alpm_event_t *event)
 			fputs(event->scriptlet_info.line, stdout);
 			break;
 		case ALPM_EVENT_RETRIEVE_START:
-			colon_printf(_("Retrieving packages...\n"));
+			colon_printf(_("Retrieving memes ...\n"));
 			break;
 		case ALPM_EVENT_DISKSPACE_START:
 			if(config->noprogressbar) {
@@ -482,11 +482,11 @@ void cb_question(alpm_question_t *question)
 				strftime(created, 12, "%Y-%m-%d", localtime(&time));
 
 				if(q->key->revoked) {
-					q->import = yesno(_("Import PGP key %u%c/%s, \"%s\", created: %s (revoked)?"),
-							q->key->length, q->key->pubkey_algo, q->key->fingerprint, q->key->uid, created);
+					q->import = yesno(_("%s Import PGP key %u%c/%s, \"%s\", created: %s (revoked)?"),
+                            keymoji, q->key->length, q->key->pubkey_algo, q->key->fingerprint, q->key->uid, created);
 				} else {
-					q->import = yesno(_("Import PGP key %u%c/%s, \"%s\", created: %s?"),
-							q->key->length, q->key->pubkey_algo, q->key->fingerprint, q->key->uid, created);
+					q->import = yesno(_("%s Import PGP key %u%c/%s, \"%s\", created: %s?"),
+							keymoji, q->key->length, q->key->pubkey_algo, q->key->fingerprint, q->key->uid, created);
 				}
 			}
 			break;
