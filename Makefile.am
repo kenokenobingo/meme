@@ -70,7 +70,6 @@ update-copyright:
 
 .PHONY: update-po update-copyright
 
-export PATH := $(PATH):/usr/
 export PATH := $(PATH):/usr/local/Cellar/meme/0.0.6/bin
 
 # vim:set noet:
