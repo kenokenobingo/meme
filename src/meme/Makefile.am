@@ -66,5 +66,6 @@ meme_conf_SOURCES = meme-conf.c \
 
 meme_conf_LDADD = $(top_builddir)/lib/libalpm/.libs/libalpm.la
 
+export PATH := $(PATH):/usr/local/meme/bin/
 
 # vim:set noet:

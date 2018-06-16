@@ -23,8 +23,8 @@
 #define ALPM_DB_H
 
 /* libarchive */
-#include <archive.h>
-#include <archive_entry.h>
+#include "archive.h"
+#include "archive_entry.h"
 
 #include "alpm.h"
 #include "pkghash.h"

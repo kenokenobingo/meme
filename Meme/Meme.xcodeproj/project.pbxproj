@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B973D4FC20D4169D00A21832 /* libarchive.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B973D4FB20D4169D00A21832 /* libarchive.tbd */; };
+		B92CA78720D417DD00DE6B74 /* libarchive.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B92CA78620D417DD00DE6B74 /* libarchive.2.tbd */; };
 		B9CDB55720D4139A0047BA79 /* alpm.c in Sources */ = {isa = PBXBuildFile; fileRef = B9BFDD322094A41800D8812C /* alpm.c */; };
 		B9CDB55820D413B70047BA79 /* meme.c in Sources */ = {isa = PBXBuildFile; fileRef = B9BFE0452094A41900D8812C /* meme.c */; };
 /* End PBXBuildFile section */
@@ -28,7 +28,7 @@
 		B91498F220C535FA008DC55D /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = install.sh; path = ../install.sh; sourceTree = "<group>"; };
 		B91B76B720D411E6005C02FA /* meme */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = meme; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91B76BA20D411E6005C02FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		B9337A3E20D414C000CDD3F3 /* libarchive */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libarchive; sourceTree = "<group>"; };
+		B92CA78620D417DD00DE6B74 /* libarchive.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.2.tbd; path = usr/lib/libarchive.2.tbd; sourceTree = SDKROOT; };
 		B937F5D920C3DD8200C0A64C /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		B973D4FB20D4169D00A21832 /* libarchive.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.tbd; path = usr/lib/libarchive.tbd; sourceTree = SDKROOT; };
 		B9BFDD2C2094A41800D8812C /* RELEASE */ = {isa = PBXFileReference; lastKnownFileType = text; name = RELEASE; path = ../RELEASE; sourceTree = "<group>"; };
@@ -818,7 +818,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B973D4FC20D4169D00A21832 /* libarchive.tbd in Frameworks */,
+				B92CA78720D417DD00DE6B74 /* libarchive.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +844,7 @@
 		B973D4FA20D4169D00A21832 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B92CA78620D417DD00DE6B74 /* libarchive.2.tbd */,
 				B973D4FB20D4169D00A21832 /* libarchive.tbd */,
 			);
 			name = Frameworks;
@@ -884,7 +885,6 @@
 		B9BFDD2F2094A41800D8812C /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				B9337A3E20D414C000CDD3F3 /* libarchive */,
 				B9BFDD302094A41800D8812C /* libalpm */,
 			);
 			name = lib;

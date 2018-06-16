@@ -32,10 +32,10 @@ extern "C" {
 #include <stdarg.h>    /* va_list */
 
 /* libarchive */
-#include <archive.h>
-#include <archive_entry.h>
+#include "archive.h"
+#include "archive_entry.h"
 
-#include <alpm_list.h>
+#include "alpm_list.h"
 
 /*
  * Arch Linux Package Management library

@@ -27,8 +27,8 @@
 #include <sys/types.h> /* off_t */
 
 /* libarchive */
-#include <archive.h>
-#include <archive_entry.h>
+#include "archive.h"
+#include "archive_entry.h"
 
 #include "alpm.h"
 #include "backup.h"

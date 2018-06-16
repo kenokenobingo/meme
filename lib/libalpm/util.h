@@ -39,7 +39,7 @@
 #include <float.h> /* DBL_EPSILON */
 #include <fcntl.h> /* open, close */
 
-#include <archive.h> /* struct archive */
+#include "archive.h" /* struct archive */
 
 /* MSG_NOSIGNAL not available in Darwin */
 #ifdef __APPLE__
