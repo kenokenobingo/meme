@@ -25,7 +25,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B91498F220C535FA008DC55D /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = install.sh; path = ../install.sh; sourceTree = "<group>"; };
 		B91B76B720D411E6005C02FA /* meme */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = meme; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91B76BA20D411E6005C02FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		B92CA78620D417DD00DE6B74 /* libarchive.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.2.tbd; path = usr/lib/libarchive.2.tbd; sourceTree = SDKROOT; };
@@ -857,7 +856,6 @@
 				B9BFDDA42094A41800D8812C /* autogen.sh */,
 				B9BFE05B2094A41A00D8812C /* build-aux */,
 				B9BFDD2E2094A41800D8812C /* configure.ac */,
-				B91498F220C535FA008DC55D /* install.sh */,
 				B9BFE0662094A41A00D8812C /* COPYING */,
 				B9BFDDA72094A41800D8812C /* doc */,
 				B9BFE0612094A41A00D8812C /* etc */,
