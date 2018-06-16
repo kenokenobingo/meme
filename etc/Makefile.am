@@ -8,7 +8,7 @@ SED_PROCESS = \
 	$(AM_V_GEN)$(MKDIR_P) $(dir $@) && \
 	$(SED) \
 	-e 's|@sysconfdir[@]|$(sysconfdir)|g' \
-	-e 's|@localsta tedir[@]|$(localstatedir)|g' \
+	-e 's|@localstatedir[@]|$(localstatedir)|g' \
 	-e 's|@prefix[@]|$(prefix)|g' \
     -e 's|@userid[@]|$(userid)|g' \
 	-e 's|@PACKAGE_VERSION[@]|$(PACKAGE_VERSION)|g' \
