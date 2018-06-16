@@ -10,9 +10,9 @@
 # The following paths are commented out with their default values listed.
 # If you wish to use different paths, uncomment and update the paths.
 RootDir     = @ROOTDIR@
-DBPath      = @localstatedir@/var/lib/
-CacheDir    = @localstatedir@/cache/meme/pkg/
-LogFile     = @localstatedir@/log/meme.log
+DBPath      = ${prefix}/var/lib/
+CacheDir    = ${prefix}/cache/meme/pkg/
+LogFile     = ${prefix}/log/meme.log
 GPGDir      = @sysconfdir@/meme.d/gnupg/
 HookDir     = @sysconfdir@/meme.d/hooks/
 HoldPkg     = meme glibc
