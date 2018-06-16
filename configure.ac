@@ -563,7 +563,7 @@ ${PACKAGE_NAME}:
     sysconfdir             : $(eval echo ${sysconfdir})
        conf file           : $(eval echo ${sysconfdir})/meme.conf
     localstatedir          : $(eval echo ${localstatedir})
-       database dir        : $(eval echo ${localstatedir})/lib/
+       database dir        : $(eval echo ${localstatedir})/lib/meme/
        cache dir           : $(eval echo ${localstatedir})/cache/meme/pkg/
 
     compiler               : ${CC}

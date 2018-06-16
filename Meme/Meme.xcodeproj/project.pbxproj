@@ -26,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		B91B76B720D411E6005C02FA /* meme */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = meme; sourceTree = BUILT_PRODUCTS_DIR; };
-		B91B76BA20D411E6005C02FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		B92CA78620D417DD00DE6B74 /* libarchive.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.2.tbd; path = usr/lib/libarchive.2.tbd; sourceTree = SDKROOT; };
 		B937F5D920C3DD8200C0A64C /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		B973D4FB20D4169D00A21832 /* libarchive.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.tbd; path = usr/lib/libarchive.tbd; sourceTree = SDKROOT; };
@@ -835,7 +834,6 @@
 		B91B76B920D411E6005C02FA /* meme */ = {
 			isa = PBXGroup;
 			children = (
-				B91B76BA20D411E6005C02FA /* main.c */,
 			);
 			path = meme;
 			sourceTree = "<group>";
