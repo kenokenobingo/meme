@@ -809,6 +809,7 @@
 		B9BFE06F2094A41A00D8812C /* PKGBUILD-split.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = "PKGBUILD-split.proto"; sourceTree = "<group>"; };
 		B9BFE0702094A41A00D8812C /* PKGBUILD.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKGBUILD.proto; sourceTree = "<group>"; };
 		B9BFE0712094A91400D8812C /* util-common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "util-common.h"; sourceTree = "<group>"; };
+		B9C3FB4820D6508C00D56F58 /* Makefile.in.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in.in; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1224,6 +1225,7 @@
 		B9BFDE162094A41900D8812C /* po */ = {
 			isa = PBXGroup;
 			children = (
+				B9C3FB4820D6508C00D56F58 /* Makefile.in.in */,
 				B9BFDE172094A41900D8812C /* lt.po */,
 				B9BFDE182094A41900D8812C /* sr.po */,
 				B9BFDE192094A41900D8812C /* hu.po */,
