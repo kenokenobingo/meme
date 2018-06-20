@@ -41,7 +41,7 @@
 #include <alpm.h>
 #include <alpm_list.h>
 
-/* pacman */
+/* meme */
 #include "util.h"
 #include "conf.h"
 #include "callback.h"
