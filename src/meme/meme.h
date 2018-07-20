@@ -29,6 +29,8 @@ int meme_database(alpm_list_t *targets);
 int meme_deptest(alpm_list_t *targets);
 /* files.c */
 int meme_files(alpm_list_t *files);
+/* add.c */
+int meme_add(alpm_list_t *targets);
 /* query.c */
 int meme_query(alpm_list_t *targets);
 /* remove.c */

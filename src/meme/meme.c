@@ -1014,6 +1014,9 @@ static int parseargs(int argc, char *argv[])
 			case MM_OP_DATABASE:
 				result = parsearg_database(opt);
 				break;
+			case MM_OP_ADD:
+				result = parsearg_add(opt);
+				break;
 			case MM_OP_QUERY:
 				result = parsearg_query(opt);
 				break;
@@ -1064,6 +1067,9 @@ static int parseargs(int argc, char *argv[])
 			break;
 		case MM_OP_DEPTEST:
 			/* no conflicting options */
+			break;
+		case MM_OP_ADD:
+			checkargs_add();
 			break;
 		case MM_OP_SYNC:
 			checkargs_sync();
@@ -1282,6 +1288,9 @@ int main(int argc, char *argv[])
 	switch(config->op) {
 		case MM_OP_DATABASE:
 			ret = meme_database(mm_targets);
+			break;
+		case MM_OP_ADD:
+			ret = meme_add(mm_targets);
 			break;
 		case MM_OP_REMOVE:
 			ret = meme_remove(mm_targets);
