@@ -113,6 +113,7 @@ static void usage(int op, const char * const myname)
 		printf(_("operations:\n"));
 		printf("    %s {-h --help}\n", myname);
 		printf("    %s {-V --version}\n", myname);
+		printf("    %s {-A --add}    [%s] [%s]\n", myname, str_opt, str_pkg);
 		printf("    %s {-D --database} <%s> <%s>\n", myname, str_opt, str_pkg);
 		printf("    %s {-F --files}    [%s] [%s]\n", myname, str_opt, str_pkg);
 		printf("    %s {-Q --query}    [%s] [%s]\n", myname, str_opt, str_pkg);
@@ -129,8 +130,10 @@ static void usage(int op, const char * const myname)
 			addlist(_("  -c, --cascade        remove packages and all packages that depend on them\n"));
 			addlist(_("  -n, --nosave         remove configuration files\n"));
 			addlist(_("  -s, --recursive      remove unnecessary dependencies\n"
-			          "                       (-ss includes explicitly installed dependencies)\n"));
+					  "                       (-ss includes explicitly installed dependencies)\n"));
 			addlist(_("  -u, --unneeded       remove unneeded packages\n"));
+		} else if(op == MM_OP_ADD) {
+			// to be added: ADD OPTIONS
 		} else if(op == MM_OP_UPGRADE) {
 			printf("%s:  %s {-U --upgrade} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
 			addlist(_("      --needed         do not reinstall up to date packages\n"));

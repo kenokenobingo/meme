@@ -10,4 +10,6 @@
 
 #include <stdio.h>
 
+static int meme_add (const char *pathname, const char *filename, const char *repo);
+
 #endif /* add_h */
