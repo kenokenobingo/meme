@@ -340,6 +340,9 @@ static int parsearg_op(int opt, int dryrun)
 {
 	switch(opt) {
 		/* operations */
+		case 'A':
+			if(dryrun) break;
+		    config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_ADD); break;
 		case 'D':
 			if(dryrun) break;
             config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_DATABASE); break;
@@ -902,9 +905,10 @@ static int parseargs(int argc, char *argv[])
 	int opt;
 	int option_index = 0;
 	int result;
-	const char *optstring = "DFQRSTUVb:cdefghiklmnopqr:stuvwxy";
+	const char *optstring = "ADFQRSTUVb:cdefghiklmnopqr:stuvwxy";
 	static const struct option opts[] =
 	{
+		{"add",        no_argument,       0, 'A'},
 		{"database",   no_argument,       0, 'D'},
 		{"files",      no_argument,       0, 'F'},
 		{"query",      no_argument,       0, 'Q'},

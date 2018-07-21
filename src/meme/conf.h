@@ -148,6 +148,7 @@ enum {
     MM_OP_SYNC,
 	MM_OP_DEPTEST,
 	MM_OP_DATABASE,
+	MM_OP_ADD,
 	MM_OP_FILES
 };
 

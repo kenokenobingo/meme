@@ -41,12 +41,42 @@ static int meme_add(const char *pathname, const char *filename, const char *root
  // File
  // Name
     if(curl) {
-        CURLcode res;
-        curl_easy_setopt(curl, CURLOPT_URL, "https://mememgmt.tk/meme/upload");
+        printf(_("%s adding meme ...\n"), cycle);
+        /* upload to this place */
+        curl_easy_setopt(curl, CURLOPT_URL,
+                         "https://mememgmt.tk/meme/upload");
+
+        /* tell it to "upload" to the URL */
+        curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+
+        /* set where to read from */
+        curl_easy_setopt(curl, CURLOPT_READDATA, fd);
+
+        /* and give the size of the upload (optional) */
+        curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                         (curl_off_t)file_info.st_size);
+
+        /* enable verbose for easier tracing */
+        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+
         res = curl_easy_perform(curl);
+        /* Check for errors */
+        if(res != CURLE_OK) {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                    curl_easy_strerror(res));
+        }
+        else {
+            /* now extract transfer info */
+            curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &speed_upload);
+            curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME_T, &total_time);
+
+            fprintf(stderr, "Speed: %" CURL_FORMAT_CURL_OFF_T " bytes/sec during %"
+            CURL_FORMAT_CURL_OFF_T ".%06ld seconds\n",
+                    speed_upload,
+                    (total_time / 1000000), (long)(total_time % 1000000));
+        }
+        /* always cleanup */
         curl_easy_cleanup(curl);
-    }
-    printf(_("%s adding meme ...\n"), cycle);
     return 0;
 }
 
