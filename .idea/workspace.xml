@@ -9,11 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6ce5e8a-83d0-4640-ac46-a01cab831eaf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/meme/add.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/meme/add.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/meme/add.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/meme/add.h" afterDir="false" />
-    </list>
+    <list default="true" id="c6ce5e8a-83d0-4640-ac46-a01cab831eaf" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +22,8 @@
       <file leaf-file-name="add.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/meme/add.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="883">
-              <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+            <state relative-caret-position="1080">
+              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
               <folding>
                 <element signature="e#510#532#0" expanded="true" />
                 <element signature="e#486#503#0" expanded="true" />
@@ -40,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/src/meme/add.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#146#203#0" expanded="true" />
               </folding>
@@ -51,7 +47,7 @@
       <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/meme/Makefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="2520">
               <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
             </state>
           </provider>
@@ -60,7 +56,7 @@
       <file leaf-file-name="sync.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/meme/sync.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9913">
+            <state relative-caret-position="20">
               <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
               <folding>
                 <element signature="e#1057#1074#0" expanded="true" />
@@ -72,7 +68,7 @@
       <file leaf-file-name="dload.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/libalpm/dload.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="780">
               <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
               <folding>
                 <element signature="e#1094#1135#0" expanded="true" />
@@ -88,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/lib/libalpm/dload.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="900">
-              <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+              <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
               <folding>
                 <element signature="e#867#889#0" expanded="true" />
               </folding>
@@ -99,7 +95,7 @@
       <file leaf-file-name="meme.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/meme/meme.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25960">
+            <state relative-caret-position="25700">
               <caret line="1298" column="25" selection-start-line="1298" selection-start-column="13" selection-end-line="1298" selection-end-column="26" />
             </state>
           </provider>
@@ -191,7 +187,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,6 +220,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -261,6 +257,7 @@
       <workItem from="1532165236194" duration="530000" />
       <workItem from="1532165783924" duration="1762000" />
       <workItem from="1532168036567" duration="2773000" />
+      <workItem from="1532334249633" duration="93000" />
     </task>
     <task id="LOCAL-00001" summary="Starting to implement `add` properly.">
       <created>1532088949037</created>
@@ -280,7 +277,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15671000" />
+    <option name="totallyTimeSpent" value="15764000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="2493" height="1415" extended-state="6" />
@@ -288,7 +285,6 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14039311" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32950193" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -302,6 +298,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +538,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/meme.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25960">
+        <state relative-caret-position="25700">
           <caret line="1298" column="25" selection-start-line="1298" selection-start-column="13" selection-end-line="1298" selection-end-column="26" />
         </state>
       </provider>
@@ -572,7 +569,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="2520">
           <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
         </state>
       </provider>
@@ -584,7 +581,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/libalpm/dload.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="780">
           <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
           <folding>
             <element signature="e#1094#1135#0" expanded="true" />
@@ -598,7 +595,7 @@
     <entry file="file://$PROJECT_DIR$/lib/libalpm/dload.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
-          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
           <folding>
             <element signature="e#867#889#0" expanded="true" />
           </folding>
@@ -608,7 +605,7 @@
     <entry file="file://$PROJECT_DIR$/src/meme/add.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#146#203#0" expanded="true" />
           </folding>
@@ -617,8 +614,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/add.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="883">
-          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+        <state relative-caret-position="1080">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding>
             <element signature="e#510#532#0" expanded="true" />
             <element signature="e#486#503#0" expanded="true" />
@@ -635,7 +632,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/sync.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9913">
+        <state relative-caret-position="20">
           <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
           <folding>
             <element signature="e#1057#1074#0" expanded="true" />
