@@ -517,6 +517,32 @@ static void checkargs_database(void)
 	}
 }
 
+static void checkargs_add(void) {
+	//invalid_opt();
+}
+
+static int parsearg_add(int opt) {
+	switch(opt) {
+		case OP_ASDEPS:
+			config->flags |= ALPM_TRANS_FLAG_ALLDEPS;
+			break;
+		case OP_ASEXPLICIT:
+			config->flags |= ALPM_TRANS_FLAG_ALLEXPLICIT;
+			break;
+		case OP_CHECK:
+		case 'k':
+			(config->op_q_check)++;
+			break;
+		case OP_QUIET:
+		case 'q':
+			config->quiet = 1;
+			break;
+		default:
+			return 1;
+	}
+	return 0;
+}
+
 static int parsearg_query(int opt)
 {
 	switch(opt) {

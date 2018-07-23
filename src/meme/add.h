@@ -17,6 +17,6 @@ CURLcode curlerr;       /* last error produced by curl */
 // static int init_add_meme;
 /* static int add_success;
 static int add_error(const char *error);
-static int meme_upload_api(const char *pathname, const char *filename, const char *repo); */s
+static int meme_upload_api(const char *pathname, const char *filename, const char *repo); */
 
 #endif /* add_h */

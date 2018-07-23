@@ -41,7 +41,7 @@
 
 /* Initialize curl library */
 
-static int add_error(const char *error)
+static int add_error(CURLcode error)
 {
     return 0;
 }
@@ -53,7 +53,7 @@ static int add_success()
     return 0;
 }
 
-static int meme_upload_api(const char *pathname, const char *filename, const char *rootmeme, const char *repo)
+int meme_add(alpm_list_t *files)
 {
     CURL *curl = curl_easy_init();
     CURLcode res;
@@ -61,7 +61,6 @@ static int meme_upload_api(const char *pathname, const char *filename, const cha
     curl_off_t speed_upload, total_time;
     FILE *fd;
 
-    init_add_meme();
     fd = fopen("debugit", "rb"); /* open file to upload */
     if(!fd)
         return 1; /* can't continue */
@@ -70,7 +69,7 @@ static int meme_upload_api(const char *pathname, const char *filename, const cha
     if(fstat(fileno(fd), &file_info) != 0)
         return 1; /* can't continue */
     // File
- // Name
+    // Name
     if(curl) {
         printf(_("%s adding meme ...\n"), cycle);
         /* upload to this place */
@@ -99,7 +98,7 @@ static int meme_upload_api(const char *pathname, const char *filename, const cha
         } else {
             /* now extract transfer info */
             curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &speed_upload);
-            curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME_T, &total_time);
+            // curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME_T, &total_time);
 
             fprintf(stderr, "Speed: %"
             CURL_FORMAT_CURL_OFF_T
