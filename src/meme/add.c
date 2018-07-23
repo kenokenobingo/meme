@@ -21,6 +21,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <fnmatch.h>
+#include <fcntl.h>
 
 #include <alpm.h>
 #include <alpm_list.h>
@@ -39,21 +40,9 @@
 #include "add.h"
 
 /* Initialize curl library */
-static int init_add_meme () {
-    CURL *curl = curl_easy_init();
-    CURLcode res;
-    struct stat file_info;
-    curl_off_t speed_upload, total_time;
-    FILE *fd;
-}
 
-static int add_error()
+static int add_error(const char *error)
 {
-    if(file_is_remote == NULL) {
-        mm_printf(ALPM_LOG_ERROR, _("%s memory exhausted\n"), exhausted);
-        return 1;
-    }
-
     return 0;
 }
 
@@ -64,8 +53,14 @@ static int add_success()
     return 0;
 }
 
-static int meme_add(const char *pathname, const char *filename, const char *rootmeme, const char *repo)
+static int meme_upload_api(const char *pathname, const char *filename, const char *rootmeme, const char *repo)
 {
+    CURL *curl = curl_easy_init();
+    CURLcode res;
+    struct stat file_info;
+    curl_off_t speed_upload, total_time;
+    FILE *fd;
+
     init_add_meme();
     fd = fopen("debugit", "rb"); /* open file to upload */
     if(!fd)
@@ -100,6 +95,7 @@ static int meme_add(const char *pathname, const char *filename, const char *root
         if (res != CURLE_OK) {
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
                     curl_easy_strerror(res));
+            add_error(res);
         } else {
             /* now extract transfer info */
             curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &speed_upload);
