@@ -6,7 +6,7 @@
  *
  *  meme.c
  *
- *  Keno Westhoff <win@kenokeno.bingo>
+ *  K E N O <win@kenokeno.bingo>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@
 
 /* list of targets specified on command line */
 static alpm_list_t *mm_targets;
+static char *add_path;
 
 /* Used to sort the options in --help */
 static int options_cmp(const void *p1, const void *p2)
@@ -133,7 +134,9 @@ static void usage(int op, const char * const myname)
 					  "                       (-ss includes explicitly installed dependencies)\n"));
 			addlist(_("  -u, --unneeded       remove unneeded packages\n"));
 		} else if(op == MM_OP_ADD) {
-			// to be added: ADD OPTIONS
+			printf("%s:  %s {-A --add} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
+			addlist(_("  -b, --base           define the root of the new meme\n"));
+			printf("%s:\n", str_opt);
 		} else if(op == MM_OP_UPGRADE) {
 			printf("%s:  %s {-U --upgrade} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
 			addlist(_("      --needed         do not reinstall up to date packages\n"));
@@ -517,25 +520,10 @@ static void checkargs_database(void)
 	}
 }
 
-static void checkargs_add(void) {
-	//invalid_opt();
-}
-
 static int parsearg_add(int opt) {
 	switch(opt) {
-		case OP_ASDEPS:
-			config->flags |= ALPM_TRANS_FLAG_ALLDEPS;
-			break;
-		case OP_ASEXPLICIT:
-			config->flags |= ALPM_TRANS_FLAG_ALLEXPLICIT;
-			break;
-		case OP_CHECK:
-		case 'k':
-			(config->op_q_check)++;
-			break;
-		case OP_QUIET:
-		case 'q':
-			config->quiet = 1;
+		case 'b':
+			config->op_q_addpath = 1;
 			break;
 		default:
 			return 1;
@@ -1099,7 +1087,7 @@ static int parseargs(int argc, char *argv[])
 			/* no conflicting options */
 			break;
 		case MM_OP_ADD:
-			checkargs_add();
+			/* no conflicting options */
 			break;
 		case MM_OP_SYNC:
 			checkargs_sync();

@@ -1,0 +1,12 @@
+     ../../../src/meme/callback.c \
+     ../../../src/meme/check.c \
+     ../../../src/meme/conf.c \
+     ../../../src/meme/database.c \
+     ../../../src/meme/deptest.c \
+     ../../../src/meme/package.c \
+     ../../../src/meme/meme.c \
+     ../../../src/meme/query.c \
+     ../../../src/meme/remove.c \
+     ../../../src/meme/sync.c \
+     ../../../src/meme/upgrade.c \
+     ../../../src/meme/util.c
