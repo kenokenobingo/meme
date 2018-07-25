@@ -53,66 +53,56 @@ static int add_success()
     return 0;
 }
 
-int meme_add(alpm_list_t *files)
+int meme_add(const char *file, const char *name, const char *base)
 {
-    CURL *curl = curl_easy_init();
+    CURL *curl;
     CURLcode res;
-    struct stat file_info;
-    curl_off_t speed_upload, total_time;
-    FILE *fd;
 
-    fd = fopen("debugit", "rb"); /* open file to upload */
-    if(!fd)
-        return 1; /* can't continue */
+    struct curl_httppost *formpost=NULL;
+    struct curl_httppost *lastptr=NULL;
+    struct curl_slist *headerlist=NULL;
+    static const char buf[] = "Expect:";
 
-    /* to get the file size */
-    if(fstat(fileno(fd), &file_info) != 0)
-        return 1; /* can't continue */
-    // File
-    // Name
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    /* Add meme_title to form-data */
+    curl_formadd(&formpost,
+                 &lastptr,
+                 CURLFORM_COPYNAME, "meme_title",
+                 CURLFORM_COPYCONTENTS, name,
+                 CURLFORM_END);
+
+    /* Add meme_base to form-data */
+    curl_formadd(&formpost,
+                 &lastptr,
+                 CURLFORM_COPYNAME, "meme_base",
+                 CURLFORM_COPYCONTENTS, base,
+                 CURLFORM_END);
+
+    /* Add meme_file to form-data */
+    curl_formadd(&formpost,
+                 &lastptr,
+                 CURLFORM_COPYNAME, "meme_file",
+                 CURLFORM_FILE, file,
+                 CURLFORM_END);
+
+    curl = curl_easy_init();
+    headerlist = curl_slist_append(headerlist, buf);
     if(curl) {
-        printf(_("%s adding meme ...\n"), cycle);
-        /* upload to this place */
-        curl_easy_setopt(curl, CURLOPT_URL,
-                         "https://mememgmt.tk/meme/upload");
-
-        /* tell it to "upload" to the URL */
-        curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-
-        /* set where to read from */
-        curl_easy_setopt(curl, CURLOPT_READDATA, fd);
-
-        /* and give the size of the upload (optional) */
-        curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
-                         (curl_off_t) file_info.st_size);
-
-        /* enable verbose for easier tracing */
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-
+        /* what URL that receives this POST */
+        curl_easy_setopt(curl, CURLOPT_URL, "https://mememgmt.tk/meme/upload/");
+        /* if ((argc == 2) && (!strcmp(argv[1], "noexpectheader"))) */
+            /* only disable 100-continue header if explicitly requested */
+            /* curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist); */
+        curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
         res = curl_easy_perform(curl);
-        /* Check for errors */
-        if (res != CURLE_OK) {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                    curl_easy_strerror(res));
-            add_error(res);
-        } else {
-            /* now extract transfer info */
-            curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &speed_upload);
-            // curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME_T, &total_time);
 
-            fprintf(stderr, "Speed: %"
-            CURL_FORMAT_CURL_OFF_T
-            " bytes/sec during %"
-            CURL_FORMAT_CURL_OFF_T
-            ".%06ld seconds\n",
-                    speed_upload,
-                    (total_time / 1000000), (long) (total_time % 1000000));
-            add_success();
-        }
         /* always cleanup */
         curl_easy_cleanup(curl);
-    }
 
-    fclose(fd);
-    return 0;
+        /* then cleanup the formpost chain */
+        curl_formfree(formpost);
+        /* free slist */
+        curl_slist_free_all(headerlist);
+    }
 }

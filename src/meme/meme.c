@@ -52,7 +52,11 @@
 
 /* list of targets specified on command line */
 static alpm_list_t *mm_targets;
+
+/* meme_add */
 static char *add_path;
+static char *add_base;
+static char *add_name;
 
 /* Used to sort the options in --help */
 static int options_cmp(const void *p1, const void *p2)
@@ -523,7 +527,7 @@ static void checkargs_database(void)
 static int parsearg_add(int opt) {
 	switch(opt) {
 		case 'b':
-			config->op_q_addpath = 1;
+			config->op_a_base = 1;
 			break;
 		default:
 			return 1;
@@ -1308,7 +1312,7 @@ int main(int argc, char *argv[])
 			ret = meme_database(mm_targets);
 			break;
 		case MM_OP_ADD:
-			ret = meme_add(mm_targets);
+			ret = meme_add(add_path, add_name, add_base);
 			break;
 		case MM_OP_REMOVE:
 			ret = meme_remove(mm_targets);

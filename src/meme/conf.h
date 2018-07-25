@@ -71,6 +71,8 @@ typedef struct __config_t {
 	alpm_list_t *hookdirs;
 	alpm_list_t *cachedirs;
 
+	unsigned short op_a_base;
+
 	unsigned short op_q_isfile;
 	unsigned short op_q_info;
 	unsigned short op_q_list;
