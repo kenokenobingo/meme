@@ -1312,7 +1312,7 @@ int main(int argc, char *argv[])
 			ret = meme_database(mm_targets);
 			break;
 		case MM_OP_ADD:
-			ret = meme_add(add_path, add_name, add_base);
+			ret = meme_add(mm_targets);
 			break;
 		case MM_OP_REMOVE:
 			ret = meme_remove(mm_targets);

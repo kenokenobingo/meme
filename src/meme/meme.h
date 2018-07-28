@@ -30,7 +30,7 @@ int meme_deptest(alpm_list_t *targets);
 /* files.c */
 int meme_files(alpm_list_t *files);
 /* add.c */
-int meme_add(const char *file, const char *name, const char *base);
+int meme_add(alpm_list_t *targets);
 /* query.c */
 int meme_query(alpm_list_t *targets);
 /* remove.c */

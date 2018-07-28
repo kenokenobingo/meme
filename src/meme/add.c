@@ -10,6 +10,7 @@
  *  Adding a new meme to the repository.
  *
  *  Created by K E N O  on 17.06.18.
+ *
  */
 
 #include <stdio.h>
@@ -53,12 +54,17 @@ static int add_success()
     return 0;
 }
 
-int meme_add(const char *file, const char *name, const char *base)
+int meme_add(alpm_list_t *targets)
 {
     CURL *curl;
     CURLcode res;
 
-    struct curl_httppost *formpost=NULL;
+    printf("%p\n", targets);
+    // FILE *testdestination;
+    // const char *testdestination = "/home/bingo/Downloads/re.jpg";
+    // const char *testtitle = "whoop";
+
+    struct curl_httppost *meme=NULL;
     struct curl_httppost *lastptr=NULL;
     struct curl_slist *headerlist=NULL;
     static const char buf[] = "Expect:";
@@ -66,42 +72,39 @@ int meme_add(const char *file, const char *name, const char *base)
     curl_global_init(CURL_GLOBAL_ALL);
 
     /* Add meme_title to form-data */
-    curl_formadd(&formpost,
+    curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_title",
-                 CURLFORM_COPYCONTENTS, name,
+                 CURLFORM_COPYCONTENTS, targets,
                  CURLFORM_END);
 
     /* Add meme_base to form-data */
-    curl_formadd(&formpost,
+    /* curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_base",
-                 CURLFORM_COPYCONTENTS, base,
-                 CURLFORM_END);
+                 CURLFORM_COPYCONTENTS, targets,
+                 CURLFORM_END); */
 
     /* Add meme_file to form-data */
-    curl_formadd(&formpost,
+    curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_file",
-                 CURLFORM_FILE, file,
+                 CURLFORM_FILE, targets,
                  CURLFORM_END);
 
     curl = curl_easy_init();
     headerlist = curl_slist_append(headerlist, buf);
     if(curl) {
         /* what URL that receives this POST */
-        curl_easy_setopt(curl, CURLOPT_URL, "https://mememgmt.tk/meme/upload/");
-        /* if ((argc == 2) && (!strcmp(argv[1], "noexpectheader"))) */
-            /* only disable 100-continue header if explicitly requested */
-            /* curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist); */
-        curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
+        curl_easy_setopt(curl, CURLOPT_URL, "http://localhost:8000/meme/upload/");
+        curl_easy_setopt(curl, CURLOPT_HTTPPOST, meme);
         res = curl_easy_perform(curl);
 
         /* always cleanup */
         curl_easy_cleanup(curl);
 
         /* then cleanup the formpost chain */
-        curl_formfree(formpost);
+        curl_formfree(meme);
         /* free slist */
         curl_slist_free_all(headerlist);
     }
