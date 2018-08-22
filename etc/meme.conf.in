@@ -52,4 +52,4 @@ CheckSpace
 [meme]
 # SigLevel = Optional TrustAll
 # SigLevel = Never
-Server = https://mememgmt.tk/repo/
+Server = https://repo.memepool.network/

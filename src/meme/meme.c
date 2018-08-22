@@ -525,13 +525,6 @@ static void checkargs_database(void)
 }
 
 static int parsearg_add(int opt) {
-	switch(opt) {
-		case 'b':
-			config->op_a_base = 1;
-			break;
-		default:
-			return 1;
-	}
 	return 0;
 }
 

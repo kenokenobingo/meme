@@ -59,10 +59,9 @@ int meme_add(alpm_list_t *targets)
     CURL *curl;
     CURLcode res;
 
+    printf("* * * *");
     printf("%p\n", targets);
-    // FILE *testdestination;
-    // const char *testdestination = "/home/bingo/Downloads/re.jpg";
-    // const char *testtitle = "whoop";
+    printf("* * * *");
 
     struct curl_httppost *meme=NULL;
     struct curl_httppost *lastptr=NULL;
@@ -71,7 +70,7 @@ int meme_add(alpm_list_t *targets)
 
     curl_global_init(CURL_GLOBAL_ALL);
 
-    /* Add meme_title to form-data */
+    /* Add meme_title to form data */
     curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_title",
@@ -79,11 +78,11 @@ int meme_add(alpm_list_t *targets)
                  CURLFORM_END);
 
     /* Add meme_base to form-data */
-    /* curl_formadd(&meme,
+    curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_base",
                  CURLFORM_COPYCONTENTS, targets,
-                 CURLFORM_END); */
+                 CURLFORM_END);
 
     /* Add meme_file to form-data */
     curl_formadd(&meme,
@@ -95,8 +94,12 @@ int meme_add(alpm_list_t *targets)
     curl = curl_easy_init();
     headerlist = curl_slist_append(headerlist, buf);
     if(curl) {
-        /* what URL that receives this POST */
-        curl_easy_setopt(curl, CURLOPT_URL, "http://localhost:8000/meme/upload/");
+        /*
+         *
+         * A P I
+         *
+         */
+        curl_easy_setopt(curl, CURLOPT_URL, "https://api.memepool.network/meme/upload/");
         curl_easy_setopt(curl, CURLOPT_HTTPPOST, meme);
         res = curl_easy_perform(curl);
 

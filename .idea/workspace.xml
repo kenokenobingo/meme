@@ -9,11 +9,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ddec6d1-21fa-4d60-b987-ce7db95c2cc3" name="Default" comment="Working `add` implementation without function.">
+    <list default="true" id="2ddec6d1-21fa-4d60-b987-ce7db95c2cc3" name="Default" comment="Add is able to send data to the REST API.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etc/meme.conf.in" beforeDir="false" afterPath="$PROJECT_DIR$/etc/meme.conf.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/meme/add.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/meme/add.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/meme/meme.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/meme/meme.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/meme/meme.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/meme/meme.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,38 +25,43 @@
     <session id="8819731">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="334" />
+          <entry key="c" value="539" />
           <entry key="h" value="3" />
+          <entry key="in" value="29" />
+          <entry key="txt" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="337" />
+          <entry key="ObjectiveC" value="542" />
+          <entry key="PLAIN_TEXT" value="73" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="c" value="1" />
+          <entry key="c" value="2" />
           <entry key="h" value="2" />
-          <entry key="in" value="1" />
+          <entry key="in" value="2" />
           <entry key="jpg" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
-          <entry key="ObjectiveC" value="3" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="ObjectiveC" value="4" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -66,12 +71,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/meme/add.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+            <state relative-caret-position="603">
+              <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
               <folding>
                 <element signature="e#532#554#0" expanded="true" />
                 <element signature="e#574#591#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/etc/meme.conf.in">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1080">
+              <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -84,20 +98,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/meme/sync.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9100">
-              <caret line="455" column="22" selection-start-line="455" selection-start-column="16" selection-end-line="455" selection-end-column="22" />
+            <state relative-caret-position="8360">
+              <caret line="418" column="20" selection-start-line="418" selection-start-column="20" selection-end-line="418" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/meme/meme.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2901">
-              <caret line="1081" column="68" selection-start-line="1081" selection-start-column="68" selection-end-line="1081" selection-end-column="68" />
+            <state relative-caret-position="11160">
+              <caret line="558" column="16" selection-start-line="558" selection-start-column="16" selection-end-line="558" selection-end-column="16" />
               <folding>
                 <element signature="e#34724#34735#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/meme/query.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5400">
+              <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -125,7 +148,6 @@
       <find>op_a_</find>
       <find>meme_add</find>
       <find>check</find>
-      <find>parsearg_add</find>
       <find>meme_sync</find>
       <find>alpm_list_t</find>
       <find>parse</find>
@@ -138,6 +160,9 @@
       <find>mm_targe</find>
       <find>formpost</find>
       <find>target</find>
+      <find>parsearg</find>
+      <find>parsearg_add</find>
+      <find>op_q_explicit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,11 +172,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/meme/add.h" />
-        <option value="$PROJECT_DIR$/etc/meme.conf.in" />
         <option value="$PROJECT_DIR$/src/meme/conf.h" />
         <option value="$PROJECT_DIR$/src/meme/meme.h" />
         <option value="$PROJECT_DIR$/src/meme/meme.c" />
         <option value="$PROJECT_DIR$/src/meme/add.c" />
+        <option value="$PROJECT_DIR$/etc/meme.conf.in" />
       </list>
     </option>
   </component>
@@ -179,6 +204,11 @@
             <path>
               <item name="meme" type="b2602c69:ProjectViewProjectNode" />
               <item name="meme" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="meme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="meme" type="462c0819:PsiDirectoryNode" />
+              <item name="etc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="meme" type="b2602c69:ProjectViewProjectNode" />
@@ -244,7 +274,10 @@
       <workItem from="1532600750413" duration="10123000" />
       <workItem from="1532679295513" duration="4590000" />
       <workItem from="1532691462186" duration="1197000" />
-      <workItem from="1532771348884" duration="648000" />
+      <workItem from="1532771348884" duration="929000" />
+      <workItem from="1533039251446" duration="1333000" />
+      <workItem from="1534946466816" duration="156000" />
+      <workItem from="1534946994126" duration="1177000" />
     </task>
     <task id="LOCAL-00001" summary="Working `add` implementation without function.">
       <created>1532346843817</created>
@@ -253,17 +286,24 @@
       <option name="project" value="LOCAL" />
       <updated>1532346843817</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add is able to send data to the REST API.">
+      <created>1532777055041</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1532777055041</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51096000" />
+    <option name="totallyTimeSpent" value="54043000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="2493" height="1415" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15365754" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15733552" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -309,7 +349,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working `add` implementation without function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working `add` implementation without function." />
+    <MESSAGE value="Add is able to send data to the REST API." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add is able to send data to the REST API." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/meme/files.c">
@@ -358,17 +399,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etc/meme.conf.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/add.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+        <state relative-caret-position="603">
+          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
           <folding>
             <element signature="e#532#554#0" expanded="true" />
             <element signature="e#574#591#0" expanded="true" />
@@ -381,8 +415,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/sync.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9100">
-          <caret line="455" column="22" selection-start-line="455" selection-start-column="16" selection-end-line="455" selection-end-column="22" />
+        <state relative-caret-position="8360">
+          <caret line="418" column="20" selection-start-line="418" selection-start-column="20" selection-end-line="418" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/meme/meme.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11160">
+          <caret line="558" column="16" selection-start-line="558" selection-start-column="16" selection-end-line="558" selection-end-column="16" />
+          <folding>
+            <element signature="e#34724#34735#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/meme/query.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5400">
+          <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -393,13 +444,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/meme/meme.c">
+    <entry file="file://$PROJECT_DIR$/etc/meme.conf.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2901">
-          <caret line="1081" column="68" selection-start-line="1081" selection-start-column="68" selection-end-line="1081" selection-end-column="68" />
-          <folding>
-            <element signature="e#34724#34735#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1080">
+          <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
         </state>
       </provider>
     </entry>
