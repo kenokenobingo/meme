@@ -59,9 +59,8 @@ int meme_add(alpm_list_t *targets)
     CURL *curl;
     CURLcode res;
 
-    printf("* * * *");
-    printf("%p\n", targets);
-    printf("* * * *");
+    alpm_list_t *next = targets->next;
+    alpm_list_t *prev = targets->prev;
 
     struct curl_httppost *meme=NULL;
     struct curl_httppost *lastptr=NULL;
@@ -74,21 +73,21 @@ int meme_add(alpm_list_t *targets)
     curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_title",
-                 CURLFORM_COPYCONTENTS, targets,
+                 CURLFORM_COPYCONTENTS, targets->data,
                  CURLFORM_END);
 
     /* Add meme_base to form-data */
     curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_base",
-                 CURLFORM_COPYCONTENTS, targets,
+                 CURLFORM_COPYCONTENTS, next->data,
                  CURLFORM_END);
 
     /* Add meme_file to form-data */
     curl_formadd(&meme,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_file",
-                 CURLFORM_FILE, targets,
+                 CURLFORM_FILE, prev->data,
                  CURLFORM_END);
 
     curl = curl_easy_init();
