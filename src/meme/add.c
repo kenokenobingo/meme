@@ -9,7 +9,7 @@
  *
  *  Adding a new meme to the repository.
  *
- *  Created by K E N O  on 17.06.18.
+ *
  *
  */
 
@@ -62,7 +62,7 @@ int meme_add(alpm_list_t *targets)
     alpm_list_t *next = targets->next;
     alpm_list_t *prev = targets->prev;
 
-    struct curl_httppost *meme=NULL;
+    struct curl_httppost *meme_form=NULL;
     struct curl_httppost *lastptr=NULL;
     struct curl_slist *headerlist=NULL;
     static const char buf[] = "Expect:";
@@ -70,21 +70,21 @@ int meme_add(alpm_list_t *targets)
     curl_global_init(CURL_GLOBAL_ALL);
 
     /* Add meme_title to form data */
-    curl_formadd(&meme,
+    curl_formadd(&meme_form,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_title",
                  CURLFORM_COPYCONTENTS, targets->data,
                  CURLFORM_END);
 
     /* Add meme_base to form-data */
-    curl_formadd(&meme,
+    curl_formadd(&meme_form,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_base",
                  CURLFORM_COPYCONTENTS, next->data,
                  CURLFORM_END);
 
     /* Add meme_file to form-data */
-    curl_formadd(&meme,
+    curl_formadd(&meme_form,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_file",
                  CURLFORM_FILE, prev->data,
@@ -95,18 +95,20 @@ int meme_add(alpm_list_t *targets)
     if(curl) {
         /*
          *
-         * A P I
+         *  A P I
          *
          */
         curl_easy_setopt(curl, CURLOPT_URL, "https://api.memepool.network/meme/upload/");
-        curl_easy_setopt(curl, CURLOPT_HTTPPOST, meme);
+        curl_easy_setopt(curl, CURLOPT_HTTPPOST, meme_form);
         res = curl_easy_perform(curl);
+
+        printf("%s", res);
 
         /* always cleanup */
         curl_easy_cleanup(curl);
 
         /* then cleanup the formpost chain */
-        curl_formfree(meme);
+        curl_formfree(meme_form);
         /* free slist */
         curl_slist_free_all(headerlist);
     }
