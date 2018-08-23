@@ -73,21 +73,21 @@ int meme_add(alpm_list_t *targets)
     curl_formadd(&meme_form,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_title",
-                 CURLFORM_COPYCONTENTS, targets->data,
-                 CURLFORM_END);
-
-    /* Add meme_base to form-data */
-    curl_formadd(&meme_form,
-                 &lastptr,
-                 CURLFORM_COPYNAME, "meme_base",
-                 CURLFORM_COPYCONTENTS, next->data,
+                 CURLFORM_COPYCONTENTS, (char* (targets->data)),
                  CURLFORM_END);
 
     /* Add meme_file to form-data */
     curl_formadd(&meme_form,
                  &lastptr,
                  CURLFORM_COPYNAME, "meme_file",
-                 CURLFORM_FILE, prev->data,
+                 CURLFORM_FILE, (char* (prev->data)),
+                 CURLFORM_END);
+
+    /* Add meme_base to form-data */
+    curl_formadd(&meme_form,
+                 &lastptr,
+                 CURLFORM_COPYNAME, "meme_base",
+                 CURLFORM_COPYCONTENTS, (char* (next->data)),
                  CURLFORM_END);
 
     curl = curl_easy_init();
@@ -101,8 +101,6 @@ int meme_add(alpm_list_t *targets)
         curl_easy_setopt(curl, CURLOPT_URL, "https://api.memepool.network/meme/upload/");
         curl_easy_setopt(curl, CURLOPT_HTTPPOST, meme_form);
         res = curl_easy_perform(curl);
-
-        printf("%s", res);
 
         /* always cleanup */
         curl_easy_cleanup(curl);
