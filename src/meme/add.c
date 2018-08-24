@@ -68,8 +68,8 @@ int meme_add(alpm_list_t *targets)
     static const char buf[] = "Expect:";
 
     const char *title_data = (char*) targets->data;
-    const char *file_data = (char*) prev->data;
-    const char *base_data = (char*) next->data;
+    const char *base_data = (char*) prev->data;
+    const char *file_data = (char*) next->data;
 
     /* DEBUG PRINT */
     printf("%s\n", title_data);
