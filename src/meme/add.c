@@ -67,9 +67,9 @@ int meme_add(alpm_list_t *targets)
     struct curl_slist *headerlist=NULL;
     static const char buf[] = "Expect:";
 
-    char[] title_data = (char*) targets->data;
-    char[] file_data = (char*) prev->data;
-    char[] base_data = (char*) next->data;
+    const char *title_data = (char*) targets->data;
+    const char *file_data = (char*) prev->data;
+    const char *base_data = (char*) next->data;
 
     /* DEBUG PRINT */
     printf("%s\n", title_data);
