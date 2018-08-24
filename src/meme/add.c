@@ -67,6 +67,16 @@ int meme_add(alpm_list_t *targets)
     struct curl_slist *headerlist=NULL;
     static const char buf[] = "Expect:";
 
+    char[] title_data = (char*) targets->data;
+    char[] file_data = (char*) prev->data;
+    char[] base_data = (char*) next->data;
+
+    /* DEBUG PRINT */
+    printf("%s\n", title_data);
+    printf("%s\n", file_data);
+    printf("%s\n", base_data);
+    /* --- */
+
     curl_global_init(CURL_GLOBAL_ALL);
 
     /* Add meme_title to form data */
