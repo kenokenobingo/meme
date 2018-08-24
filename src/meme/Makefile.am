@@ -30,6 +30,7 @@ AM_CPPFLAGS += -DGIT_VERSION=\"$(GIT_VERSION)\"
 endif
 
 meme_SOURCES = \
+    add.h add.c \
 	check.h check.c \
 	conf.h conf.c \
 	database.c \

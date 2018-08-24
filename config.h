@@ -18,7 +18,7 @@
 #define ENABLE_VISIBILITY_CC 1
 
 /* Defined as the filesystem stats type ('statvfs' or 'statfs') */
-#define FSSTATSTYPE struct statfs
+#define FSSTATSTYPE struct statvfs
 
 /* Define to 1 if you have the `alarm' function. */
 #define HAVE_ALARM 1
@@ -50,13 +50,13 @@
 #define HAVE_GETCWD 1
 
 /* Define to 1 if you have the `getmntent' function. */
-/* #undef HAVE_GETMNTENT */
+#define HAVE_GETMNTENT 1
 
 /* Define to 1 if you have the `getmntinfo' function. */
-#define HAVE_GETMNTINFO 1
+/* #undef HAVE_GETMNTINFO */
 
 /* Define if getmntinfo() uses statfs. */
-#define HAVE_GETMNTINFO_STATFS 1
+/* #undef HAVE_GETMNTINFO_STATFS */
 
 /* Define if getmntinfo() uses statvfs. */
 /* #undef HAVE_GETMNTINFO_STATVFS */
@@ -71,7 +71,7 @@
 #define HAVE_GLOB_H 1
 
 /* Define if you have the iconv() function. */
-#define HAVE_ICONV 1
+/* #undef HAVE_ICONV */
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -116,7 +116,7 @@
 #define HAVE_MKDIR 1
 
 /* Define to 1 if you have the <mntent.h> header file. */
-/* #undef HAVE_MNTENT_H */
+#define HAVE_MNTENT_H 1
 
 /* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
 /* #undef HAVE_NDIR_H */
@@ -198,7 +198,7 @@
 #define HAVE_STRUCT_DIRENT_D_TYPE 1
 
 /* Define to 1 if `f_flags' is a member of `struct statfs'. */
-#define HAVE_STRUCT_STATFS_F_FLAGS 1
+/* #undef HAVE_STRUCT_STATFS_F_FLAGS */
 
 /* Define to 1 if `f_flag' is a member of `struct statvfs'. */
 #define HAVE_STRUCT_STATVFS_F_FLAG 1
@@ -245,7 +245,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <sys/ucred.h> header file. */
-#define HAVE_SYS_UCRED_H 1
+/* #undef HAVE_SYS_UCRED_H */
 
 /* Define to 1 if you have the `tcflush' function. */
 #define HAVE_TCFLUSH 1
@@ -285,7 +285,7 @@
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
-/* #undef LSTAT_FOLLOWS_SLASHED_SYMLINK */
+#define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"

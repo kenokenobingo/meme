@@ -6,7 +6,7 @@
  *
  *  meme.c
  *
- *  Keno Westhoff <win@kenokeno.bingo>
+ *  K E N O <win@kenokeno.bingo>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -52,6 +52,11 @@
 
 /* list of targets specified on command line */
 static alpm_list_t *mm_targets;
+
+/* meme_add */
+static char *add_path;
+static char *add_base;
+static char *add_name;
 
 /* Used to sort the options in --help */
 static int options_cmp(const void *p1, const void *p2)
@@ -113,6 +118,7 @@ static void usage(int op, const char * const myname)
 		printf(_("operations:\n"));
 		printf("    %s {-h --help}\n", myname);
 		printf("    %s {-V --version}\n", myname);
+		printf("    %s {-A --add}    [%s] [%s]\n", myname, str_opt, str_pkg);
 		printf("    %s {-D --database} <%s> <%s>\n", myname, str_opt, str_pkg);
 		printf("    %s {-F --files}    [%s] [%s]\n", myname, str_opt, str_pkg);
 		printf("    %s {-Q --query}    [%s] [%s]\n", myname, str_opt, str_pkg);
@@ -129,8 +135,12 @@ static void usage(int op, const char * const myname)
 			addlist(_("  -c, --cascade        remove packages and all packages that depend on them\n"));
 			addlist(_("  -n, --nosave         remove configuration files\n"));
 			addlist(_("  -s, --recursive      remove unnecessary dependencies\n"
-			          "                       (-ss includes explicitly installed dependencies)\n"));
+					  "                       (-ss includes explicitly installed dependencies)\n"));
 			addlist(_("  -u, --unneeded       remove unneeded packages\n"));
+		} else if(op == MM_OP_ADD) {
+			printf("%s:  %s {-A --add} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
+			addlist(_("  -b, --base           define the root of the new meme\n"));
+			printf("%s:\n", str_opt);
 		} else if(op == MM_OP_UPGRADE) {
 			printf("%s:  %s {-U --upgrade} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
 			addlist(_("      --needed         do not reinstall up to date packages\n"));
@@ -337,6 +347,9 @@ static int parsearg_op(int opt, int dryrun)
 {
 	switch(opt) {
 		/* operations */
+		case 'A':
+			if(dryrun) break;
+		    config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_ADD); break;
 		case 'D':
 			if(dryrun) break;
             config->op = (config->op != MM_OP_MAIN ? 0 : MM_OP_DATABASE); break;
@@ -509,6 +522,10 @@ static void checkargs_database(void)
 		invalid_opt(config->flags & ALPM_TRANS_FLAG_ALLEXPLICIT,
 				"--asexplicit", "--check");
 	}
+}
+
+static int parsearg_add(int opt) {
+	return 0;
 }
 
 static int parsearg_query(int opt)
@@ -899,9 +916,10 @@ static int parseargs(int argc, char *argv[])
 	int opt;
 	int option_index = 0;
 	int result;
-	const char *optstring = "DFQRSTUVb:cdefghiklmnopqr:stuvwxy";
+	const char *optstring = "ADFQRSTUVb:cdefghiklmnopqr:stuvwxy";
 	static const struct option opts[] =
 	{
+		{"add",        no_argument,       0, 'A'},
 		{"database",   no_argument,       0, 'D'},
 		{"files",      no_argument,       0, 'F'},
 		{"query",      no_argument,       0, 'Q'},
@@ -1011,6 +1029,9 @@ static int parseargs(int argc, char *argv[])
 			case MM_OP_DATABASE:
 				result = parsearg_database(opt);
 				break;
+			case MM_OP_ADD:
+				result = parsearg_add(opt);
+				break;
 			case MM_OP_QUERY:
 				result = parsearg_query(opt);
 				break;
@@ -1060,6 +1081,9 @@ static int parseargs(int argc, char *argv[])
 			checkargs_database();
 			break;
 		case MM_OP_DEPTEST:
+			/* no conflicting options */
+			break;
+		case MM_OP_ADD:
 			/* no conflicting options */
 			break;
 		case MM_OP_SYNC:
@@ -1279,6 +1303,9 @@ int main(int argc, char *argv[])
 	switch(config->op) {
 		case MM_OP_DATABASE:
 			ret = meme_database(mm_targets);
+			break;
+		case MM_OP_ADD:
+			ret = meme_add(mm_targets);
 			break;
 		case MM_OP_REMOVE:
 			ret = meme_remove(mm_targets);
