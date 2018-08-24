@@ -107,6 +107,7 @@ int needs_root(void)
 		return 1;
 	}
 	switch(config->op) {
+		case MM_OP_ADD:
 		case MM_OP_DATABASE:
 			return !config->op_q_check;
 		case MM_OP_UPGRADE:

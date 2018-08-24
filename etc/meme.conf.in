@@ -1,7 +1,14 @@
+# .,__,.........,__,.....╭¬¬¬¬¬━━╮
+# `•.,¸,.•*¯`•.,¸,.•*|:¬¬¬¬¬¬::::|:^--------^
+# `•.,¸,.•*¯`•.,¸,.•*|:¬¬¬¬¬¬::::||｡◕‿‿◕｡|
+# -........--""-.......--"╰O━━━━O╯╰--O-O--╯
 #
 # @sysconfdir@/meme.conf
 #
 # See the meme.conf(5) manpage for option and repository directives
+#
+# kenokeno.bingo
+#
 
 #
 # GENERAL OPTIONS
@@ -16,7 +23,7 @@ LogFile     = @localstatedir@/log/meme.log
 GPGDir      = @sysconfdir@/meme.d/gnupg/
 HookDir     = @sysconfdir@/meme.d/hooks/
 HoldPkg     = meme glibc
-#XferCommand = /usr/bin/curl -C - -f %u > %o
+XferCommand = /usr/bin/curl -C - -f %u > %o
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
 #UseDelta    = 0.7
@@ -30,7 +37,7 @@ Architecture = auto
 #NoExtract   =
 
 # Misc options
-#UseSyslog
+# UseSyslog
 # Memes do need color!
 Color
 #TotalDownload
@@ -45,4 +52,4 @@ CheckSpace
 [meme]
 # SigLevel = Optional TrustAll
 # SigLevel = Never
-Server = https://mememgmt.tk/repo/
+Server = https://repo.memepool.network/
