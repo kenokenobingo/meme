@@ -17,6 +17,7 @@ parts:
       - asciidoc
       - autopoint
       - curl
+      - docbook
       - fakeroot
       - gcc
       - gettext
