@@ -19,6 +19,7 @@ parts:
       - curl
       - docbook
       - docbook-xsl
+      - docbook-to-man
       - fakeroot
       - gcc
       - gettext
@@ -33,3 +34,4 @@ parts:
       - pkg-config
       - libtool
       - wget
+      - xsltproc
