@@ -1,0 +1,30 @@
+name: meme
+version: "0.9"
+summary: meme
+description: |
+  A package manager for the memepool.
+
+confinement: devmode
+
+apps:
+  meme:
+    command: meme
+
+parts:
+  meme:
+    plugin: autotools
+    build-packages:
+      - autopoint
+      - curl
+      - fakeroot
+      - gcc
+      - gettext
+      - gnupg
+      - make
+      - libarchive13
+      - libarchive-dev
+      - libssl-dev
+      - libcurl4-openssl-dev
+      - pkg-config
+      - libtool
+      - wget
