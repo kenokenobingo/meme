@@ -18,6 +18,7 @@ parts:
       - autopoint
       - curl
       - docbook
+      - docbook-xsl
       - fakeroot
       - gcc
       - gettext
