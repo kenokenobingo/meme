@@ -26,6 +26,7 @@ parts:
       - libarchive-dev
       - libssl-dev
       - libcurl4-openssl-dev
+      - libxslt1.1
       - libxslt1-dev
       - pkg-config
       - libtool
