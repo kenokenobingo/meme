@@ -12,6 +12,7 @@ apps:
 
 parts:
   meme:
+    prepare: ./autogen.sh
     plugin: autotools
     build-packages:
       - aclocal
@@ -40,3 +41,5 @@ parts:
       - libtool
       - wget
       - xsltproc
+    stage-packages:
+      - libc6
