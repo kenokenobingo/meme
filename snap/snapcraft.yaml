@@ -31,6 +31,7 @@ parts:
       - libcurl4-openssl-dev
       - libxslt1.1
       - libxslt1-dev
+      - pkgconf
       - pkg-config
       - libtool
       - wget
