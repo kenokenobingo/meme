@@ -12,7 +12,7 @@ apps:
 
 parts:
   meme:
-    prepare: ./autogen.sh
+    override-build: ./autogen.sh
     plugin: autotools
     build-packages:
       - aclocal
