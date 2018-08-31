@@ -16,6 +16,7 @@ parts:
     build-packages:
       - asciidoc
       - autopoint
+      - autotools-dev
       - curl
       - docbook
       - docbook-xsl
