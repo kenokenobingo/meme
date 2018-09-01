@@ -8,7 +8,7 @@ grade: stable
 
 apps:
   meme:
-    command: /usr/bin/meme
+    command: $SNAP/meme
 
 parts:
   meme:
