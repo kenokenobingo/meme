@@ -7,10 +7,6 @@ description: |
 confinement: classic
 grade: stable
 
-apps:
-  meme:
-    command: meme
-
 parts:
   meme:
     override-build: ./autogen.sh
