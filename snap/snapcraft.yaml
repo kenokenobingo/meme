@@ -4,7 +4,8 @@ summary: meme
 description: |
   A package manager for the memepool.
 
-confinement: devmode
+confinement: classic
+grade: stable
 
 apps:
   meme:
@@ -15,7 +16,6 @@ parts:
     override-build: ./autogen.sh
     plugin: autotools
     build-packages:
-      - aclocal
       - asciidoc
       - automake
       - autopoint
