@@ -4,7 +4,6 @@ summary: meme
 description: |
   A package manager for the memepool.
 
-confinement: classic
 grade: stable
 
 parts:
