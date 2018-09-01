@@ -6,6 +6,10 @@ description: |
 
 grade: stable
 
+apps:
+  meme:
+    command: /usr/bin/meme
+
 parts:
   meme:
     override-build: ./autogen.sh
