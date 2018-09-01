@@ -9,7 +9,7 @@ confinement: strict
 
 apps:
   meme:
-    command: /bin/meme
+    command: meme
 
 parts:
   meme:
