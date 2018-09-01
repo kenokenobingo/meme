@@ -5,14 +5,17 @@ description: |
   A package manager for the memepool.
 
 grade: stable
+confinement: strict
 
 apps:
   meme:
-    command: $SNAP/meme
+    command: /bin/meme
 
 parts:
   meme:
-    override-build: ./autogen.sh
+    override-build: |
+      ./autogen.sh
+      snapcraftctl build
     plugin: autotools
     build-packages:
       - asciidoc
