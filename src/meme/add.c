@@ -77,6 +77,11 @@ int meme_add(alpm_list_t *targets)
     printf("%s\n", base_data);
     /* --- */
 
+    if(targets == NULL) {
+      mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
+      return 1;
+    }
+
     curl_global_init(CURL_GLOBAL_ALL);
 
     /* Add meme_title to form data */
