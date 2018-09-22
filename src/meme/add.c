@@ -62,6 +62,9 @@ int meme_add(alpm_list_t *targets)
     } else if(targets->next == NULL) {
         mm_printf(ALPM_LOG_ERROR, _("not enough targets specified\n"));
         return 1;
+    } else if(targets->prev ==NULL) {
+        mm_printf(ALPM_LOG_ERROR, _("not enough targets specified\n"));
+        return 1;
     }
 
     alpm_list_t *next = targets->next;
