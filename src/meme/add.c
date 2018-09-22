@@ -56,16 +56,16 @@ static int add_success()
 
 int meme_add(alpm_list_t *targets)
 {
-    alpm_list_t *next = targets->next;
-    alpm_list_t *prev = targets->prev;
-
     if(targets == NULL) {
         mm_printf(ALPM_LOG_ERROR, _("no targets specified\n"));
         return 1;
-    } else if(next == NULL) {
+    } else if(targets->next == NULL) {
         mm_printf(ALPM_LOG_ERROR, _("not enough targets specified\n"));
         return 1;
     }
+
+    alpm_list_t *next = targets->next;
+    alpm_list_t *prev = targets->prev;
 
     CURL *curl;
     CURLcode res;
