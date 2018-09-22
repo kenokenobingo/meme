@@ -40,20 +40,6 @@
 #include "emoji.h"
 #include "add.h"
 
-/* Initialize curl library */
-
-static int add_error(CURLcode error)
-{
-    return 0;
-}
-
-static int add_success()
-{
-    // Yay, success!
-    printf("Yay, success!");
-    return 0;
-}
-
 int meme_add(alpm_list_t *targets)
 {
     if(targets == NULL) {
@@ -81,12 +67,6 @@ int meme_add(alpm_list_t *targets)
     const char *title_data = (char*) targets->data;
     const char *base_data = (char*) prev->data;
     const char *file_data = (char*) next->data;
-
-    /* DEBUG PRINT */
-    printf("%s\n", title_data);
-    printf("%s\n", file_data);
-    printf("%s\n", base_data);
-    /* --- */
 
     curl_global_init(CURL_GLOBAL_ALL);
 
