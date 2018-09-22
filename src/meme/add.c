@@ -56,6 +56,11 @@ static int add_success()
 
 int meme_add(alpm_list_t *targets)
 {
+    if(targets == NULL) {
+        mm_printf(ALPM_LOG_ERROR, _("no targets specified\n"));
+        return 1;
+    }
+
     CURL *curl;
     CURLcode res;
 
@@ -76,11 +81,6 @@ int meme_add(alpm_list_t *targets)
     printf("%s\n", file_data);
     printf("%s\n", base_data);
     /* --- */
-
-    if(targets == NULL) {
-      mm_printf(ALPM_LOG_ERROR, _("no targets specified (use -h for help)\n"));
-      return 1;
-    }
 
     curl_global_init(CURL_GLOBAL_ALL);
 
