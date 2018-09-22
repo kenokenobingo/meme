@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ddec6d1-21fa-4d60-b987-ce7db95c2cc3" name="Default" comment="Debug alpm_list_t for form data in `add.c`.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/meme/add.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/meme/add.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,12 +112,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="c" value="18" />
+          <entry key="c" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="18" />
+          <entry key="ObjectiveC" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -138,8 +137,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/meme/add.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state relative-caret-position="367">
+              <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
               <folding>
                 <element signature="e#498#520#0" expanded="true" />
                 <element signature="e#540#557#0" expanded="true" />
@@ -384,7 +383,7 @@
       <workItem from="1535097707622" duration="1569000" />
       <workItem from="1536049846184" duration="1854000" />
       <workItem from="1537627207074" duration="2835000" />
-      <workItem from="1537632026335" duration="23000" />
+      <workItem from="1537632026335" duration="309000" />
     </task>
     <task id="LOCAL-00001" summary="Working `add` implementation without function.">
       <created>1532346843817</created>
@@ -453,7 +452,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76476000" />
+    <option name="totallyTimeSpent" value="76762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="878" extended-state="6" />
@@ -571,8 +570,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/meme/add.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state relative-caret-position="367">
+          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
           <folding>
             <element signature="e#498#520#0" expanded="true" />
             <element signature="e#540#557#0" expanded="true" />
